@@ -9,8 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shoppingbackend.dao.CategoryDAO;
+
 @Controller
 public class PageController {
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
 	
 	@Autowired
 	private HttpSession session;
@@ -21,6 +27,12 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("greeting","Welcome to Spring Web MVC");
 		mv.addObject("title","Home");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		
+		
 		mv.addObject("msg","WELCOME TO SHOPPING CART");
 		mv.addObject("userClickHome",true);
 		return mv;

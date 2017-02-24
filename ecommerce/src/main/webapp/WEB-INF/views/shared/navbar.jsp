@@ -28,11 +28,13 @@
   
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Samsung</a></li>
-          <li><a href="#">HTC</a></li>
-          <li><a href="#">Motorola</a></li>
-          <li><a href="#">OnePlus</a></li>
-          <li><a href="#">Vivo</a></li>
+         
+         <c:forEach items="${categories}" var="category">
+         	 <li><a href="#">${category.name}</a></li>
+         
+         </c:forEach>
+         
+         
         </ul>
       </li>
       <c:if test="${empty adminMessage}">
