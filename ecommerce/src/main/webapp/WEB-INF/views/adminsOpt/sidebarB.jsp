@@ -8,6 +8,7 @@
 	          	<div class="panel-body list-group">
 	          		<a href="addProduct" id="addProduct" class="list-group-item">Add product</a>
 	              	<a href="addCategory" id="addCategory" class="list-group-item">Add brand</a>
+	              	<a href="addSupplier" id="addSupplier" class="list-group-item">Add supplier</a>
 	            </div>
         </div>
 		</div>
@@ -21,7 +22,9 @@
 					<%@include file="addCategory.jsp" %>
 				</c:if>
         	
-        	
+        		<c:if test="${isUserClickAddSupplier==true}">
+					<%@include file="addSupplier.jsp" %>
+				</c:if>
         	
         	
 		</div>

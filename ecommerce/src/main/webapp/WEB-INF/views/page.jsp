@@ -115,7 +115,7 @@
 		<%@include file="./orders/orderDetailsButton.jsp" %>
 	</c:if>
 	
-	<c:if test="${isUserClickAddProduct==true || isUserClickAddCategory==true}">
+	<c:if test="${isUserClickAddProduct==true || isUserClickAddCategory==true || isUserClickAddSupplier==true}">
 		<%@include file="./adminsOpt/sidebarB.jsp" %>
 	</c:if>
 	

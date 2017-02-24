@@ -230,6 +230,14 @@ public class PageController {
 		mv.addObject("isUserClickAddCategory",true);
 		return mv;
 	}
+	@RequestMapping(value = { "/addSupplier" })
+	public ModelAndView showAddSupplierPage() {
+		System.out.println("clicked on add supplier page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title","Add supplier");
+		mv.addObject("isUserClickAddSupplier",true);
+		return mv;
+	}
 	@RequestMapping(value = { "/adminsProducts" })
 	public ModelAndView showAdminsProductsPage() {
 		System.out.println("clicked on admins products page");
@@ -254,4 +262,5 @@ public class PageController {
 		mv.addObject("isUserClickAdminsProDetails",true);
 		return mv;
 	}
+	
 }

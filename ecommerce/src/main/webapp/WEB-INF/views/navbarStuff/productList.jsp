@@ -45,7 +45,7 @@
 						<div class="row">
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${images}/s7main.jpg" alt="s7edge">
+						      <img src="http://placehold.it/802x615" alt="s7edge">
 						      <div class="caption">
 						        <h3><a href="productDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
 						        <h4>&#8377;50900</h4>
@@ -57,7 +57,7 @@
 
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${images}/on8main.jpg" alt="on8">
+						      <img src="http://placehold.it/802x615" alt="on8">
 						      <div class="caption">
 						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy on8</a></h3>
 						        <h4>&#8377;14900</h4>
@@ -69,7 +69,7 @@
 
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${images}/note5main.jpg" alt="note5">
+						      <img src="http://placehold.it/802x615" alt="note5">
 						      <div class="caption">
 						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy Note 5</a></h3>
 						        <h4>&#8377;43900</h4>
@@ -81,7 +81,7 @@
 
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${images}/A9main.jpg" alt="A9pro">
+						      <img src="http://placehold.it/802x615" alt="A9pro">
 						      <div class="caption">
 						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy A9 pro</a></h3>
 						        <h4>&#8377;32490</h4>

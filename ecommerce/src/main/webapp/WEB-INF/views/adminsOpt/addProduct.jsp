@@ -86,7 +86,7 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row"><img src="${images}/s7main.jpg" width="100px"></th>
+                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
                 <td><a href="">Samsung galaxy S7 edge</a></td>
                 <td>&#8377;50900</td>
                 <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
@@ -94,21 +94,21 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row"><img src="${images}/note5main.jpg" width="100px"></th>
+                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
                 <td><a href="">Samsung galaxy Note 5</a></td>
                 <td>&#8377;43900</td>
                 <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
                 <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
               </tr>
               <tr>
-                <th scope="row"><img src="${images}/A9main.jpg" width="100px"></th>
+                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
                 <td><a href="">Samsung galaxy A9 pro</a></td>
                 <td>&#8377;32490</td>
                 <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
                 <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
               </tr>
               <tr>
-                <th scope="row"><img src="${images}/on8main.jpg" width="100px"></th>
+                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
                 <td><a href="">Samsung galaxy on8</a></td>
                 <td>&#8377;14900</td>
                 <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>

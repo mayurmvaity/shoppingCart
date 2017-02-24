@@ -80,6 +80,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="addProduct">Add product</a></li>
 								<li><a href="addCategory">Add brand</a></li>
+								<li><a href="addSupplier">Add supplier</a></li>
 								<li><a href="logout">Log Out</a></li>
 							</ul></li>
 					</c:if>

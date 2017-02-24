@@ -2,7 +2,7 @@
 			<div class="col-md-7">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<img src="${images}/s7main.jpg" alt="s7edge" width="600px">
+						<img src="http://placehold.it/802x615" alt="s7edge" width="600px">
 					</div>
 				</div>
 			</div>

@@ -21,6 +21,7 @@ $(function() {
 	
 	case 'Add Product': $('#addProduct').addClass('active'); break;
 	case 'Add New Brand': $('#addCategory').addClass('active'); break;
+	case 'Add supplier': $('#addSupplier').addClass('active'); break;
 	
 	case 'My Account': $('#myAccount').addClass('active'); break;
 	case 'Order Details': $('#orderDetails').addClass('active'); break;
