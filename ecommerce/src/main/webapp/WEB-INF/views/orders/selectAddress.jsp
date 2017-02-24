@@ -19,7 +19,7 @@
 							<p>congue non augue sed,</p>
 							<div class="checkbox">
 								<label> 
-								<a href="confirmPurchase" class="btn btn-primary" role="button">Deliver here</a>
+								<a href="${contextRoot}/confirmPurchase" class="btn btn-primary" role="button">Deliver here</a>
 								</label>
 							</div>
 						</div>

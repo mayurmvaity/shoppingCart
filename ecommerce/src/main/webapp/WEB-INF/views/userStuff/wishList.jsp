@@ -56,7 +56,7 @@
 			
 		</div>
 		<div class="well text-right">
-				<button class="btn btn-warning btn-lg">
+				<a class="btn btn-warning btn-lg" href="${contextRoot}/home">
 					...Continue shopping
-				</button>
+				</a>
 			</div>

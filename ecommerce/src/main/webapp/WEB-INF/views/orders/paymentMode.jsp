@@ -10,7 +10,7 @@
 							<input type="radio" name="gender" value="female"> Cash on delivery<br>
 						 
 						 <div class="well text-center">
-							<a class="btn btn-primary btn-md  text-center" href=""orderDetails>Continue</a>
+							<a class="btn btn-primary btn-md  text-center" href="${contextRoot}/orderDetails">Continue</a>
 						</div>
 						</form>
 

@@ -2,7 +2,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<a class="btn btn-primary btn-lg" href="orderDetailsButton">View details</a>
+					<a class="btn btn-primary btn-lg" href="${contextRoot}/orderDetailsButton">View details</a>
 				</div>
 				<table class="table">
 				            <thead>

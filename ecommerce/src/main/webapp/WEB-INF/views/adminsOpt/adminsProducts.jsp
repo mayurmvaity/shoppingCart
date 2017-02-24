@@ -46,7 +46,7 @@
 						    <div class="thumbnail">
 						      <img src="http://placehold.it/802x615" alt="s7edge">
 						      <div class="caption">
-						        <h3><a href="adminsProDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
+						        <h3><a href="${contextRoot}/adminsProDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
 						        <h4>&#8377;50900</h4>
 						        <a href="" class="btn btn-md btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></a>
 						        <a href="" class="btn btn-md btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></a>

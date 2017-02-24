@@ -21,8 +21,31 @@
 			</nav>
     	</div>
     	<!-- Filters end here -->
+    	
+    	
+    	<!-- Added breadcrumb -->
+			<div class="row">
+				<div class="col-lg-12">
+					<c:if test="${userClickAllProducts==true}">
+					<ol class="breadcrumb">
+						<li><a href="${contextRoot}/home">Home</a></li>
+						<li class="active">All Products</li>
+					</ol>
+					</c:if>
+					
+					<c:if test="${userClickCategoryProducts==true}">
+					<ol class="breadcrumb">
+						<li><a href="${contextRoot}/home">Home</a></li>
+						<li class="active">Category</li>
+						<li class="active">${category.name}</li>
+					</ol>
+					</c:if>
+				</div>
+			</div>
+		<!-- Ended breadcrumb -->
 			
-
+			
+			<!-- To display sidebar -->
 			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -30,12 +53,15 @@
 						Brands
 						</h3>
 					</div>
-					<div class="panel-body list-group">
-						<a href="#" class="list-group-item">Samsung</a>
-			            <a href="#" class="list-group-item">HTC</a>
+					<div class="panel-body">
+						
+						<%@include file="sidebarC.jsp" %>		
+					
 					</div>
 				</div>
 			</div>
+			
+			<!-- to display products -->
 			<div class="col-md-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -47,7 +73,7 @@
 						    <div class="thumbnail">
 						      <img src="http://placehold.it/802x615" alt="s7edge">
 						      <div class="caption">
-						        <h3><a href="productDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
+						        <h3><a href="${contextRoot}/productDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
 						        <h4>&#8377;50900</h4>
 						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>

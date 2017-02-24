@@ -54,7 +54,7 @@
                 	<div class="thumbnail">
                     	<img src="http://placehold.it/802x615" alt="s7main">
                         <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
+                        	<h4><a href="${contextRoot}/adminsProDetails">Samsun galaxy s7 edge</a></h4>
                             <h4><span style="color: red;">&#8377;50900</span></h4>
                            <a href="adminsProDetails" class="btn btn-md btn-primary"><span class="glyphicon glyphicon-edit"></span></a>
                            <a href="" class="btn btn-md btn-danger"><span class="glyphicon glyphicon-trash"></span></a>

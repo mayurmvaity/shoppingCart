@@ -8,17 +8,17 @@
 			          <div class="panel-body">
 			          	<legend class="text-center"></legend>
 			            <ul class="list-group">
-			              <a href="myAccount" id="myAccount" class="list-group-item">Account details</a>
-			              <a href="orderDetails" id="orderDetails" class="list-group-item">Orders</a>
-			              <a href="wishList" id="wishList" class="list-group-item">Wish list</a>
+			              <a href="${contextRoot}/myAccount" id="myAccount" class="list-group-item">Account details</a>
+			              <a href="${contextRoot}/orderDetails" id="orderDetails" class="list-group-item">Orders</a>
+			              <a href="${contextRoot}/wishList" id="wishList" class="list-group-item">Wish list</a>
 			              
 			            </ul> 
 			            <legend class="text-center"></legend>
 			            <ul class="list-group">
-			              <a href="personalInfo" id="personalInfo" class="list-group-item">Personal information</a>
-			              <a href="changePW" id="changePW" class="list-group-item">Change password</a>
-			              <a href="manageAddress" id="manageAddress" class="list-group-item">Manage addresses</a>
-			              <a href="changeMobNo" id="changeMobNo" class="list-group-item">Update mobile number</a>
+			              <a href="${contextRoot}/personalInfo" id="personalInfo" class="list-group-item">Personal information</a>
+			              <a href="${contextRoot}/changePW" id="changePW" class="list-group-item">Change password</a>
+			              <a href="${contextRoot}/manageAddress" id="manageAddress" class="list-group-item">Manage addresses</a>
+			              <a href="${contextRoot}/changeMobNo" id="changeMobNo" class="list-group-item">Update mobile number</a>
 			              
 			            </ul> 
 			          </div>

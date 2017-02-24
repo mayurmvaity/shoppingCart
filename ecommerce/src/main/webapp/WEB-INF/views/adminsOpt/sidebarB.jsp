@@ -6,9 +6,9 @@
 	            <h3 class="panel-title">Admin panel</h3>
 	          </div>
 	          	<div class="panel-body list-group">
-	          		<a href="addProduct" id="addProduct" class="list-group-item">Add product</a>
-	              	<a href="addCategory" id="addCategory" class="list-group-item">Add brand</a>
-	              	<a href="addSupplier" id="addSupplier" class="list-group-item">Add supplier</a>
+	          		<a href="${contextRoot}/addProduct" id="addProduct" class="list-group-item">Add product</a>
+	              	<a href="${contextRoot}/addCategory" id="addCategory" class="list-group-item">Add brand</a>
+	              	<a href="${contextRoot}/addSupplier" id="addSupplier" class="list-group-item">Add supplier</a>
 	            </div>
         </div>
 		</div>

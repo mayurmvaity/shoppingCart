@@ -7,11 +7,11 @@
     		<span class="icon-bar"></span>
     	</button>
  	<c:if test="${empty adminMessage}">   	
-      <a class="navbar-brand" href="home">NEXT173</a>
+      <a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
     </c:if>
     
     <c:if test="${not empty adminMessage}">   	
-      <a class="navbar-brand" href="adminsHome">NEXT173</a>
+      <a class="navbar-brand" href="${contextRoot}/adminsHome">NEXT173</a>
     </c:if>
     
     </div>
@@ -19,11 +19,11 @@
     <ul class="nav navbar-nav">
     
   <c:if test="${empty adminMessage}">  
-      <li id="Home"><a href="home">Home</a></li>
+      <li id="Home"><a href="${contextRoot}/home">Home</a></li>
   </c:if>
  
   <c:if test="${not empty adminMessage}">  
-      <li id="Home"><a href="adminsHome">Home</a></li>
+      <li id="Home"><a href="${contextRoot}/adminsHome">Home</a></li>
   </c:if> 
   
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
@@ -38,27 +38,27 @@
         </ul>
       </li>
       <c:if test="${empty adminMessage}">
-     <li id="productList"><a href="productList">All Products</a></li>
+     <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
      </c:if>
      
      <c:if test="${not empty adminMessage}">
-     <li id="adminsProducts"><a href="adminsProducts">All Products</a></li>
+     <li id="adminsProducts"><a href="${contextRoot}/adminsProducts">All Products</a></li>
      </c:if>
     </ul>
 
 			<ul class="nav navbar-nav navbar-right">
 
-				<li id="aboutUs"><a href="aboutUs"> About Us</a>
-				<li id="contactUs"><a href="contactUs"> Contact Us</a>
+				<li id="aboutUs"><a href="${contextRoot}/aboutUs"> About Us</a>
+				<li id="contactUs"><a href="${contextRoot}/contactUs"> Contact Us</a>
 				 <c:if test="${empty loginMessage && empty adminMessage}">
-						<li id="signup"><a href="register">Sign Up<span
+						<li id="signup"><a href="${contextRoot}/register">Sign Up<span
 								class="glyphicon glyphicon-unchecked"></span></a></li>
-						<li id="login"><a href="login">Log In <span
+						<li id="login"><a href="${contextRoot}/login">Log In <span
 								class="glyphicon glyphicon-log-in"></span></a></li>
 
 					</c:if> 
 					<c:if test="${not empty loginMessage}">
-						<li id="myCart"><a href="myCart"><span
+						<li id="myCart"><a href="${contextRoot}/myCart"><span
 								class="glyphicon glyphicon-shopping-cart"></span> My Cart <span
 								class="badge">14</span></a></li>
 
@@ -66,12 +66,12 @@
 							data-toggle="dropdown" href="#">${username}<span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="myAccount">Account</a></li>
-								<li><a href="changePW">Change password</a></li>
-								<li><a href="manageAddress">Addresses</a></li>
-								<li><a href="wishList">Wish list</a></li>
-								<li><a href="orderDetails">Orders</a></li>
-								<li><a href="logout">Log Out</a></li>
+								<li><a href="${contextRoot}/myAccount">Account</a></li>
+								<li><a href="${contextRoot}/changePW">Change password</a></li>
+								<li><a href="${contextRoot}/manageAddress">Addresses</a></li>
+								<li><a href="${contextRoot}/wishList">Wish list</a></li>
+								<li><a href="${contextRoot}/orderDetails">Orders</a></li>
+								<li><a href="${contextRoot}/logout">Log Out</a></li>
 							</ul></li>
 
 					</c:if>
@@ -80,10 +80,10 @@
 							data-toggle="dropdown" href="#">${adminName}<span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="addProduct">Add product</a></li>
-								<li><a href="addCategory">Add brand</a></li>
-								<li><a href="addSupplier">Add supplier</a></li>
-								<li><a href="logout">Log Out</a></li>
+								<li><a href="${contextRoot}/addProduct">Add product</a></li>
+								<li><a href="${contextRoot}/addCategory">Add brand</a></li>
+								<li><a href="${contextRoot}/addSupplier">Add supplier</a></li>
+								<li><a href="${contextRoot}/logout">Log Out</a></li>
 							</ul></li>
 					</c:if>
 			</ul>

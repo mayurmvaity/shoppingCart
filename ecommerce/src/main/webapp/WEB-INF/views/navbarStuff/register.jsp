@@ -110,7 +110,7 @@
                             <button type="submit" class="btn btn-primary">
                                 Register
                             </button>
-                            <a href="login">Already have an account?</a>
+                            <a href="${contextRoot}/login">Already have an account?</a>
                         </div>
                     </div>
 

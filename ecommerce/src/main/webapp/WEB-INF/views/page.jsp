@@ -75,9 +75,16 @@
 		<%@include file="./navbarStuff/register.jsp" %>
 	</c:if>
 	
-	<c:if test="${isUserClickProductList==true}">
+	<%-- <c:if test="${isUserClickProductList==true}">
+		<%@include file="./navbarStuff/productList.jsp" %>
+	</c:if> --%>
+	
+	
+	<c:if test="${userClickCategoryProducts==true or userClickAllProducts==true}">
 		<%@include file="./navbarStuff/productList.jsp" %>
 	</c:if>
+	
+	
 	
 	<c:if test="${isUserClickContactUs==true}">
 		<%@include file="./navbarStuff/contactUs.jsp" %>

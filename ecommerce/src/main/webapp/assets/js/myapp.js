@@ -7,7 +7,7 @@ $(function() {
 		
 	case 'login': $('#login').addClass('active'); break;
 	
-	case 'Product list': $('#productList').addClass('active'); break;
+	case 'All Products': $('#productList').addClass('active'); break;
 	
 	case 'Admins Products': $('#adminsProducts').addClass('active'); break;
 	
@@ -32,7 +32,9 @@ $(function() {
 	case 'Change Mobile Number': $('#changeMobNo').addClass('active'); break;
 	
 	
-	default: System.out.println("default active");
+	default: $('#productList').addClass('active'); 
+			$('#a_'+menu).addClass('active');
+			break;
 	
 	
 	

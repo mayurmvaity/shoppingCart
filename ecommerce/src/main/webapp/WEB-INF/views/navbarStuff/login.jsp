@@ -32,7 +32,7 @@
                             <button type="submit" class="btn btn-primary">
                                 Log In
                             </button>
-                            <a href="register" >New here? register</a>
+                            <a href="${contextRoot}/register" >New here? register</a>
                         </div>
                     </div>
                    
