@@ -44,6 +44,10 @@ public class PageController {
 		System.out.println("clicked on reg page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title","Sign Up");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+				
 		mv.addObject("isUserClickRegPage",true);
 		return mv;
 	}
