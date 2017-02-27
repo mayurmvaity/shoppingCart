@@ -28,7 +28,7 @@ public class CategoryTestCase {
 		
 	}
 	
-	@Test
+/* @Test
 	public void testAddCategory()
 	{
 		category =new Category();
@@ -39,6 +39,80 @@ public class CategoryTestCase {
 		
 		assertEquals("Successfully added a category inside the table",true,categoryDAO.add(category));
 		
+		
+	}*/
+	
+	/*@Test
+	public void testGetCategory() {
+		
+		
+		category = categoryDAO.get(1);
+		
+		assertEquals("Successfully fetched a category inside the table","Samsung",category.getName());
+		
+	}*/
+		
+	/*	@Test
+		public void testUpdateCategory() {
+		
+		
+			category = categoryDAO.get(1);
+			
+			category.setName("SAMSUNG");
+		
+			assertEquals("Successfully updated a category in the table",true,categoryDAO.update(category));
+		
+		}
+	*/
+	
+	/*@Test
+	public void testDeleteCategory() {
+	
+	
+		category = categoryDAO.get(1);
+		assertEquals("Successfully deleted a category in the table",true,categoryDAO.delete(category));
+	
+	}*/
+	
+	/* @Test
+	public void testListCategory() {
+	
+		assertEquals("Successfully fetched the list of a categories from the table",1,categoryDAO.list().size());
+	
+	} */
+	
+	@Test
+	public void testCRUDCategory() {
+		//add operation
+		category =new Category();
+		
+		category.setName("Macintosh");
+		category.setDescription("This is some desc for Macintosh");
+		category.setImageURL("CAT_2mac.png");
+		
+		assertEquals("Successfully added a category inside the table",true,categoryDAO.add(category));
+		
+		category =new Category();
+		
+		category.setName("Alienware");
+		category.setDescription("This is some desc for alienware");
+		category.setImageURL("CAT_3.png");
+		
+		assertEquals("Successfully added a category inside the table",true,categoryDAO.add(category));
+		
+		//fetchaing and updating
+		category = categoryDAO.get(2);
+		
+		category.setName("OS-X");
+	
+		assertEquals("Successfully updated a category in the table",true,categoryDAO.update(category));
+		
+		//delete the category
+		category = categoryDAO.get(2);
+		assertEquals("Successfully deleted a category in the table",true,categoryDAO.delete(category));
+		
+		//fetching the list
+		assertEquals("Successfully fetched the list of a categories from the table",1,categoryDAO.list().size());
 		
 	}
 	
