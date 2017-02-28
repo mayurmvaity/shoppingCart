@@ -32,7 +32,7 @@ create table supplier (
 
 create table stock (
 	
-	stockid number(4) primary key,
+	stockid IDENTITY primary key,
 	pid number(4) references product(pid) on delete cascade,
 	sid number(4) references supplier(sid) on delete cascade,
 	price number(9) not null,
