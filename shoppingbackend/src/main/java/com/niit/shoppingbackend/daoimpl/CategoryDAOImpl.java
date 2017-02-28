@@ -67,7 +67,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public boolean update(Category category) {
 		try {
-			// add the category to the database table
+		
 			sessionFactory.getCurrentSession().update(category);
 			return true;
 		}
@@ -85,7 +85,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 		category.setActive(false);
 		 
 		try {
-			// add the category to the database table
+	
 			sessionFactory.getCurrentSession().update(category);
 			return true;
 		}
