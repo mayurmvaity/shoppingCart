@@ -5,7 +5,7 @@
 	<footer>
 		<div class="row">
 			<div class="col-lg-12">
-				<p>Copyroght &copy; NEXT173 2017</p>
+				<p>Copyright &copy; NEXT173 2017</p>
 			
 			</div>
 			

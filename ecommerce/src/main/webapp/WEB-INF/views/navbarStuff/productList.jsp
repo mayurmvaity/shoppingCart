@@ -69,53 +69,25 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
+						  
+						  <c:forEach items="${products}" var="variable">
+						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="s7edge">
+						      <img src="http://placehold.it/802x615" alt="image">
 						      <div class="caption">
-						        <h3><a href="${contextRoot}/productDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
-						        <h4>&#8377;50900</h4>
+						        <h3>
+						        <a href="" style="text-decoration: none;">${variable[1].name}</a>
+						        <a style="text-decoration: none;" href="">${variable[0].pname}</a></h3>
+						        <h4>&#8377;10000</h4>
 						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
-
-						  <div class="col-sm-6 col-md-4">
-						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="on8">
-						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy on8</a></h3>
-						        <h4>&#8377;14900</h4>
-						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
-						      </div>
-						    </div>
-						  </div>
-
-						  <div class="col-sm-6 col-md-4">
-						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="note5">
-						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy Note 5</a></h3>
-						        <h4>&#8377;43900</h4>
-						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
-						      </div>
-						    </div>
-						  </div>
-
-						  <div class="col-sm-6 col-md-4">
-						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="A9pro">
-						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy A9 pro</a></h3>
-						        <h4>&#8377;32490</h4>
-						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
-						      </div>
-						    </div>
-						  </div>
+						  
+						  </c:forEach>
+						  
 						</div>
 					</div>	
 				</div>

@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
+import com.niit.shoppingbackend.dto.CPro;
 import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
 
@@ -19,6 +21,9 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
 	
 	@Override
 	public List<Product> list() {
@@ -38,7 +43,14 @@ public class ProductDAOImpl implements ProductDAO {
 		return sessionFactory.getCurrentSession().get(Product.class, Integer.valueOf(id));
 		
 	}
+	
 
+	public Category getCategory(int id) {
+		
+		return sessionFactory.getCurrentSession().get(Category.class, Integer.valueOf(id));
+		
+	}
+	
 	@Override
 	public boolean add(Product product) {
 
@@ -78,6 +90,25 @@ public class ProductDAOImpl implements ProductDAO {
 			
 		}
 	}
+
+	
+	@Override
+	public List<CPro> getPlist() {
+		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active";
+		//String hlist="FROM Category where active= :active";
+		
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hlist);
+		
+		query.setParameter("active", true);
+		
+		
+		return query.getResultList();
+	}
+
+	
+
+	
 
 	
 }

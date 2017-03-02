@@ -16,6 +16,7 @@ create table product (
 	pname VARCHAR(50) not null,
 	pdesc VARCHAR(255) not null,
 	pimage VARCHAR(50) not null,
+	price number(9)not null,
 	cid NUMBER(4) references category(id) on delete cascade,
 	is_active BOOLEAN not null
 	
@@ -36,7 +37,7 @@ create table stock (
 	pid number(4) references product(pid) on delete cascade,
 	sid number(4) references supplier(sid) on delete cascade,
 	price number(9) not null,
-	amount number(9) not null,
+	quantity number(9) not null,
 	is_active boolean not null
 	
 );

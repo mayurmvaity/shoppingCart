@@ -2,6 +2,8 @@ package com.niit.shoppingbackend.dao;
 
 import java.util.List;
 
+import com.niit.shoppingbackend.dto.CPro;
+import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
 
 public interface ProductDAO {
@@ -13,4 +15,5 @@ public interface ProductDAO {
 	boolean update(Product product);
 	boolean delete(Product product);
 	
+	List<CPro> getPlist();
 }

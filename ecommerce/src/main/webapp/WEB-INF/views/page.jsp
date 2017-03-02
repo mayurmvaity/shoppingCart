@@ -32,7 +32,7 @@
 	<link rel="stylesheet" href="${css}/mytheme.css" type="text/css">
 	
 </head>
-<body>
+<body style="background-color: #F4E1EC;">
 
 	<div class="wrapper">
 	<!-- =================  NAVBAR  ================== -->
