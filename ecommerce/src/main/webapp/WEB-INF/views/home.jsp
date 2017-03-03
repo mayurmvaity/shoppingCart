@@ -37,129 +37,63 @@
     <span class="sr-only">Next</span>
   </a>
 </div>
-
-
-
 <!-- end of carousel -->
+
+	<c:forEach items="${categories}" var="variable" >
+
 <!-- beginning of category views -->
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="col-md-2">
-        	<h4>Samsung</h4>
+        	<h4>${variable.name}</h4>
             <a href="" class="btn btn-primary">View All</a>
         </div>
         <div class="col-md-10">
         	<div class="row">
-            	<div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
+        			<c:set var="count" value="0" scope="page" />
+        				
+        		
+						 
+      
+        				<c:forEach items="${products}" var="innerv">
+        				  	
+        			
+						  <c:if test="${variable.id == innerv[0].cid}">
+						 	
+						 	<c:if test="${count<4}">
+						  <div class="col-sm-6 col-md-3">
+						    <div class="thumbnail">
+						      <img src="http://placehold.it/802x615" alt="image">
+						      <div class="caption">
+						        <h3>
+						        <a href="" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname}</a></h3>
+						        <h4>&#8377;${innerv[0].price}</h4>
+						        <h4>&#8377;${count}</h4>
+						        <p><a href="#" class="btn btn-primary btn-sm" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="#" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+						      </div>
+						    </div>
+						  </div>
+						 			<c:set var="count" value="${count+1}" scope="page"/>
+							</c:if>
+							</c:if>
+				
+						
+						   </c:forEach>
+						  
+						   
+						   
+						
                 
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
                 
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
-                
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
             </div>
         </div>
 	</div>
 </div>			<!-- end of panel of category -->  
 
-<!-- beginning of category views -->
-<div class="panel panel-default">
-	<div class="panel-body">
-		<div class="col-md-2">
-        	<h4>Samsung</h4>
-            <a href="" class="btn btn-primary">View All</a>
-        </div>
-        <div class="col-md-10">
-        	<div class="row">
-            	<div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
-                
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
-                
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
-                
-                <div class="col-md-3">
-                	<div class="thumbnail">
-                    	<img src="http://placehold.it/802x615" alt="s7main">
-                        <div class="caption">
-                        	<h4><a href="">Samsun galaxy s7 edge</a></h4>
-                            <h4><span style="color: red;">&#8377;50900</span></h4>
-                            <a href="" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-                            <a href="" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-info-sign"></span></a>
-                        </div>
-                    </div>
-                </div>  	<!-- end of a column -->
-            </div>
-        </div>
-	</div>
-</div>			<!-- end of panel of category --> 
+
+</c:forEach>
+<!-- end of the c for each -->
+
+
 </div>			<!-- end of main container --->

@@ -23,8 +23,9 @@ public class Product {
 	private String pdesc;
 	private int cid;
 	
-	private String pimage;
+	private int price;
 	
+	private String pimage;
 	
 	@Column(name="is_active") 
 	private boolean active = true;
@@ -69,12 +70,23 @@ public class Product {
 	public void setPimage(String pimage) {
 		this.pimage = pimage;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	
+	/*
+	 * toString() method
+	 * 
+	 * */
 	@Override
 	public String toString() {
-		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", cid=" + cid + ", active=" + active
-				+ "]";
+		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", cid=" + cid + ", price=" + price
+				+ ", pimage=" + pimage + ", active=" + active + "]";
 	}
+	
 	
 	
 	

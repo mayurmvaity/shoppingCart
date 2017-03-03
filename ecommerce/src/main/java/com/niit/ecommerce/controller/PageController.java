@@ -26,7 +26,7 @@ public class PageController {
 	@Autowired
 	private HttpSession session;
 
-	@RequestMapping(value = { "/", "/home", "/index" })
+	/*@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 
 		ModelAndView mv = new ModelAndView("page");
@@ -39,7 +39,7 @@ public class PageController {
 		mv.addObject("msg", "WELCOME TO SHOPPING CART");
 		mv.addObject("userClickHome", true);
 		return mv;
-	}
+	}*/
 
 	@RequestMapping(value = { "/register" })
 	public ModelAndView showRegistrationPage() {
@@ -148,15 +148,19 @@ public class PageController {
 		mv.addObject("isUserClickAboutUs", true);
 		return mv;
 	}
-
-	@RequestMapping(value = { "/productDetails" })
-	public ModelAndView showProductDetailsPage() {
+	
+	
+	@RequestMapping(value = { "/productDetails/{id}" })
+	public ModelAndView showProductDetailsPage(@PathVariable("id") int id) {
 		System.out.println("clicked on product details page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Product Details");
 		
 		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing product info
+		mv.addObject("product",productDAO.get(id));
 		
 		mv.addObject("isUserClickProductDetails", true);
 		return mv;
@@ -428,14 +432,36 @@ public class PageController {
 		category = categoryDAO.get(id);
 
 		mv.addObject("title", category.getName());
-
-		// passing the list of categories
+		int xid=category.getId();
+		
+		// passing the list of categories for navbar
 		mv.addObject("categories", categoryDAO.list());
 
 		// passing a single category object
 		mv.addObject("category", category);
 
+		//passing the list of products
+		mv.addObject("catProducts",productDAO.getPlistById(xid));
+		
 		mv.addObject("userClickCategoryProducts", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/", "/home", "/index" })
+	public ModelAndView index() {
+
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("greeting", "Welcome to Spring Web MVC");
+		mv.addObject("title", "Home");
+
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		
+		//passing the list of products
+		mv.addObject("products", productDAO.getPlist());
+	
+		mv.addObject("msg", "WELCOME TO SHOPPING CART");
+		mv.addObject("userClickHome", true);
 		return mv;
 	}
 

@@ -16,4 +16,5 @@ public interface ProductDAO {
 	boolean delete(Product product);
 	
 	List<CPro> getPlist();
+	List getPlistById(int id);
 }

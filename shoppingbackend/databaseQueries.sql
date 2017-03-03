@@ -41,3 +41,7 @@ create table stock (
 	is_active boolean not null
 	
 );
+
+insert into product values(4,'j2 2016','j2 desc is here','j2.png',19000,3,true);
+insert into product values(5,'j2 2017','j2 2017 desc is here','j27.png',21000,3,true);
+insert into product values(6,'note 4','note 4 desc is here','j2.png',24000,3,true);

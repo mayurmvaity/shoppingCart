@@ -39,6 +39,7 @@ public class ProductTestCase {
 		product.setPname("Galaxy S7 edge");
 		product.setPdesc("This is desc of galaxy s7 edge");
 		product.setCid(3);
+		product.setPrice(50900);
 		product.setPimage("s7edge.png");
 
 		assertEquals("Successfully added a product to the table",true,productDAO.add(product));
@@ -48,6 +49,7 @@ public class ProductTestCase {
 		product.setPname("Galaxy A9 pro");
 		product.setPdesc("This is desc of galaxy A9 pro");
 		product.setCid(3);
+		product.setPrice(14900);
 		product.setPimage("a9pro.png");
 
 		assertEquals("Successfully added a product to the table",true,productDAO.add(product));

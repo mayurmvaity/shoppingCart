@@ -51,8 +51,7 @@
 				<li id="aboutUs"><a href="${contextRoot}/aboutUs"> About Us</a>
 				<li id="contactUs"><a href="${contextRoot}/contactUs"> Contact Us</a>
 				 <c:if test="${empty loginMessage && empty adminMessage}">
-						<li id="signup"><a href="${contextRoot}/register">Sign Up<span
-								class="glyphicon glyphicon-unchecked"></span></a></li>
+						<li id="signup"><a href="${contextRoot}/register">Sign Up</a></li>
 						<li id="login"><a href="${contextRoot}/login">Log In <span
 								class="glyphicon glyphicon-log-in"></span></a></li>
 
