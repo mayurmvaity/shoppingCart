@@ -88,7 +88,7 @@ public class CategoryTestCase {
 		
 		category.setName("Macintosh");
 		category.setDescription("This is some desc for Macintosh");
-		category.setImageURL("CAT_2mac.png");
+		//category.setImageURL("CAT_2mac.png");
 		
 		assertEquals("Successfully added a category inside the table",true,categoryDAO.add(category));
 		
@@ -96,7 +96,7 @@ public class CategoryTestCase {
 		
 		category.setName("Alienware");
 		category.setDescription("This is some desc for alienware");
-		category.setImageURL("CAT_3.png");
+		//category.setImageURL("CAT_3.png");
 		
 		assertEquals("Successfully added a category inside the table",true,categoryDAO.add(category));
 		

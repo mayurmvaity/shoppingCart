@@ -1,9 +1,14 @@
 package com.niit.ecommerce.controller;
 
+
+
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +17,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
+import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dto.Category;
+import com.niit.shoppingbackend.dto.Product;
+import com.niit.shoppingbackend.dto.Supplier;
 
 @Controller
 public class PageController {
@@ -22,6 +30,9 @@ public class PageController {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private SupplierDAO supplierDAO;
 
 	@Autowired
 	private HttpSession session;
@@ -323,7 +334,7 @@ public class PageController {
 	}
 
 	@RequestMapping(value = { "/addProduct" })
-	public ModelAndView showAddProductPage() {
+	public ModelAndView showAddProductPage(@ModelAttribute("command") Product product,BindingResult result) {
 		System.out.println("clicked on add product page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Add Product");
@@ -333,24 +344,72 @@ public class PageController {
 		
 		
 		mv.addObject("isUserClickAddProduct", true);
+		mv.addObject("product",product);
 		return mv;
 	}
+	
+	
+	
+	@PostMapping("/admin/productAddition")
+	public ModelAndView productAddition(@ModelAttribute("product") Product product) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		System.out.println(product.getPname());
+		
+		
+		boolean b=productDAO.add(product);
+		if(b)
+		{
+			mv.addObject("greeting","Product added");
+		}
+		else
+		{
+			mv.addObject("greeting","Product NOT added");
+		}
 
+		return mv;
+	}
+	
 	@RequestMapping(value = { "/addCategory" })
-	public ModelAndView showAddCategoryPage() {
+	public ModelAndView showAddCategoryPage(@ModelAttribute("command") Category category, BindingResult result) {
 		System.out.println("clicked on add category page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Add New Brand");
 		
 		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		mv.addObject("categories",categoryDAO.list());
 		
 		mv.addObject("isUserClickAddCategory", true);
+		mv.addObject("category",category);
 		return mv;
 	}
+	
+	@PostMapping("/admin/categoryAddition")
+	public ModelAndView categoryAddition(@ModelAttribute("category") Category category) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		boolean b=categoryDAO.add(category);
+		if(b)
+		{
+			mv.addObject("greeting","Category added");
+		}
+		else
+		{
+			mv.addObject("greeting","Category NOT added");
+		}
+
+		return mv;
+	}
+	
+	
 
 	@RequestMapping(value = { "/addSupplier" })
-	public ModelAndView showAddSupplierPage() {
+	public ModelAndView showAddSupplierPage(@ModelAttribute("supplier") Supplier supplier, BindingResult result) {
 		System.out.println("clicked on add supplier page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Add supplier");
@@ -359,9 +418,31 @@ public class PageController {
 				mv.addObject("categories",categoryDAO.list());
 		
 		mv.addObject("isUserClickAddSupplier", true);
+		mv.addObject("supplier",supplier);
 		return mv;
 	}
 
+	@PostMapping("/admin/supplierAddition")
+	public ModelAndView supplierAddition(@ModelAttribute("supplier") Supplier supplier) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		boolean b=supplierDAO.add(supplier);
+		if(b)
+		{
+			mv.addObject("greeting","Supplier added");
+		}
+		else
+		{
+			mv.addObject("greeting","Supplier NOT added");
+		}
+
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = { "/adminsProducts" })
 	public ModelAndView showAdminsProductsPage() {
 		System.out.println("clicked on admins products page");

@@ -1,64 +1,62 @@
 
+
+
         	<div class="panel panel-default">
                   <div class="panel-heading">
                     <h3 class="panel-title">Add product</h3>
                   </div>
 				<div class="panel-body">
 					<div class="col-md-8 col-md-offset-2">
+					
+					 <form:form method="post" action="${contextRoot}/admin/productAddition" commandName="product">
                     	   <fieldset>
                         
 
                         <div class="form-group col-md-12">
-                            <label for="PName">Name</label>
-                            <input type="text" class="form-control" name="pname" placeholder="Product name">
+                         <form:label path="pname">Name</form:label> 
+                            <form:input type="text" class="form-control" path="pname" placeholder="Product name" />
                            
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="PPrice">Price</label>
-                            <input type="text" class="form-control" name="pprice" placeholder="Prcie">
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="">Quantity</label>
-                            <input type="text" class="form-control" name="pquant" placeholder="Quantity">
+                            <form:label path="price">Price</form:label>
+                            <form:input path="price" type="text" class="form-control" placeholder="Prcie" />
                             
                         </div>
 
                         
 						
 						<div class="form-group col-md-12">
-                            <label for="country">Brand</label>
-                            <select class="form-control" name="pcategory" >
-                            	<option>Select one</option>
-                                <option>Samsung</option>
-                                <option>HTC</option>
-                                <option>Gionee</option>
-                                
+                            <label>Brand</label>
+                            <select class="form-control" >
+                            	<c:forEach items="${categories}" var="category">
+         							 <option>${category.name}</option>
+         						</c:forEach>    
+         						
+         						
                             </select>
                          
                         </div>
 						
                        <div class="form-group col-md-12">
-                              <label>Upload image</label>
-                              <input type="file">
+                              <form:label path="pimage">Upload image</form:label>>
+                              <form:input type="file" path="pimage" id="uploadFile" />
                        </div>
                         
 						<div class="form-group col-md-12">
-                            <label for="details">
-                               Product details</label>
-                            <textarea name="pdetails" class="form-control" rows="9" cols="25" required
-                                placeholder="Product details"></textarea>
+                            <form:label path="pdesc">
+                               Product details</form:label>
+                            <form:textarea path="pdesc" class="form-control" rows="9" cols="25" required="true"
+                                placeholder="Product details" />
                         </div>
 						
                         <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" value="save">
                             Add</button>
                     </div>
                         
                     </fieldset>
-                    
+                    </form:form>
 					</div>
 				</div>
 			</div>

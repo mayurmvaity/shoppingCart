@@ -4,23 +4,23 @@
                   </div>
 				<div class="panel-body">
 					<div class="col-md-8 col-md-offset-2">
-                     <form role="form" method="post" action="">
+                     <form:form method="post" action="${contextRoot}/admin/categoryAddition" commandName="category">
                     	   <fieldset>
                         
 
                         <div class="form-group col-md-12">
-                            <label for="PName">Name</label>
-                            <input type="text" class="form-control" name="ctname" placeholder="Brand name">
+                            <form:label path="name">Name</form:label>
+                            <form:input type="text" class="form-control" path="name" placeholder="Brand name" />
                            
                         </div>
 
                         
                         
 						<div class="form-group col-md-12">
-                            <label for="description">
-                              Brand description</label>
-                            <textarea name="ctdesc" class="form-control" rows="9" cols="25" required
-                                placeholder="Brand description"></textarea>
+                            <form:label path="description">
+                              Brand description</form:label>
+                            <form:textarea path="description" class="form-control" rows="9" cols="25" required="true"
+                                placeholder="Brand description" />
                         </div>
 						
                         <div class="form-group col-md-12">
@@ -29,7 +29,7 @@
                     </div>
                         
                     </fieldset>
-                    </form>
+                    </form:form>
 					</div>
 				</div>
 			</div>

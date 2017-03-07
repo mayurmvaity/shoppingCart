@@ -95,4 +95,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 		}
 	}
 
+	@Override
+	public Category getByName(String name) {
+		return sessionFactory.getCurrentSession().get(Category.class, name);
+	}
+
 }

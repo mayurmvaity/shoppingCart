@@ -8,20 +8,21 @@
                   </div>
 				<div class="panel-body">
 					<div class="col-md-8 col-md-offset-2">
+                    	   <form:form method="post" action="${contextRoot}/admin/supplierAddition" commandName="supplier">
                     	   <fieldset>
                         
 
                         <div class="form-group col-md-12">
-                            <label for="PName">Name</label>
-                            <input type="text" class="form-control" name="pname" placeholder="Supplier name">
+                            <form:label path="sname">Name</form:label>
+                            <form:input type="text" class="form-control" path="sname" placeholder="Supplier name" />
                            
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="details">
-                               Supplier address</label>
-                            <textarea name="pdetails" class="form-control" rows="9" cols="25" required
-                                placeholder="Supplier address"></textarea>
+                            <form:label path="sdesc">
+                               Supplier description</form:label>
+                            <form:textarea path="sdesc" class="form-control" rows="9" cols="25" required="true"
+                                placeholder="Supplier address" />
                         </div>
 
                         
@@ -32,7 +33,7 @@
                     </div>
                         
                     </fieldset>
-                    
+                    </form:form>
 					</div>
 				</div>
 			</div>
