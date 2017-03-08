@@ -2,6 +2,7 @@ package com.niit.ecommerce.controller;
 
 
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -341,7 +342,9 @@ public class PageController {
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
-		
+				
+				//passing the join of product and category
+				mv.addObject("listProducts", productDAO.getPlist());
 		
 		mv.addObject("isUserClickAddProduct", true);
 		mv.addObject("product",product);
@@ -350,27 +353,7 @@ public class PageController {
 	
 	
 	
-	@PostMapping("/admin/productAddition")
-	public ModelAndView productAddition(@ModelAttribute("product") Product product) {
-		// actually you have to take the data from db
-		// temporarily
-		ModelAndView mv = new ModelAndView("page");
-		
-		System.out.println(product.getPname());
-		
-		
-		boolean b=productDAO.add(product);
-		if(b)
-		{
-			mv.addObject("greeting","Product added");
-		}
-		else
-		{
-			mv.addObject("greeting","Product NOT added");
-		}
-
-		return mv;
-	}
+	
 	
 	@RequestMapping(value = { "/addCategory" })
 	public ModelAndView showAddCategoryPage(@ModelAttribute("command") Category category, BindingResult result) {
@@ -419,6 +402,10 @@ public class PageController {
 		
 		mv.addObject("isUserClickAddSupplier", true);
 		mv.addObject("supplier",supplier);
+		
+		// getting table of suppliers
+		mv.addObject("suppliers",supplierDAO.list());
+		
 		return mv;
 	}
 
@@ -545,5 +532,40 @@ public class PageController {
 		mv.addObject("userClickHome", true);
 		return mv;
 	}
+	
+	/* ========================== uploadImage() method ======================== */
+	
+	@Autowired
+	ServletContext req;
+	@Autowired
+	private HttpServletRequest request;
+	
+	@PostMapping("/admin/productAddition")
+	public ModelAndView productAddition(@ModelAttribute("product") Product product,  HttpServletRequest request) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		String p=req.getRealPath("/");
+		String path=product.getFilePath(p,req.getContextPath());
+		//product.uploadFileHandler(path,product.getImage());
+		
+		boolean b=productDAO.add(product);
+		
+		if(b)
+		{
+			
+			mv.addObject("greeting","Product added");
+		}
+		else
+		{
+			mv.addObject("greeting","Product NOT added");
+		}
 
+		return mv;
+	}
+	
+	
+	
 }

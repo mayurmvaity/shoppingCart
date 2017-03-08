@@ -8,7 +8,7 @@
 				<div class="panel-body">
 					<div class="col-md-8 col-md-offset-2">
 					
-					 <form:form method="post" action="${contextRoot}/admin/productAddition" commandName="product">
+					 <form:form method="post" action="${contextRoot}/admin/productAddition" commandName="product" enctype="multipart/form-data">
                     	   <fieldset>
                         
 
@@ -27,20 +27,27 @@
                         
 						
 						<div class="form-group col-md-12">
-                            <label>Brand</label>
-                            <select class="form-control" >
+                            <form:label path="cid">Brand</form:label>
+                            <%-- <select class="form-control" >
                             	<c:forEach items="${categories}" var="category">
          							 <option>${category.name}</option>
          						</c:forEach>    
          						
          						
-                            </select>
+                            </select> --%>
+                         
+                         	<form:select path="cid" class="form-control">
+								<c:forEach items="${categories}" var="category">
+									<form:option value="${category.id}">${category.name}</form:option>
+								</c:forEach>
+							</form:select>
+                         
                          
                         </div>
 						
                        <div class="form-group col-md-12">
-                              <form:label path="pimage">Upload image</form:label>>
-                              <form:input type="file" path="pimage" id="uploadFile" />
+                              <form:label path="image">Upload image</form:label>
+                              <form:input type="file" path="image"  />
                        </div>
                         
 						<div class="form-group col-md-12">
@@ -83,35 +90,16 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach items="${listProducts}" var="variable">
               <tr>
-                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
-                <td><a href="">Samsung galaxy S7 edge</a></td>
-                <td>&#8377;50900</td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
+                <th scope="row"><img src="${variable[0].pimage}" width="100px"></th>
+                <td><a href="">${variable[1].name} ${variable[0].pname}</a></td>
+                <td>&#8377;${variable[0].price}</td>
+                <td><a class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
-              <tr>
-                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
-                <td><a href="">Samsung galaxy Note 5</a></td>
-                <td>&#8377;43900</td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-              </tr>
-              <tr>
-                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
-                <td><a href="">Samsung galaxy A9 pro</a></td>
-                <td>&#8377;32490</td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-              </tr>
-              <tr>
-                <th scope="row"><img src="http://placehold.it/802x615" width="100px"></th>
-                <td><a href="">Samsung galaxy on8</a></td>
-                <td>&#8377;14900</td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-              </tr>
+              </c:forEach>
             </tbody>
           </table>
 

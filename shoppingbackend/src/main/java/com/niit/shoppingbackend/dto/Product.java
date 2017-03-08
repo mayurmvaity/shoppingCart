@@ -1,11 +1,18 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
+import javax.persistence.Transient;
+
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Entity
@@ -25,14 +32,30 @@ public class Product {
 	
 	private int price;
 	
+	
+	@Column
 	private String pimage;
 	
+	
+
 	@Column(name="is_active") 
 	private boolean active = true;
+	
+	
+	@Transient
+	transient private MultipartFile image;
+	
 	
 	/*
 	 * Setter getter methods
 	 * */
+	
+	public MultipartFile getImage() {
+		return image;
+	}
+	public void setImage(MultipartFile image) {
+		this.image = image;
+	}
 	
 	public int getPid() {
 		return pid;
@@ -87,7 +110,34 @@ public class Product {
 				+ ", pimage=" + pimage + ", active=" + active + "]";
 	}
 	
-	
+	public String getFilePath(String path1,String contextPath) {
+
+		String fileName=null;
+		
+		if (!image.isEmpty()) {
+			try {
+				
+
+				fileName=image.getOriginalFilename();
+				byte[] bytes = image.getBytes();
+				String npath=path1+"\\assets\\images\\"+fileName;
+
+				
+				BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File(npath)));  
+				stream.write(bytes);  
+				stream.close();
+				String dbfileName = contextPath+"/assets/images/"+fileName;
+				
+				this.setPimage(dbfileName);
+
+				return dbfileName;
+			} catch (Exception e) {
+				return "You failed to upload " + " => " + e.getMessage();
+			}
+		} else {
+			return "You failed to upload because the file was empty.";
+		}
+	}
 	
 	
 }

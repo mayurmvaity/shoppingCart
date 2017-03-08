@@ -56,31 +56,18 @@
 					    </tr>
 					  </thead>
 					  <tbody>
+					  
+					  <c:forEach items="${categories}" var="category">
 					    <tr>
-					      <th scope="row"><a href="">Samsung</a></th>
-					      <td>ero.</td>
+					      <th scope="row"><a href="">${category.name}</a></th>
+					      <td>${category.description}</td>
 					      <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
 					      <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
 					      </td>
 					    </tr>
-					    <tr>
-					      <th scope="row"><a href="">HTC</a></th>
-					      <td>ero. In sed nibh in diam commodo fermentum vitae ac lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec tempor varius suscipit. M</td>
-					      <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-					      <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-					    </tr>
-					    <tr>
-					      <th scope="row"><a href="">Gionee</a></th>
-					      <td>ctetur adipiscing elit. Cras id est ac elit volutpat placerat. Pellentesque nec arcu in felis facilisis semper ut nec ante. In pellentesque pharetra vulputat</td>
-					      <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-					      <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-					    </tr>
-					    <tr>
-					      <th scope="row"><a href="">Motorola</a></th>
-					      <td>nc imperdiet est at eleifend posuere. Aliquam tellus mi, dapibus eu turpis at, </td>
-					      <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-					      <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button></td>
-					    </tr>
+					  
+					  </c:forEach>
+					    
 					  </tbody>
 					</table>
 

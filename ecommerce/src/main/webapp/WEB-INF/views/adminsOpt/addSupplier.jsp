@@ -59,34 +59,18 @@
               </tr>
             </thead>
             <tbody>
+            <c:forEach items="${suppliers}" var="supplier">
+            
               <tr>
-                <th scope="row">Reliance digital</th>
-                <td>avida pretium luctus vitae metus. Donec interdum nisl quis mi bibendum, et bibendum ipsum tristique. Mauris faucibus sapien dictum, egestas mi nec, ultrices nibh. </td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
+                <th scope="row">${supplier.sname}</th>
+                <td>${supplier.sdesc}</td>
+                <td><a class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">Samsung</th>
-                <td>avida pretium luctus vitae metus. Donec interdum nisl quis mi bibendum, et bibendum ipsum tristique. Mauris faucibus sapien dictum, egestas mi nec, ultrices nibh. </td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">Apple Inc.</th>
-                <td>avida pretium luctus vitae metus. Donec interdum nisl quis mi bibendum, et bibendum ipsum tristique. Mauris faucibus sapien dictum, egestas mi nec, ultrices nibh. </td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">OnePlus International</th>
-                <td>avida pretium luctus vitae metus. Donec interdum nisl quis mi bibendum, et bibendum ipsum tristique. Mauris faucibus sapien dictum, egestas mi nec, ultrices nibh. </td>
-                <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-                <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
-                </td>
-              </tr>
+              
+             </c:forEach> 
+              
             </tbody>
           </table>
 

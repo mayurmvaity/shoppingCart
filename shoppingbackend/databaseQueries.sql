@@ -123,3 +123,21 @@ insert into Product values(48,'2','This is OnePlus 2 desc','image',19999,9,true)
 insert into Product values(49,'3','This is OnePlus 3 desc','image',25000,9,true);
 insert into Product values(50,'3T','This is OnePlus 3T desc','image',29999,9,true);
 insert into Product values(51,'One','This is OnePlus One desc','image',9999,9,true);
+
+
+create table usert (
+	uid IDENTITY primary key,
+	pno number(10) not null,
+	pw varchar(20) not null,
+	fname varchar(20) not null,
+	lname varchar(20) not null,
+	email varchar(100) not null,
+	add1 varchar(50) not null,
+	add2 varchar(50) not null,
+	add3 varchar(50) not null,
+	city varchar(50) not null,
+	state varchar(50) not null,
+	pincode number(6) not null,
+	is_active boolean not null
+	
+);
