@@ -36,7 +36,14 @@ public class Product {
 	@Column
 	private String pimage;
 	
-	
+	private String pcolor;
+
+	public String getPcolor() {
+		return pcolor;
+	}
+	public void setPcolor(String pcolor) {
+		this.pcolor = pcolor;
+	}
 
 	@Column(name="is_active") 
 	private boolean active = true;
@@ -104,11 +111,14 @@ public class Product {
 	 * toString() method
 	 * 
 	 * */
+	
+	
 	@Override
 	public String toString() {
 		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", cid=" + cid + ", price=" + price
-				+ ", pimage=" + pimage + ", active=" + active + "]";
+				+ ", pimage=" + pimage + ", pcolor=" + pcolor + ", active=" + active + "]";
 	}
+	
 	
 	public String getFilePath(String path1,String contextPath) {
 

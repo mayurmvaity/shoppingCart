@@ -16,6 +16,7 @@ create table product (
 	pdesc VARCHAR(255) not null,
 	pimage VARCHAR(50) not null,
 	price number(9)not null,
+	pcolor VARCHAR(20) not null,
 	cid NUMBER(4) references category(id) on delete cascade,
 	is_active BOOLEAN not null
 	

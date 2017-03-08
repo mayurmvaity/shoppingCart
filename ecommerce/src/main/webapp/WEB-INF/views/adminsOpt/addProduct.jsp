@@ -17,6 +17,12 @@
                             <form:input type="text" class="form-control" path="pname" placeholder="Product name" />
                            
                         </div>
+                        
+                        <div class="form-group col-md-12">
+                         <form:label path="pcolor">Color</form:label> 
+                            <form:input type="text" class="form-control" path="pcolor" placeholder="Product color" />
+                           
+                        </div>
 
                         <div class="form-group col-md-12">
                             <form:label path="price">Price</form:label>
@@ -28,14 +34,7 @@
 						
 						<div class="form-group col-md-12">
                             <form:label path="cid">Brand</form:label>
-                            <%-- <select class="form-control" >
-                            	<c:forEach items="${categories}" var="category">
-         							 <option>${category.name}</option>
-         						</c:forEach>    
-         						
-         						
-                            </select> --%>
-                         
+                            
                          	<form:select path="cid" class="form-control">
 								<c:forEach items="${categories}" var="category">
 									<form:option value="${category.id}">${category.name}</form:option>
@@ -93,7 +92,7 @@
             <c:forEach items="${listProducts}" var="variable">
               <tr>
                 <th scope="row"><img src="${variable[0].pimage}" width="100px"></th>
-                <td><a href="">${variable[1].name} ${variable[0].pname}</a></td>
+                <td><a href="">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} ) </a></td>
                 <td>&#8377;${variable[0].price}</td>
                 <td><a class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
                 <a class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>

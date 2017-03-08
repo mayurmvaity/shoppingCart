@@ -77,7 +77,7 @@
 						      <img src="http://placehold.it/802x615" alt="image">
 						      <div class="caption">
 						        <h3>
-						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname}</a></h3>
+						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
 						        <h4>&#8377;${variable[0].price}</h4>
 						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
