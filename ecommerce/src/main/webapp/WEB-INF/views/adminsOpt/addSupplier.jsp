@@ -1,5 +1,5 @@
    	
-		<div class="col-md-9">
+		<div class="col-md-12">
         	
 		        
         	<div class="panel panel-default">
@@ -64,8 +64,8 @@
               <tr>
                 <th scope="row">${supplier.sname}</th>
                 <td>${supplier.sdesc}</td>
-                <td><a class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
-                <a class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
+                <td><a href="" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+                <a href="${contextRoot}/admin/supplierDeletion/${supplier.sid}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
               

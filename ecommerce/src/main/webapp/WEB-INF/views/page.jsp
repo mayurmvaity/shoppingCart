@@ -67,13 +67,13 @@
 		<%@include file="./navbarStuff/login.jsp" %>
 	</c:if>
 	
-	<c:if test="${not empty successMessageU}">
+	<c:if test="${not empty successMessageU || not empty successMessageA }">
 		<%@include file="home.jsp" %>
 	</c:if>
 	
-	<c:if test="${not empty successMessageA}">
+	<%-- <c:if test="${not empty successMessageA}">
 		<%@include file="adminsOpt/adminsHome.jsp" %>
-	</c:if>
+	</c:if> --%>
 	
 	<c:if test="${not empty errorMessage}">
 		<%@include file="./navbarStuff/login.jsp" %>

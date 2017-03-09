@@ -85,18 +85,28 @@ public class PageController {
 		// actually you have to take the data from db
 		// temporarily
 		ModelAndView mv = new ModelAndView("page");
+		
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+					
+		//passing the list of products
+		mv.addObject("products", productDAO.getPlist());
 
 		if (id.equals("niit") && pwd.equals("niit@123")) {
 			mv.addObject("successMessageU", "Valid credentials");
 			session.setAttribute("loginMessage", "Welcome :" + id);
 			session.setAttribute("username", id);
 			mv.addObject("title", "Home");
+			
+			
 
 		} else if (id.equals("admin") && pwd.equals("admin")) {
 			mv.addObject("successMessageA", "Valid credentials");
 			session.setAttribute("adminMessage", "Welcome :" + id);
 			session.setAttribute("adminName", id);
 			mv.addObject("title", "Admin Console");
+			
 		} else {
 			mv.addObject("errorMessage", "Invalid credentials please try again");
 			mv.addObject("title", "Log In");
@@ -113,7 +123,10 @@ public class PageController {
 		mv.addObject("title", "Home");
 		
 		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing the list of products
+		mv.addObject("products", productDAO.getPlist());
 		
 		mv.addObject("isUserClickedLogout", true);
 
@@ -593,6 +606,62 @@ public class PageController {
 			mv.addObject("CRUDmsgP","Product NOT deleted");
 		}
 
+		return mv;
+	}
+	
+	/*====================================== category deletion ===========================================*/
+	
+	@RequestMapping("/admin/categoryDeletion/{id}")
+	public ModelAndView categoryDeletion(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Category category=null;
+		category=categoryDAO.get(id);
+
+		
+		boolean b=categoryDAO.delete(category);
+		
+		if(b)
+		{
+			
+			mv.addObject("CRUDmsgC","Category deleted");
+		}
+		else
+		{
+			mv.addObject("CRUDmsgC","Category NOT deleted");
+		}
+		
+		
+		return mv;
+	}
+	
+/*====================================== Supplier deletion ===========================================*/
+	
+	@RequestMapping("/admin/supplierDeletion/{id}")
+	public ModelAndView supplierDeletion(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Supplier supplier=null;
+		supplier=supplierDAO.get(id);
+
+		
+		boolean b=supplierDAO.delete(supplier);
+		
+		if(b)
+		{
+			
+			mv.addObject("CRUDmsgS","Supplier deleted");
+		}
+		else
+		{
+			mv.addObject("CRUDmsgS","Supplier NOT deleted");
+		}
+		
+		
 		return mv;
 	}
 	

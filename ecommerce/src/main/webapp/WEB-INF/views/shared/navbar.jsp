@@ -6,44 +6,48 @@
     		<span class="icon-bar"></span>
     		<span class="icon-bar"></span>
     	</button>
- 	<c:if test="${empty adminMessage}">   	
+ 	<%-- <c:if test="${empty adminMessage}">   	
       <a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
-    </c:if>
+    </c:if> --%>
     
-    <c:if test="${not empty adminMessage}">   	
+    		<a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
+    		
+    <%-- <c:if test="${not empty adminMessage}">   	
       <a class="navbar-brand" href="${contextRoot}/adminsHome">NEXT173</a>
-    </c:if>
+    </c:if> --%>
     
     </div>
     <div class="collapse navbar-collapse" id="example">
     <ul class="nav navbar-nav">
     
-  <c:if test="${empty adminMessage}">  
-      <li id="Home"><a href="${contextRoot}/home">Home</a></li>
-  </c:if>
- 
-  <c:if test="${not empty adminMessage}">  
-      <li id="Home"><a href="${contextRoot}/adminsHome">Home</a></li>
-  </c:if> 
+		 <%--  <c:if test="${empty adminMessage}">  
+		      <li id="Home"><a href="${contextRoot}/home">Home</a></li>
+		  </c:if>
+		<c:if test="${not empty adminMessage}">  
+	      <li id="Home"><a href="${contextRoot}/adminsHome">Home</a></li>
+	  	</c:if>  --%>
+	  	
+	  	 <li id="Home"><a href="${contextRoot}/home">Home</a></li>
+	  	
   
        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Brands<span class="caret"></span></a>
         <ul class="dropdown-menu">
          
          <c:forEach items="${categories}" var="category">
          	 <li><a href="${contextRoot}/show/category/${category.id}/products">${category.name}</a></li>
-         
-         </c:forEach>
-         
-         
+		 </c:forEach>
+
         </ul>
       </li>
-      <c:if test="${empty adminMessage}">
+     <%--  <c:if test="${empty adminMessage}">
      <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
-     </c:if>
+     </c:if> --%>
      
-     <c:if test="${not empty adminMessage}">
+     <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
+     
+    <%--  <c:if test="${not empty adminMessage}">
      <li id="adminsProducts"><a href="${contextRoot}/adminsProducts">All Products</a></li>
-     </c:if>
+     </c:if> --%>
     </ul>
 
 			<ul class="nav navbar-nav navbar-right">

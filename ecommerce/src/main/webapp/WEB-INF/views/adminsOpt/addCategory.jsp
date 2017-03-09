@@ -61,8 +61,8 @@
 					    <tr>
 					      <th scope="row"><a href="">${category.name}</a></th>
 					      <td>${category.description}</td>
-					      <td><button class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></button>
-					      <button class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></button>
+					      <td><a href="" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+					      <a href="${contextRoot}/admin/categoryDeletion/${category.id}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
 					      </td>
 					    </tr>
 					  
