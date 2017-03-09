@@ -41,12 +41,14 @@
 
 	<c:forEach items="${categories}" var="variable" >
 
+
+
 <!-- beginning of category views -->
 <div class="panel panel-default">
 	<div class="panel-body">
 		<div class="col-md-2">
         	<h4>${variable.name}</h4>
-            <a href="" class="btn btn-primary">View All</a>
+            <a href="${contextRoot}/show/category/${variable.id}/products" class="btn btn-primary">View All</a>
         </div>
         <div class="col-md-10">
         	<div class="row">
@@ -63,10 +65,10 @@
 						 	<c:if test="${count<4}">
 						  <div class="col-sm-6 col-md-3">
 						    <div class="thumbnail">
-						      <img src="${innerv[0].pimage}" alt="image">
+						      <img src="${innerv[0].pimage}" alt="${innerv[0].pname}">
 						      <div class="caption">
 						        <h3>
-						        <a href="" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></h3>
+						        <a href="${contextRoot}/productDetails/${innerv[0].pid}" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></h3>
 						        <h4>&#8377;${innerv[0].price}</h4>
 						       <%--  <h4>&#8377;${count}</h4> --%>
 						        <p><a href="#" class="btn btn-primary btn-sm" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>

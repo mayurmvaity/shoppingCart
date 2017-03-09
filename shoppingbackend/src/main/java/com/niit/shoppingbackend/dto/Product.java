@@ -136,10 +136,10 @@ public class Product {
 				BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File(npath)));  
 				stream.write(bytes);  
 				stream.close();
-				String dbfileName = contextPath+"/assets/images/"+fileName;
-				
+				String dbfileName = contextPath+"/resources/images/"+fileName;
+				//String dbfileName = fileName;
 				this.setPimage(dbfileName);
-
+				
 				return dbfileName;
 			} catch (Exception e) {
 				return "You failed to upload " + " => " + e.getMessage();

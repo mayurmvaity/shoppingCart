@@ -8,7 +8,7 @@
 				<div class="panel-body">
 					<div class="col-md-8 col-md-offset-2">
 					
-					 <form:form method="post" action="${contextRoot}/admin/productAddition" commandName="product" enctype="multipart/form-data">
+					 <form:form name="addpform" method="post" action="${contextRoot}/admin/productAddition" commandName="product" enctype="multipart/form-data">
                     	   <fieldset>
                         
 
@@ -57,11 +57,25 @@
                         </div>
 						
                         <div class="form-group col-md-12">
-                        <button type="submit" class="btn btn-primary" value="save">
-                            Add</button>
+                        <input type="button" class="btn btn-primary" value="Submit" onclick="submitForm()" id="btnsubmit" />
+                            
                     </div>
                         
                     </fieldset>
+                    <script>
+                    	function submitForm() {
+                    	   // Get the first form with the name
+                    	   // Hopefully there is only one, but there are more, select the correct index
+                    	   var frm = document.getElementsByName('addpform')[0];
+                    	   frm.submit(); // Submit
+                    	   frm.reset();  // Reset
+                    	   return false; // Prevent page refresh
+                    	}
+                    
+                    
+                    </script>
+                    
+                    
                     </form:form>
 					</div>
 				</div>
@@ -94,8 +108,8 @@
                 <th scope="row"><img src="${variable[0].pimage}" width="100px"></th>
                 <td><a href="">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} ) </a></td>
                 <td>&#8377;${variable[0].price}</td>
-                <td><a class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
-                <a class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
+                <td><a class="btn btn-primary btn-md" href=""><span class="glyphicon glyphicon-edit"></span></a>
+                <a class="btn btn-danger btn-md" href="${contextRoot}/admin/productDeletion/${variable[0].pid}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
               </c:forEach>

@@ -17,4 +17,6 @@ public interface ProductDAO {
 	
 	List<CPro> getPlist();
 	List getPlistById(int id);
+	
+	List getPlistByPId(int id);
 }

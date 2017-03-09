@@ -30,7 +30,7 @@
         <ul class="dropdown-menu">
          
          <c:forEach items="${categories}" var="category">
-         	 <li><a href="#">${category.name}</a></li>
+         	 <li><a href="${contextRoot}/show/category/${category.id}/products">${category.name}</a></li>
          
          </c:forEach>
          

@@ -14,17 +14,19 @@
 		</div>
 		<div class="col-md-9">
         	
-		        <c:if test="${isUserClickAddProduct==true}">
+		        <c:if test="${isUserClickAddProduct==true }">
 					<%@include file="addProduct.jsp" %>
 				</c:if>
 				
-				<c:if test="${isUserClickAddCategory==true}">
+				<c:if test="${isUserClickAddCategory==true }">
 					<%@include file="addCategory.jsp" %>
 				</c:if>
         	
-        		<c:if test="${isUserClickAddSupplier==true}">
+        		<c:if test="${isUserClickAddSupplier==true }">
 					<%@include file="addSupplier.jsp" %>
 				</c:if>
+				
+				
         	
         	
 		</div>

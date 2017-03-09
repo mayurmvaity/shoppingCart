@@ -162,21 +162,7 @@ public class PageController {
 	}
 	
 	
-	@RequestMapping(value = { "/productDetails/{id}" })
-	public ModelAndView showProductDetailsPage(@PathVariable("id") int id) {
-		System.out.println("clicked on product details page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Product Details");
-		
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
-		
-		//passing product info
-		mv.addObject("product",productDAO.get(id));
-		
-		mv.addObject("isUserClickProductDetails", true);
-		return mv;
-	}
+	
 
 	@RequestMapping(value = { "/personalInfo" })
 	public ModelAndView showPersonalInfoPage() {
@@ -379,11 +365,11 @@ public class PageController {
 		boolean b=categoryDAO.add(category);
 		if(b)
 		{
-			mv.addObject("greeting","Category added");
+			mv.addObject("CRUDmsgC","Category added");
 		}
 		else
 		{
-			mv.addObject("greeting","Category NOT added");
+			mv.addObject("CRUDmsgC","Category NOT added");
 		}
 
 		return mv;
@@ -419,11 +405,11 @@ public class PageController {
 		boolean b=supplierDAO.add(supplier);
 		if(b)
 		{
-			mv.addObject("greeting","Supplier added");
+			mv.addObject("CRUDmsgS","Supplier added");
 		}
 		else
 		{
-			mv.addObject("greeting","Supplier NOT added");
+			mv.addObject("CRUDmsgS","Supplier NOT added");
 		}
 
 		return mv;
@@ -515,6 +501,23 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping(value = { "/productDetails/{id}" })
+	public ModelAndView showProductDetailsPage(@PathVariable("id") int id) {
+		System.out.println("clicked on product details page");
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		mv.addObject("title", "Product Details");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		mv.addObject("products",productDAO.getPlistByPId(id));
+		
+		mv.addObject("isUserClickProductDetails", true);
+		return mv;
+	}
+	
 	@RequestMapping(value = { "/", "/home", "/index" })
 	public ModelAndView index() {
 
@@ -528,6 +531,8 @@ public class PageController {
 		//passing the list of products
 		mv.addObject("products", productDAO.getPlist());
 	
+		//mv.addObject("products", productDAO.getPlist());
+		
 		mv.addObject("msg", "WELCOME TO SHOPPING CART");
 		mv.addObject("userClickHome", true);
 		return mv;
@@ -556,16 +561,40 @@ public class PageController {
 		if(b)
 		{
 			
-			mv.addObject("greeting","Product added");
+			mv.addObject("CRUDmsgP","Product added");
 		}
 		else
 		{
-			mv.addObject("greeting","Product NOT added");
+			mv.addObject("CRUDmsgP","Product NOT added");
 		}
 
 		return mv;
 	}
 	
+	@RequestMapping("/admin/productDeletion/{id}")
+	public ModelAndView productDeletion(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Product product=null;
+		product=productDAO.get(id);
+
+		
+		boolean b=productDAO.delete(product);
+		
+		if(b)
+		{
+			
+			mv.addObject("CRUDmsgP","Product deleted");
+		}
+		else
+		{
+			mv.addObject("CRUDmsgP","Product NOT deleted");
+		}
+
+		return mv;
+	}
 	
 	
 }

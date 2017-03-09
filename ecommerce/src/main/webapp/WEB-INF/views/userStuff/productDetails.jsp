@@ -1,9 +1,9 @@
-
+<c:forEach items="${products}" var="product">
 	<div class="container">
 			<div class="col-md-7">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<img src="http://placehold.it/802x615" alt="s7edge" width="600px">
+						<img src="${product[0].pimage}" alt="${product[0].pname}" width="600px">
 					</div>
 				</div>
 			</div>
@@ -11,8 +11,8 @@
 					<div class="row">
 						<div class="panel panel-default">
 							 	<div class="panel-body">
-							    	<h3>Product name</h3>
-									<h4>&#8377;9999</h4>
+							    	<h3>${product[1].name} ${product[0].pname} ( ${product[0].pcolor} )</h3>
+									<h4>&#8377;${product[0].price}</h4>
 								</div>
 						</div>
 						
@@ -21,7 +21,7 @@
 						<div class="panel panel-default">
 						  <div class="panel-body">
 						    	<h4>Description</h4>
-								<p>scelerisque vel pretium tellus. Ut euismod leo dui, ac pellentesque mauris hendrerit eget. In hac habitasse platea dictumst. Nulla sed neque semper, rutrum sapien a, maximus libero. In nec mattis nibh. Aliquam tincidunt aliquam magna, sit amet lacinia dui pharetra eget. Aenean volutpat, risus sit amet pretium viverra, urna risus tristique mi, ac commodo nibh tellus non purus. Sed purus libero, aliquam vitae enim ac, tincidunt dignissim nisi. Orci varius nato</p>
+								<p>${product[0].pdesc}</p>
 						  </div>
 						</div>
 						
@@ -38,3 +38,4 @@
 					</div>
 			</div>
 		</div>
+</c:forEach>

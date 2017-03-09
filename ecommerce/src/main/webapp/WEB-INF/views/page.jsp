@@ -44,7 +44,9 @@
 	<!-- =================  NAVBAR  ================== -->
 	<%@include file="./shared/navbar.jsp" %>
 		${contextRoot} says - ${greeting}
-		
+		${CRUDmsgP}
+		${CRUDmsgC}
+		${CRUDmsgS}
 	<div class="content">
 		<h2>
 		<center>Shopping Cart</center>
@@ -128,9 +130,11 @@
 		<%@include file="./orders/orderDetailsButton.jsp" %>
 	</c:if>
 	
-	<c:if test="${isUserClickAddProduct==true || isUserClickAddCategory==true || isUserClickAddSupplier==true}">
+	<c:if test="${isUserClickAddProduct==true || isUserClickAddCategory==true || isUserClickAddSupplier==true }">
 		<%@include file="./adminsOpt/sidebarB.jsp" %>
 	</c:if>
+	
+	
 	
 	<c:if test="${isUserClickAdminsProducts==true}">
 		<%@include file="./adminsOpt/adminsProducts.jsp" %>
