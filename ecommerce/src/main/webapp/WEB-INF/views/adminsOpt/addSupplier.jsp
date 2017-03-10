@@ -11,10 +11,13 @@
                     	   <form:form method="post" action="${contextRoot}/admin/supplierAddition" commandName="supplier">
                     	   <fieldset>
                         
+						<form:hidden path="sid" class="form-control"
+								placeholder="Enter Product Id" value="${supplier.sid}" />
+
 
                         <div class="form-group col-md-12">
                             <form:label path="sname">Name</form:label>
-                            <form:input type="text" class="form-control" path="sname" placeholder="Supplier name" />
+                            <form:input type="text" class="form-control" path="sname" placeholder="Supplier name" value="${supplier.sname}" />
                            
                         </div>
 
@@ -22,7 +25,7 @@
                             <form:label path="sdesc">
                                Supplier description</form:label>
                             <form:textarea path="sdesc" class="form-control" rows="9" cols="25" required="true"
-                                placeholder="Supplier address" />
+                                placeholder="Supplier address" value="${supplier.sdesc}" />
                         </div>
 
                         
@@ -64,7 +67,7 @@
               <tr>
                 <th scope="row">${supplier.sname}</th>
                 <td>${supplier.sdesc}</td>
-                <td><a href="" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+                <td><a href="${contextRoot}/admin/supplierUpdate/${supplier.sid}" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
                 <a href="${contextRoot}/admin/supplierDeletion/${supplier.sid}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>

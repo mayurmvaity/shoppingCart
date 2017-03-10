@@ -368,25 +368,7 @@ public class PageController {
 		return mv;
 	}
 	
-	@PostMapping("/admin/categoryAddition")
-	public ModelAndView categoryAddition(@ModelAttribute("category") Category category) {
-		// actually you have to take the data from db
-		// temporarily
-		ModelAndView mv = new ModelAndView("page");
-		
-		
-		boolean b=categoryDAO.add(category);
-		if(b)
-		{
-			mv.addObject("CRUDmsgC","Category added");
-		}
-		else
-		{
-			mv.addObject("CRUDmsgC","Category NOT added");
-		}
-
-		return mv;
-	}
+	
 	
 	
 
@@ -408,25 +390,7 @@ public class PageController {
 		return mv;
 	}
 
-	@PostMapping("/admin/supplierAddition")
-	public ModelAndView supplierAddition(@ModelAttribute("supplier") Supplier supplier) {
-		// actually you have to take the data from db
-		// temporarily
-		ModelAndView mv = new ModelAndView("page");
-		
-		
-		boolean b=supplierDAO.add(supplier);
-		if(b)
-		{
-			mv.addObject("CRUDmsgS","Supplier added");
-		}
-		else
-		{
-			mv.addObject("CRUDmsgS","Supplier NOT added");
-		}
-
-		return mv;
-	}
+	
 	
 	
 	@RequestMapping(value = { "/adminsProducts" })
@@ -551,7 +515,7 @@ public class PageController {
 		return mv;
 	}
 	
-	/* ========================== uploadImage() method ======================== */
+	/* ========================== uploadImage() method product methods here ======================== */
 	
 	@Autowired
 	ServletContext req;
@@ -569,6 +533,7 @@ public class PageController {
 		String path=product.getFilePath(p,req.getContextPath());
 		//product.uploadFileHandler(path,product.getImage());
 		
+		if(product.getPid()==0) {
 		boolean b=productDAO.add(product);
 		
 		if(b)
@@ -579,6 +544,21 @@ public class PageController {
 		else
 		{
 			mv.addObject("CRUDmsgP","Product NOT added");
+		}
+		}
+		else {
+			boolean b=productDAO.update(product);
+			
+			if(b)
+			{
+				
+				mv.addObject("CRUDmsgP","Product updated");
+			}
+			else
+			{
+				mv.addObject("CRUDmsgP","Product NOT updated");
+			}
+			
 		}
 
 		return mv;
@@ -609,6 +589,28 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping("/admin/productUpdate/{id}")
+	public ModelAndView productUpdate(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Product product=null;
+		product=productDAO.get(id);
+		
+		//passing list of categories to navbar
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing this category info
+		mv.addObject("product",product);
+		
+		mv.addObject("isUserClickedUpdateProduct",true);
+		
+		
+		return mv;
+	}
+	
+	
 	/*====================================== category deletion ===========================================*/
 	
 	@RequestMapping("/admin/categoryDeletion/{id}")
@@ -634,6 +636,62 @@ public class PageController {
 		}
 		
 		
+		return mv;
+	}
+	
+	@RequestMapping("/admin/categoryUpdate/{id}")
+	public ModelAndView categoryUpdate(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Category category=null;
+		category=categoryDAO.get(id);
+		
+		//passing list of categories to navbar
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing this category info
+		mv.addObject("category",category);
+		
+		mv.addObject("isUserClickedUpdateCategory",true);
+		
+		
+		return mv;
+	}
+	
+	@PostMapping("/admin/categoryAddition")
+	public ModelAndView categoryAddition(@ModelAttribute("category") Category category) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		if(category.getId()==0)
+		{
+		boolean b=categoryDAO.add(category);
+		if(b)
+		{
+			mv.addObject("CRUDmsgC","Category added");
+		}
+		else
+		{
+			mv.addObject("CRUDmsgC","Category NOT added");
+		}
+		}
+		else
+		{
+			boolean b=categoryDAO.update(category);
+			if(b)
+			{
+				mv.addObject("CRUDmsgC","Category updated");
+			}
+			else
+			{
+				mv.addObject("CRUDmsgC","Category NOT updated");
+			}
+			
+			
+		}
 		return mv;
 	}
 	
@@ -665,5 +723,59 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping("/admin/supplierUpdate/{id}")
+	public ModelAndView supplierUpdate(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Supplier supplier=null;
+		supplier=supplierDAO.get(id);
+		
+		//passing list of categories to navbar
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing this supplier info
+		mv.addObject("supplier",supplier);
+		
+		mv.addObject("isUserClickedUpdateSupplier",true);
+		
+		
+		return mv;
+	}
+	
+	@PostMapping("/admin/supplierAddition")
+	public ModelAndView supplierAddition(@ModelAttribute("supplier") Supplier supplier) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		if(supplier.getSid()==0) {
+		boolean b=supplierDAO.add(supplier);
+		if(b)
+		{
+			mv.addObject("CRUDmsgS","Supplier added");
+		}
+		else
+		{
+			mv.addObject("CRUDmsgS","Supplier NOT added");
+		}
+		}
+		else
+		{
+			boolean b=supplierDAO.update(supplier);
+			if(b)
+			{
+				mv.addObject("CRUDmsgS","Supplier updated");
+			}
+			else
+			{
+				mv.addObject("CRUDmsgS","Supplier NOT updated");
+			}
+			
+			
+		}
+		return mv;
+	}
 	
 }

@@ -14,15 +14,15 @@
 		</div>
 		<div class="col-md-9">
         	
-		        <c:if test="${isUserClickAddProduct==true }">
+		        <c:if test="${isUserClickAddProduct==true || isUserClickedUpdateProduct==true}">
 					<%@include file="addProduct.jsp" %>
 				</c:if>
 				
-				<c:if test="${isUserClickAddCategory==true }">
+				<c:if test="${isUserClickAddCategory==true || isUserClickedUpdateCategory==true}">
 					<%@include file="addCategory.jsp" %>
 				</c:if>
         	
-        		<c:if test="${isUserClickAddSupplier==true }">
+        		<c:if test="${isUserClickAddSupplier==true || isUserClickedUpdateSupplier==true }">
 					<%@include file="addSupplier.jsp" %>
 				</c:if>
 				

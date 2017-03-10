@@ -7,10 +7,13 @@
                      <form:form method="post" action="${contextRoot}/admin/categoryAddition" commandName="category">
                     	   <fieldset>
                         
+                        <form:hidden path="id" class="form-control"
+								placeholder="Enter Product Id" value="${category.id}" />
+                        
 
                         <div class="form-group col-md-12">
                             <form:label path="name">Name</form:label>
-                            <form:input type="text" class="form-control" path="name" placeholder="Brand name" />
+                            <form:input type="text" class="form-control" path="name" placeholder="Brand name" value="${category.name}" />
                            
                         </div>
 
@@ -20,7 +23,7 @@
                             <form:label path="description">
                               Brand description</form:label>
                             <form:textarea path="description" class="form-control" rows="9" cols="25" required="true"
-                                placeholder="Brand description" />
+                                placeholder="Brand description" value="${category.description}" />
                         </div>
 						
                         <div class="form-group col-md-12">
@@ -61,7 +64,7 @@
 					    <tr>
 					      <th scope="row"><a href="">${category.name}</a></th>
 					      <td>${category.description}</td>
-					      <td><a href="" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
+					      <td><a href="${contextRoot}/admin/categoryUpdate/${category.id}" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
 					      <a href="${contextRoot}/admin/categoryDeletion/${category.id}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
 					      </td>
 					    </tr>

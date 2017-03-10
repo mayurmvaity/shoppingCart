@@ -11,22 +11,24 @@
 					 <form:form name="addpform" method="post" action="${contextRoot}/admin/productAddition" commandName="product" enctype="multipart/form-data">
                     	   <fieldset>
                         
+                        <form:hidden path="pid" class="form-control"
+								placeholder="Enter Product Id" value="${product.pid}" />
 
                         <div class="form-group col-md-12">
                          <form:label path="pname">Name</form:label> 
-                            <form:input type="text" class="form-control" path="pname" placeholder="Product name" />
+                            <form:input type="text" class="form-control" path="pname" placeholder="Product name" value="${product.pname}"/>
                            
                         </div>
                         
                         <div class="form-group col-md-12">
                          <form:label path="pcolor">Color</form:label> 
-                            <form:input type="text" class="form-control" path="pcolor" placeholder="Product color" />
+                            <form:input type="text" class="form-control" path="pcolor" placeholder="Product color" value="${product.pcolor}"/>
                            
                         </div>
 
                         <div class="form-group col-md-12">
                             <form:label path="price">Price</form:label>
-                            <form:input path="price" type="text" class="form-control" placeholder="Prcie" />
+                            <form:input path="price" type="text" class="form-control" placeholder="Prcie" value="${product.price}"/>
                             
                         </div>
 
@@ -46,14 +48,14 @@
 						
                        <div class="form-group col-md-12">
                               <form:label path="image">Upload image</form:label>
-                              <form:input type="file" path="image"  />
+                              <form:input type="file" path="image" />
                        </div>
                         
 						<div class="form-group col-md-12">
                             <form:label path="pdesc">
                                Product details</form:label>
                             <form:textarea path="pdesc" class="form-control" rows="9" cols="25" required="true"
-                                placeholder="Product details" />
+                                placeholder="Product details" value="${product.pdesc}"/>
                         </div>
 						
                         <div class="form-group col-md-12">
@@ -108,7 +110,7 @@
                 <th scope="row"><img src="${variable[0].pimage}" width="100px"></th>
                 <td><a href="">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} ) </a></td>
                 <td>&#8377;${variable[0].price}</td>
-                <td><a class="btn btn-primary btn-md" href=""><span class="glyphicon glyphicon-edit"></span></a>
+                <td><a class="btn btn-primary btn-md" href="${contextRoot}/admin/productUpdate/${variable[0].pid}"><span class="glyphicon glyphicon-edit"></span></a>
                 <a class="btn btn-danger btn-md" href="${contextRoot}/admin/productDeletion/${variable[0].pid}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>
               </tr>
