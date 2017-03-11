@@ -19,9 +19,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
+import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
 import com.niit.shoppingbackend.dto.Supplier;
+import com.niit.shoppingbackend.dto.User;
 
 @Controller
 public class PageController {
@@ -29,6 +31,8 @@ public class PageController {
 	@Autowired
 	private CategoryDAO categoryDAO;
 	
+	@Autowired
+	private UserDAO userDAO;
 	@Autowired
 	private ProductDAO productDAO;
 	
@@ -54,7 +58,7 @@ public class PageController {
 	}*/
 
 	@RequestMapping(value = { "/register" })
-	public ModelAndView showRegistrationPage() {
+	public ModelAndView showRegistrationPage(@ModelAttribute("command") User user,BindingResult result) {
 		System.out.println("clicked on reg page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Sign Up");
@@ -63,6 +67,7 @@ public class PageController {
 		mv.addObject("categories", categoryDAO.list());
 
 		mv.addObject("isUserClickRegPage", true);
+		mv.addObject("user",user);
 		return mv;
 	}
 
@@ -560,7 +565,16 @@ public class PageController {
 			}
 			
 		}
-
+		
+		mv.addObject("title", "Add Product");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+				
+		//passing the join of product and category
+		mv.addObject("listProducts", productDAO.getPlist());
+		
+		mv.addObject("isUserClickAddProduct", true);
 		return mv;
 	}
 	
@@ -777,5 +791,44 @@ public class PageController {
 		}
 		return mv;
 	}
+	/*===================================== Registeration  ======================================*/
+	@PostMapping("/registeration")
+	public ModelAndView registeration(@ModelAttribute("user") User user) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		
+		
+		
+		boolean b=userDAO.add(user);
+		
+		if(b)
+		{
+			
+			mv.addObject("RegMsg","Registered Successfully");
+		}
+		else
+		{
+			mv.addObject("RegMsg","Couldn't register");
+		}
+		
+		
+		
+		/*mv.addObject("title", "Home");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+				
+		//passing the join of product and category
+		mv.addObject("listProducts", productDAO.getPlist());
+		
+		mv.addObject("userClickHome", true);*/
+		return mv;
+	}
+	
+	
+	
 	
 }

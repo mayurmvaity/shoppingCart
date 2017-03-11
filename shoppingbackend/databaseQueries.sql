@@ -126,19 +126,20 @@ insert into Product values(50,'3T','This is OnePlus 3T desc','image',29999,9,tru
 insert into Product values(51,'One','This is OnePlus One desc','image',9999,9,true);
 
 
-create table usert (
+create table user (
 	uid IDENTITY primary key,
 	pno number(10) not null,
 	pw varchar(20) not null,
 	fname varchar(20) not null,
 	lname varchar(20) not null,
 	email varchar(100) not null,
-	add1 varchar(50) not null,
-	add2 varchar(50) not null,
-	add3 varchar(50) not null,
-	city varchar(50) not null,
-	state varchar(50) not null,
+	add1 varchar(100) not null,
+	add2 varchar(100) not null,
+	add3 varchar(100) not null,
+	city varchar(100) not null,
+	state varchar(100) not null,
 	pincode number(6) not null,
+	role varchar(10) not null,
 	is_active boolean not null
 	
 );

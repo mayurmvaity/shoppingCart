@@ -47,6 +47,7 @@
 		${CRUDmsgP}
 		${CRUDmsgC}
 		${CRUDmsgS}
+		${RegMsg}
 	<div class="content">
 		<h2>
 		<center>Shopping Cart</center>
