@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.User;
 
 
@@ -77,6 +76,23 @@ public class UserDAOImpl implements UserDAO {
 			ex.printStackTrace();
 			return false;
 		}
+	}
+
+	@Override
+	public User valid(String email, String pw) {
+		String hlist = "from User u where u.active= :active and u.email = :email and u.pw= :pw";
+		
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hlist);
+		
+		query.setParameter("active", true);
+		query.setParameter("pw", pw);
+		query.setParameter("email", email);
+		
+		List results = query.getResultList();
+		return (User) results.get(0);
+		
+		
 	}
 
 }

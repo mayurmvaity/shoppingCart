@@ -48,6 +48,7 @@
 		${CRUDmsgC}
 		${CRUDmsgS}
 		${RegMsg}
+		${Role}
 	<div class="content">
 		<h2>
 		<center>Shopping Cart</center>

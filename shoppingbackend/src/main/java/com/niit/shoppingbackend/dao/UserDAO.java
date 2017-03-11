@@ -12,5 +12,5 @@ public interface UserDAO {
 	boolean update(User user);
 	boolean delete(User user);
 	
-	
+	User valid(String email, String pw);
 }

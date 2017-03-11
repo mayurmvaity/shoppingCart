@@ -98,7 +98,34 @@ public class PageController {
 		//passing the list of products
 		mv.addObject("products", productDAO.getPlist());
 
-		if (id.equals("niit") && pwd.equals("niit@123")) {
+		User user=null;
+		user=userDAO.valid(id, pwd);
+		
+		if (user == null) {
+			
+			mv.addObject("errorMessage", "Invalid credentials please try again");
+			mv.addObject("title", "Log In");
+
+		} else if (user.getRole().equals("CUSTOMER")) {
+			
+			mv.addObject("successMessageU", "Valid credentials");
+			session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+			session.setAttribute("username", user.getFname());
+			session.setAttribute("Role",user.getRole());
+			mv.addObject("title", "Home");
+			
+		} else {
+			
+			mv.addObject("successMessageA", "Valid credentials");
+			session.setAttribute("adminMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+			session.setAttribute("adminName", user.getFname());
+			session.setAttribute("Role",user.getRole());
+			mv.addObject("title", "Admin Console");
+		
+		}
+		
+		
+		/*if (id.equals("niit") && pwd.equals("niit@123")) {
 			mv.addObject("successMessageU", "Valid credentials");
 			session.setAttribute("loginMessage", "Welcome :" + id);
 			session.setAttribute("username", id);
@@ -116,7 +143,7 @@ public class PageController {
 			mv.addObject("errorMessage", "Invalid credentials please try again");
 			mv.addObject("title", "Log In");
 		}
-
+*/
 		return mv;
 	}
 

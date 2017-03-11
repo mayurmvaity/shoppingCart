@@ -128,11 +128,11 @@ insert into Product values(51,'One','This is OnePlus One desc','image',9999,9,tr
 
 create table user (
 	uid IDENTITY primary key,
-	pno number(10) not null,
+	pno number(10) not null unique,
 	pw varchar(20) not null,
 	fname varchar(20) not null,
 	lname varchar(20) not null,
-	email varchar(100) not null,
+	email varchar(100) not null unique,
 	add1 varchar(100) not null,
 	add2 varchar(100) not null,
 	add3 varchar(100) not null,
@@ -143,4 +143,6 @@ create table user (
 	is_active boolean not null
 	
 );
+
+insert into User values (4,1122334455,'admin','wolly','west','ww@dc.com','hsdvh','hjasdvfhj','jhasdj','central city','US','666666','ADMIN',true);
 
