@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
 import com.niit.shoppingbackend.dto.Supplier;
@@ -33,6 +35,10 @@ public class PageController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private AddressDAO addressDAO;
+	
 	@Autowired
 	private ProductDAO productDAO;
 	
@@ -240,18 +246,7 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/manageAddress" })
-	public ModelAndView showManageAddressPage() {
-		System.out.println("clicked on manage addresses page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Manage Addresses");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("isUserClickManageAddress", true);
-		return mv;
-	}
+	
 
 	@RequestMapping(value = { "/myAccount/{id}" })
 	public ModelAndView showMyAccountPage(@PathVariable("id") int id) {
@@ -354,6 +349,70 @@ public class PageController {
 		return mv;
 	}
 	
+	@RequestMapping(value = { "/user/manageAddress/{id}" })
+	public ModelAndView showManageAddressPage(@PathVariable("id") int id, @ModelAttribute("address") Address address, BindingResult result) {
+		System.out.println("clicked on manage addresses page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Manage Addresses");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+				
+				//passing the list of addresses
+				mv.addObject("Addresses",addressDAO.getByAid(id));
+		
+		mv.addObject("isUserClickManageAddress", true);
+		return mv;
+	}
+	
+	@PostMapping("/user/addNewAddress")
+	public ModelAndView addNewAddress(@ModelAttribute("address") Address address, BindingResult result) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		try{
+			boolean b=addressDAO.add(address);
+			if(b)
+			{
+				mv.addObject("Usermsg","Address added");
+			}
+			else
+			{
+				mv.addObject("Usermsg","Address not added");
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping("/user/deleteAddresses/{id}")
+	public ModelAndView deleteAddresses(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Address address=null;
+		address=addressDAO.get(id);
+
+		
+		boolean b=addressDAO.delete(address);
+		
+		if(b)
+		{
+			
+			mv.addObject("Usermsg","address deleted");
+		}
+		else
+		{
+			mv.addObject("Usermsg","address NOT deleted");
+		}
+
+		return mv;
+	}
 
 	@RequestMapping(value = { "/orderDetails" })
 	public ModelAndView showOrderDetailsPage() {

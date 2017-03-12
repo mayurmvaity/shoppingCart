@@ -4,42 +4,47 @@
 							</div>
 								<div class="panel-body">
 									<div class="col-md-8 col-md-offset-2">
-										<form role="form" method="post" action="">
+										<form:form method="post" action="${contextRoot}/user/addNewAddress" commandName="address">
 											<fieldset>
 		                        				<legend>Add new address</legend>
+		                        				
+		                        				<form:hidden path="aid" class="form-control"
+													placeholder="Enter Product Id" value="${userid}" />
+		                        				
+		                        				
 											<div class="form-group col-md-12">
-		                            			<label for="first_name">Address line 1</label>
-		                            			<input type="text" class="form-control" name="address1" placeholder="Address line 1">
+		                            			<form:label path="add1">Address line 1</form:label>
+		                            			<form:input type="text" class="form-control" path="add1" placeholder="Address line 1" />
 		                          
 		                        			</div>
 		
 					                        <div class="form-group col-md-12">
-					                            <label for="last_name">Address line 2</label>
-					                            <input type="text" class="form-control" name="address2" placeholder="Address line 2">
+					                            <form:label path="add2">Address line 2</form:label>
+					                            <form:input type="text" class="form-control" path="add2" placeholder="Address line 2" />
 					                            
 					                        </div>
 		
 					                        <div class="form-group col-md-12">
-					                            <label for="last_name">Address line 3</label>
-					                            <input type="text" class="form-control" name="address3" placeholder="Address line 3">
+					                            <form:label path="add3">Address line 3</form:label>
+					                            <form:input type="text" class="form-control" path="add3" placeholder="Address line 3" />
 					                           
 					                        </div>
 		
 					                        <div class="form-group col-md-12">
-					                            <label for="last_name">City</label>
-					                            <input type="text" class="form-control" name="city" placeholder="City">
+					                            <form:label path="city">City</form:label>
+					                            <form:input type="text" class="form-control" path="city" placeholder="City" />
 					                          
 					                        </div>
 		
 					                        <div class="form-group col-md-12">
-					                            <label for="last_name">State</label>
-					                            <input type="text" class="form-control" name="state" placeholder="State">
+					                            <form:label path="state">State</form:label>
+					                            <form:input type="text" class="form-control" path="state" placeholder="State" />
 					                            
 					                        </div>
 								
 											<div class="form-group col-md-12">
-					                            <label for="last_name">Pin code</label>
-					                            <input type="text" class="form-control" name="pinCode" placeholder="Pin code">
+					                            <form:label path="pincode">Pin code</form:label>
+					                            <form:input type="text" class="form-control" path="pincode" placeholder="Pin code" />
 					                            
 					                        </div>
 		                        
@@ -52,8 +57,9 @@
 					                            
 					                        </div>
 				                    	</div>
-		                    		</form>
-		                    		</div>
+		                    		</form:form>
+		                    
+								</div>
 		
 								</div>
 						</div>							
@@ -63,43 +69,27 @@
 								</div>
 								<div class="panel-body">
 										<div class="row">
+										<c:forEach items="${Addresses}" var="addresses">
 										  <div class="col-sm-6 col-md-4">
 										    <div class="thumbnail">
 										     
 										      	<div class="caption">
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <div class="checkbox">
+											        <p>${addresses.add1},</p>
+											        <p>${addresses.add2},</p>
+											        <p>${addresses.add3},</p>
+											        <p>${addresses.city},</p>
+											       <p>${addresses.state},</p>
+											        <p>${addresses.pincode},</p>
+											        
 		                                                <label>
-		                                                    <input type="checkbox" value=""><a href="#" class="btn btn-primary" role="button">Remove address</a>
+		                                                   <a href="${contextRoot}/user/deleteAddresses/${addresses.addid}" class="btn btn-primary" role="button">Remove address</a>
 		                                                </label>
-                                            		</div>
+                                            		
 										        </div>
 										    </div>
 										  </div>
-
-										  <div class="col-sm-6 col-md-4">
-										    <div class="thumbnail">
-										     
-										      	<div class="caption">
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <p> congue non augue sed,</p>
-											        <div class="checkbox">
-		                                                <label>
-		                                                    <input type="checkbox" value=""><a href="#" class="btn btn-primary" role="button">Remove address</a>
-		                                                </label>
-                                            		</div>
-										        </div>
-										    </div>
-										  </div>
+										</c:forEach>
+										  
 										</div>
 										
 

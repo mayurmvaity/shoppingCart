@@ -18,7 +18,7 @@
 			              <a href="${contextRoot}/personalInfo/${userid}" id="personalInfo" class="list-group-item">Personal information</a>
 			              <a href="${contextRoot}/changePW" id="changePW" class="list-group-item">Change password</a>
 			              <a href="${contextRoot}/billingAddress" id="billingAddress" class="list-group-item">billing address</a>
-			              <a href="${contextRoot}/manageAddress" id="manageAddress" class="list-group-item">Manage addresses</a>
+			              <a href="${contextRoot}/user/manageAddress/${userid}" id="manageAddress" class="list-group-item">Manage addresses</a>
 			              <a href="${contextRoot}/user/changeMobNo/${userid}" id="changeMobNo" class="list-group-item">Update mobile number</a>
 			              
 			            </ul> 

@@ -13,5 +13,5 @@ public interface AddressDAO {
 	boolean update(Address address);
 	boolean delete(Address address);
 	
-	
+	List<Address> getByAid(int id);
 }

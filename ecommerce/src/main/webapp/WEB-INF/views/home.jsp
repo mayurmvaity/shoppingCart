@@ -65,7 +65,7 @@
 						 	<c:if test="${count<4}">
 						  <div class="col-sm-6 col-md-3">
 						    <div class="thumbnail">
-						      <img src="${innerv[0].pimage}" alt="${innerv[0].pname}">
+						     <a href="${contextRoot}/productDetails/${innerv[0].pid}"><img src="${innerv[0].pimage}" alt="${innerv[0].pname}"></a> 
 						      <div class="caption">
 						        <h3>
 						        <a href="${contextRoot}/productDetails/${innerv[0].pid}" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></h3>

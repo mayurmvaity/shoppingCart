@@ -86,4 +86,16 @@ public class AddressDAOImpl implements AddressDAO {
 		
 	}
 
+	@Override
+	public List<Address> getByAid(int id) {
+		String selectActiveAddress = "FROM Address WHERE active = :active and aid= :aid";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveAddress);
+		
+		query.setParameter("active", true);
+		query.setParameter("aid", id);
+		
+		return query.getResultList();
+	}
+
 }
