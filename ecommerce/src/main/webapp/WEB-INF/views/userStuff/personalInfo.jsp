@@ -4,25 +4,44 @@
 					</div>
 						<div class="panel-body">
 						<div class="col-md-8 col-md-offset-2">
-							<form role="form" method="post" action="">
+							<form:form method="post" action="${contextRoot}/user/updatePersonalInfo" commandName="user">
 							<fieldset>
-                        
+                         <form:hidden path="uid" class="form-control"
+								placeholder="Enter Product Id" value="${user.uid}" />
+						<form:hidden path="add1" class="form-control"
+								placeholder="Enter Product Id" value="${user.add1}" />
+						<form:hidden path="add2" class="form-control"
+								placeholder="Enter Product Id" value="${user.add2}" />
+						<form:hidden path="add3" class="form-control"
+								placeholder="Enter Product Id" value="${user.add3}" />
+						<form:hidden path="city" class="form-control"
+								placeholder="Enter Product Id" value="${user.city}" />
+						<form:hidden path="state" class="form-control"
+								placeholder="Enter Product Id" value="${user.state}" />
+						<form:hidden path="pincode" class="form-control"
+								placeholder="Enter Product Id" value="${user.pincode}" />
+						<form:hidden path="pno" class="form-control"
+								placeholder="Enter Product Id" value="${user.pno}" />
+						
+						<form:hidden path="pw" class="form-control"
+								placeholder="Enter Product Id" value="${user.pw}" />
+						
 
                         <div class="form-group col-md-12">
-                            <label for="first_name">First name</label>
-                            <input type="text" class="form-control" name="fname" placeholder="First name">
+                            <form:label path="fname">First name</form:label>
+                            <form:input type="text" class="form-control" path="fname" value="${user.fname}" placeholder="First name" />
+                            
+                        </div>
+
+						 <div class="form-group col-md-12">
+                            <form:label path="lname">Last name</form:label>
+                            <form:input type="text" class="form-control" path="lname" value="${user.lname}" placeholder="Last name" />
                             
                         </div>
 
                         <div class="form-group col-md-12">
-                            <label for="last_name">Last name</label>
-                            <input type="text" class="form-control" name="lname" placeholder="Last name">
-                            
-                        </div>
-
-                        <div class="form-group col-md-12">
-                            <label for="">Email</label>
-                            <input type="email" class="form-control" name="email" placeholder="Email">
+                            <form:label path="email">Email</form:label>
+                            <form:input type="email" class="form-control" path="email" placeholder="Email" value="${user.email}" />
                             
                         </div>
 							<div class="form-group col-md-12">
@@ -44,7 +63,7 @@
 	                            
 	                        </div>
                     	</div>
-                    	</form>
+                    	</form:form>
                     	</div>
 						</div>							
 

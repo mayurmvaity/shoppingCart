@@ -28,6 +28,7 @@ $(function() {
 	case 'Wish List': $('#wishList').addClass('active'); break;
 	case 'Personal Information': $('#personalInfo').addClass('active'); break;
 	case 'Change Password': $('#changePW').addClass('active'); break;
+	case 'Billing Address': $('#billingAddress').addClass('active'); break;
 	case 'Manage Addresses': $('#manageAddress').addClass('active'); break;
 	case 'Change Mobile Number': $('#changeMobNo').addClass('active'); break;
 	

@@ -48,7 +48,7 @@
 		${CRUDmsgC}
 		${CRUDmsgS}
 		${RegMsg}
-		${Role}
+		${Role}	${Usermsg}
 	<div class="content">
 		<h2>
 		<center>Shopping Cart</center>
@@ -108,7 +108,7 @@
 		<%@include file="./userStuff/productDetails.jsp" %>
 	</c:if>
 	<!--  for sidebar A ================== -->
-	<c:if test="${isUserClickPersonalInfo==true || isUserClickChangeMobNo==true || isUserClickManageAddress==true ||isUserClickChangePW==true || isUserClickMyAccount==true || isUserClickOrderDetails==true || isUserClickWishList==true}">
+	<c:if test="${isUserClickPersonalInfo==true || isUserClickChangeMobNo==true || isUserClickManageAddress==true ||isUserClickChangePW==true || isUserClickMyAccount==true || isUserClickOrderDetails==true || isUserClickWishList==true || isUserClickBillingAddress==true}">
 		<%@include file="./userStuff/sidebarA.jsp" %>
 	</c:if>
 	

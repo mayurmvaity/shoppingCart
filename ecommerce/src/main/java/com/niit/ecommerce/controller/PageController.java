@@ -112,7 +112,9 @@ public class PageController {
 			session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
 			session.setAttribute("username", user.getFname());
 			session.setAttribute("Role",user.getRole());
+			session.setAttribute("userid",user.getUid());
 			mv.addObject("title", "Home");
+			mv.addObject("user",user);
 			
 		} else {
 			
@@ -209,32 +211,9 @@ public class PageController {
 	
 	
 
-	@RequestMapping(value = { "/personalInfo" })
-	public ModelAndView showPersonalInfoPage() {
-		System.out.println("clicked on personal info page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Personal Information");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("isUserClickPersonalInfo", true);
-		return mv;
-	}
+	
 
-	@RequestMapping(value = { "/changeMobNo" })
-	public ModelAndView showChangeMobNoPage() {
-		System.out.println("clicked on change mobile no page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Change Mobile Number");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("isUserClickChangeMobNo", true);
-		return mv;
-	}
-
+	
 	@RequestMapping(value = { "/changePW" })
 	public ModelAndView showChangePWPage() {
 		System.out.println("clicked on change PW page");
@@ -245,6 +224,19 @@ public class PageController {
 				mv.addObject("categories",categoryDAO.list());
 		
 		mv.addObject("isUserClickChangePW", true);
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/billingAddress" })
+	public ModelAndView showBillingAddressPage() {
+		System.out.println("clicked on billing address page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Billing Address");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+		
+		mv.addObject("isUserClickBillingAddress", true);
 		return mv;
 	}
 
@@ -261,8 +253,8 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/myAccount" })
-	public ModelAndView showMyAccountPage() {
+	@RequestMapping(value = { "/myAccount/{id}" })
+	public ModelAndView showMyAccountPage(@PathVariable("id") int id) {
 		System.out.println("clicked on my account page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "My Account");
@@ -270,9 +262,98 @@ public class PageController {
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
 		
+				User user=null;
+				user=userDAO.get(id);
+				
+				mv.addObject("user",user);
+				
+				
 		mv.addObject("isUserClickMyAccount", true);
 		return mv;
 	}
+	
+	@RequestMapping(value = { "/personalInfo/{id}" })
+	public ModelAndView showPersonalInfoPage(@PathVariable("id") int id) {
+		System.out.println("clicked on personal info page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Personal Information");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+				
+				User user=null;
+				user=userDAO.get(id);
+				mv.addObject("user",user);
+
+		mv.addObject("isUserClickPersonalInfo", true);
+		return mv;
+	}
+	
+	@PostMapping("/user/updatePersonalInfo")
+	public ModelAndView updatePersonalInfo(@ModelAttribute("user") User user) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		try{
+			boolean b=userDAO.update(user);
+			if(b)
+			{
+				mv.addObject("Usermsg","user updated");
+			}
+			else
+			{
+				mv.addObject("Usermsg","user NOT updated");
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/user/changeMobNo/{id}" })
+	public ModelAndView showChangeMobNoPage(@PathVariable("id") int id) {
+		System.out.println("clicked on change mobile no page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Change Mobile Number");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+		
+				User user=null;
+				user=userDAO.get(id);
+				mv.addObject("user",user);
+
+		mv.addObject("isUserClickChangeMobNo", true);
+		return mv;
+	}
+
+	@PostMapping("/user/updateMobileNo")
+	public ModelAndView updateMobileNo(@ModelAttribute("user") User user) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		try{
+			boolean b=userDAO.update(user);
+			if(b)
+			{
+				mv.addObject("Usermsg","Mobile no updated");
+			}
+			else
+			{
+				mv.addObject("Usermsg","Mobile no NOT updated");
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		return mv;
+	}
+	
 
 	@RequestMapping(value = { "/orderDetails" })
 	public ModelAndView showOrderDetailsPage() {

@@ -146,3 +146,16 @@ create table user (
 
 insert into User values (4,1122334455,'admin','wolly','west','ww@dc.com','hsdvh','hjasdvfhj','jhasdj','central city','US','666666','ADMIN',true);
 
+create table address (
+
+	addid IDENTITY primary key,
+	aid number(4) not null,
+	add1 varchar(100) not null,
+	add2 varchar(100) not null,
+	add3 varchar(100) not null,
+	city varchar(100) not null,
+	state varchar(100) not null,
+	pincode number(6) not null,
+	is_active boolean not null
+);
+

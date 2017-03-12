@@ -29,7 +29,7 @@ private static AnnotationConfigApplicationContext context;
 		
 	}
 	
-	@Test
+	/*@Test
 	public void testCRUDCategory() {
 		//add operation
 		user =new User();
@@ -81,6 +81,20 @@ private static AnnotationConfigApplicationContext context;
 		//fetching the list
 		assertEquals("Successfully fetched the list of a users from the table",1,userDAO.list().size());
 		
-	}
+	}*/
+	@Test
+	public void testCRUDCategory() {
+		
+		
+		//fetchaing and updating
+		user = userDAO.get(2);
+		
+		user.setFname("Cill");
+		user.setLname("Marko");
 	
+		assertEquals("Successfully updated a user in the table",true,userDAO.update(user));
+		
+		
+		
+	}
 }
