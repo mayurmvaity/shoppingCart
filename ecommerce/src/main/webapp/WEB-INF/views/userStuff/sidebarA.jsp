@@ -16,7 +16,7 @@
 			            <legend class="text-center"></legend>
 			            <ul class="list-group">
 			              <a href="${contextRoot}/personalInfo/${userid}" id="personalInfo" class="list-group-item">Personal information</a>
-			              <a href="${contextRoot}/changePW" id="changePW" class="list-group-item">Change password</a>
+			              <a href="${contextRoot}/changePW/${userid}" id="changePW" class="list-group-item">Change password</a>
 			              <a href="${contextRoot}/billingAddress" id="billingAddress" class="list-group-item">billing address</a>
 			              <a href="${contextRoot}/user/manageAddress/${userid}" id="manageAddress" class="list-group-item">Manage addresses</a>
 			              <a href="${contextRoot}/user/changeMobNo/${userid}" id="changeMobNo" class="list-group-item">Update mobile number</a>
@@ -45,7 +45,7 @@
 						<%@include file="billingAddress.jsp" %>
 					</c:if>
 					
-					<c:if test="${isUserClickManageAddress==true}">
+					<c:if test="${isUserClickManageAddress==true || isUserClickedUpdateAddress == true}">
 						<%@include file="manageAddress.jsp" %>
 					</c:if>  					
 

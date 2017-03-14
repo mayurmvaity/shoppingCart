@@ -217,21 +217,70 @@ public class PageController {
 	
 	
 
-	
+	/*====================================== change PW stuff =====================================*/
 
 	
-	@RequestMapping(value = { "/changePW" })
-	public ModelAndView showChangePWPage() {
+	@RequestMapping(value = { "/changePW/{id}" })
+	public ModelAndView showChangePWPage(@PathVariable("id") int id) {
 		System.out.println("clicked on change PW page");
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Change Password");
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
-		
+				
+				User user=null;
+				user=userDAO.get(id);
+				
+				// passing the current object
+				mv.addObject("user",user);
+				
+				
 		mv.addObject("isUserClickChangePW", true);
 		return mv;
 	}
+	
+	@PostMapping("/user/validatePassword")
+	public ModelAndView validatePassword(@ModelAttribute("user") User user, HttpServletRequest request) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+					
+		//passing the list of products
+		mv.addObject("products", productDAO.getPlist());
+		
+		
+		boolean c = user.pwvalidate();	
+		
+			
+			
+			if(c)
+			{
+				boolean b=userDAO.update(user);
+			if(b) {	
+				mv.addObject("Usermsg","PW updated");
+			
+			}
+			else
+			{
+				mv.addObject("Usermsg","PW NOT updated");
+			}
+			
+			}
+		
+		
+		
+		return mv;
+	}
+
+	
+	/*====================================== END OF change PW stuff =====================================*/
+	
+	
 	
 	@RequestMapping(value = { "/billingAddress" })
 	public ModelAndView showBillingAddressPage() {
@@ -349,6 +398,8 @@ public class PageController {
 		return mv;
 	}
 	
+	/*=========================================== Addresses methods here ========================================================*/
+	
 	@RequestMapping(value = { "/user/manageAddress/{id}" })
 	public ModelAndView showManageAddressPage(@PathVariable("id") int id, @ModelAttribute("address") Address address, BindingResult result) {
 		System.out.println("clicked on manage addresses page");
@@ -372,6 +423,7 @@ public class PageController {
 		ModelAndView mv = new ModelAndView("page");
 		
 		try{
+			if(address.getAddid()==0) {
 			boolean b=addressDAO.add(address);
 			if(b)
 			{
@@ -380,6 +432,21 @@ public class PageController {
 			else
 			{
 				mv.addObject("Usermsg","Address not added");
+			}
+			}
+			else {
+				boolean b=addressDAO.update(address);
+				if(b)
+				{
+					mv.addObject("Usermsg","Address Updated");
+				}
+				else
+				{
+					mv.addObject("Usermsg","Address not updated");
+				}
+				
+				
+				
 			}
 		}
 		catch(Exception e)
@@ -414,6 +481,29 @@ public class PageController {
 		return mv;
 	}
 
+	@RequestMapping("/user/updateAddress/{id}")
+	public ModelAndView updateAddress(@PathVariable("id") int id) {
+		// actually you have to take the data from db
+		// temporarily
+		ModelAndView mv = new ModelAndView("page");
+		
+		Address address=null;
+		address=addressDAO.get(id);
+		
+		//passing list of categories to navbar
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing this category info
+		mv.addObject("address",address);
+		
+		mv.addObject("isUserClickedUpdateAddress",true);
+		
+		
+		return mv;
+	}
+	
+	/*=========================================== End of Addresses methods ========================================================*/
+	
 	@RequestMapping(value = { "/orderDetails" })
 	public ModelAndView showOrderDetailsPage() {
 		System.out.println("clicked on order details page");
@@ -505,22 +595,7 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/addProduct" })
-	public ModelAndView showAddProductPage(@ModelAttribute("command") Product product,BindingResult result) {
-		System.out.println("clicked on add product page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Add Product");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-				
-				//passing the join of product and category
-				mv.addObject("listProducts", productDAO.getPlist());
-		
-		mv.addObject("isUserClickAddProduct", true);
-		mv.addObject("product",product);
-		return mv;
-	}
+	
 	
 	
 	
@@ -565,19 +640,49 @@ public class PageController {
 	
 	
 	
-	@RequestMapping(value = { "/adminsProducts" })
+	@RequestMapping(value = { "/admin/show/all/adminsProducts" })
 	public ModelAndView showAdminsProductsPage() {
 		System.out.println("clicked on admins products page");
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Admins Products");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+
+		mv.addObject("title", "All Products");
+
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+
+		//passing the list of products
+		mv.addObject("products", productDAO.getPlist());
 		
 		mv.addObject("isUserClickAdminsProducts", true);
 		return mv;
 	}
+	
+	@RequestMapping(value = { "/show/category/{id}/adminproducts" })
+	public ModelAndView showCategoryAdminProducts(@PathVariable("id") int id) {
 
+		ModelAndView mv = new ModelAndView("page");
+
+		// categoryDAO to fetch a single category
+
+		Category category = null;
+		category = categoryDAO.get(id);
+
+		mv.addObject("title", category.getName());
+		int xid=category.getId();
+		
+		// passing the list of categories for navbar
+		mv.addObject("categories", categoryDAO.list());
+
+		// passing a single category object
+		mv.addObject("category", category);
+
+		//passing the list of products
+		mv.addObject("catProducts",productDAO.getPlistById(xid));
+		
+		mv.addObject("userClickCategoryAdminProducts", true);
+		return mv;
+	}
+	
 	@RequestMapping(value = { "/adminsHome" })
 	public ModelAndView showAdminsHomePage() {
 		System.out.println("clicked on admins home page");
@@ -663,6 +768,14 @@ public class PageController {
 		
 		mv.addObject("products",productDAO.getPlistByPId(id));
 		
+		/*Product product=null;
+		product=productDAO.get(id);
+		
+		String c=product.getPcolor();
+		
+		mv.addObject("colors",productDAO.getPlistByColor(c));*/
+		
+		
 		mv.addObject("isUserClickProductDetails", true);
 		return mv;
 	}
@@ -688,6 +801,25 @@ public class PageController {
 	}
 	
 	/* ========================== uploadImage() method product methods here ======================== */
+	
+	
+	
+	@RequestMapping(value = { "/addProduct" })
+	public ModelAndView showAddProductPage(@ModelAttribute("command") Product product,BindingResult result) {
+		System.out.println("clicked on add product page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Add Product");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+				
+				//passing the join of product and category
+				mv.addObject("listProducts", productDAO.getPlist());
+		
+		mv.addObject("isUserClickAddProduct", true);
+		mv.addObject("product",product);
+		return mv;
+	}
 	
 	@Autowired
 	ServletContext req;
@@ -964,10 +1096,6 @@ public class PageController {
 		// actually you have to take the data from db
 		// temporarily
 		ModelAndView mv = new ModelAndView("page");
-		
-		
-		
-		
 		
 		boolean b=userDAO.add(user);
 		

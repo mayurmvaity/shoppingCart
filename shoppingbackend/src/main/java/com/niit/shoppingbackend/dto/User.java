@@ -31,10 +31,34 @@ public class User {
 	private boolean active = true;
 	
 	
+	transient private String currentpw;
+	transient private String newpw1;
+	transient private String newpw2;
+	
+	
+	
 	/* setters and getters
 	 * 
 	 * */
 	
+	public String getCurrentpw() {
+		return currentpw;
+	}
+	public void setCurrentpw(String currentpw) {
+		this.currentpw = currentpw;
+	}
+	public String getNewpw1() {
+		return newpw1;
+	}
+	public void setNewpw1(String newpw1) {
+		this.newpw1 = newpw1;
+	}
+	public String getNewpw2() {
+		return newpw2;
+	}
+	public void setNewpw2(String newpw2) {
+		this.newpw2 = newpw2;
+	}
 	public int getUid() {
 		return uid;
 	}
@@ -133,5 +157,35 @@ public class User {
 				+ ", pincode=" + pincode + ", role=" + role + ", active=" + active + "]";
 	}
 	
+	public boolean pwvalidate() {
+		
+		String c=this.currentpw;
+		String p=this.pw;
+		
+		System.out.println("currnet pw: "+c);
+		System.out.println("thispw pw: "+p);
+		
+		if(c.equals(p))
+		{
+			if(newpw1.equals(newpw2))
+			{
+				this.setPw(newpw1);
+				System.out.println("PW changed successfully");
+				return true;
+			}
+			else
+			{
+				System.out.println("new pws not matching");
+				return false;
+			}
+		}
+		else
+		{
+			System.out.println("wrong current pw");
+			return false;
+		}
+		
+		
+	}
 	
 }

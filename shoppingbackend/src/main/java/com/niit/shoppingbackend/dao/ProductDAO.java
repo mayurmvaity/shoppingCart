@@ -19,4 +19,5 @@ public interface ProductDAO {
 	List getPlistById(int id);
 	
 	List getPlistByPId(int id);
+	List getPlistByColor(String color);
 }

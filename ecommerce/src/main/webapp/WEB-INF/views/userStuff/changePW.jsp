@@ -4,25 +4,60 @@
 						</div>
 						<div class="panel-body">
 						<div class="col-md-8 col-md-offset-2">
-							<form role="form" method="post" action="">
+							<form:form role="form" method="post" action="${contextRoot}/user/validatePassword" commandName="user">
 							<fieldset>
                         
+                        			<form:hidden path="uid" class="form-control"
+								placeholder="Enter Product Id" value="${userid}" />
+                        			
+                        			<form:hidden path="pw" class="form-control"
+								placeholder="Enter Product Id" value="${user.pw}" />
+								
+									<form:hidden path="fname" class="form-control"
+								placeholder="Enter Product Id" value="${user.fname}" />
+									<form:hidden path="lname" class="form-control"
+								placeholder="Enter Product Id" value="${user.lname}" />
+									<form:hidden path="email" class="form-control"
+								placeholder="Enter Product Id" value="${user.email}" />
+								
+								
+								
+						<form:hidden path="add1" class="form-control"
+								placeholder="Enter Product Id" value="${user.add1}" />
+						<form:hidden path="add2" class="form-control"
+								placeholder="Enter Product Id" value="${user.add2}" />
+						<form:hidden path="add3" class="form-control"
+								placeholder="Enter Product Id" value="${user.add3}" />
+						<form:hidden path="city" class="form-control"
+								placeholder="Enter Product Id" value="${user.city}" />
+						<form:hidden path="state" class="form-control"
+								placeholder="Enter Product Id" value="${user.state}" />
+						<form:hidden path="pincode" class="form-control"
+								placeholder="Enter Product Id" value="${user.pincode}" />
+						<form:hidden path="pno" class="form-control"
+								placeholder="Enter Product Id" value="${user.pno}" />
+						
+					
+								
+								
+                        
+                        
 									<div class="form-group col-md-12">
-			                            <label for="password">Enter current password</label>
-			                            <input type="password" class="form-control" name="" placeholder="Current password">
+			                            <form:label path="currentpw">Enter current password</form:label>
+			                            <form:input type="password" class="form-control" path="currentpw" placeholder="Current password" />
 			                           
 			                        </div>
 
 
 									<div class="form-group col-md-12">
-			                            <label for="password">Enter new password</label>
-			                            <input type="password" class="form-control" name="" placeholder="New password">
+			                            <form:label path="newpw1">Enter new password</form:label>
+			                            <form:input type="password" class="form-control" path="newpw1" placeholder="New password" />
 			                           
 			                        </div>
 
 			                        <div class="form-group col-md-12">
-			                            <label for="confirm_password">Re-enter new password</label>
-			                            <input type="password" class="form-control" name="" placeholder="Re-enter new password">
+			                            <form:label path="newpw2">Re-enter new password</form:label>
+			                            <form:input type="password" class="form-control" path="newpw2" placeholder="Re-enter new password" />
 			                            
 			                        </div>	
                         
@@ -36,7 +71,7 @@
 		                            
 		                        </div>
                     		</div>
-                    	</form>
+                    	</form:form>
                     	</div>
 						</div>						
 	</div>		

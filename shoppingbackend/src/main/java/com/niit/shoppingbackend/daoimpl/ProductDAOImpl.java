@@ -137,6 +137,21 @@ public class ProductDAOImpl implements ProductDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public List getPlistByColor(String color) {
+		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active and p.pcolor= :pcolor";
+		//String hlist="FROM Category where active= :active";
+		
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(hlist);
+		
+		query.setParameter("active", true);
+		query.setParameter("pcolor", color);
+		
+		
+		return query.getResultList();
+	}
+
 	
 
 	

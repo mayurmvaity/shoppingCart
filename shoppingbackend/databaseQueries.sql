@@ -22,6 +22,7 @@ create table product (
 	
 );
 
+
 create table supplier (
 	
 	sid IDENTITY primary key,
@@ -34,8 +35,8 @@ create table supplier (
 create table stock (
 	
 	stockid IDENTITY primary key,
-	pid number(4) references product(pid) on delete cascade,
-	sid number(4) references supplier(sid) on delete cascade,
+	pid number(4) foreign key references product(pid) on delete cascade,
+	sid number(4) foreign key references supplier(sid) on delete cascade,
 	price number(9) not null,
 	quantity number(9) not null,
 	is_active boolean not null
@@ -159,3 +160,41 @@ create table address (
 	is_active boolean not null
 );
 
+create table cart (
+
+	cartid IDENTITY primary key,
+	userid number(5) foreign key references user(uid) on delete cascade,
+	items number(5) not null,
+	totalcost number(15) not null
+	
+);
+
+create table cartitem (
+
+	itemid IDENTITY primary key,
+	cartid number(5) foreign key references cart(cartid) on delete cascade,
+	ino number(5) not null,
+	iprice number(9) not null,
+	iquantity number(4) not null,
+	itotal number(15) not null,
+	wishlist boolean not null
+	
+	
+);
+
+create table roles (
+
+	roleid IDENTITY primary key ,
+	rolename varchar(20) not null unique
+
+);
+
+create table userroles (
+	
+	urid identity primary key, userid , user name, pw 
+	email varchar(50) not null, 
+	pw varchar(20) not null,
+	roleid number(4) not null,
+	
+	constraint fk_userrole foreign key (roleid) references roles(roleid)
+);

@@ -67,11 +67,12 @@
 						    <div class="thumbnail">
 						     <a href="${contextRoot}/productDetails/${innerv[0].pid}"><img src="${innerv[0].pimage}" alt="${innerv[0].pname}"></a> 
 						      <div class="caption">
-						        <h3>
-						        <a href="${contextRoot}/productDetails/${innerv[0].pid}" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></h3>
-						        <h4>&#8377;${innerv[0].price}</h4>
+						        <p class="thumbp">
+						        <a href="${contextRoot}/productDetails/${innerv[0].pid}" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></p>
+						        <p class="coname">by ${innerv[1].name}</p>
+						        <p class="productprice">&#8377;${innerv[0].price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
-						        <p><a href="#" class="btn btn-primary btn-sm" role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><a href="#" class="btn btn-primary btn-sm " role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>

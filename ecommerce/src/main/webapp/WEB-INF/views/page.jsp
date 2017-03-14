@@ -37,8 +37,54 @@
 	<link rel="stylesheet" href="${css}/myapp.css" type="text/css">
 	<link rel="stylesheet" href="${css}/mytheme.css" type="text/css">
 	
+	<style>
+		.thumbp a {
+		color: #0066C2;
+		font-size: 15px;
+		}
+		.thumbp a:hover {
+		color: #D75500;
+		
+		}
+		.coname {
+		padding-top: 0px;
+		color: #6C6C6C;
+		font-size: 13px;
+		
+		}
+		.productprice {
+		font-size: 16px;
+		font-weight: bold;
+		color: #B12704;
+		
+		}
+		.prodetailsname {
+		color: black;
+		font-size: 20px;
+		
+		}
+		.propricedetails {
+		color: #B12704;
+		font-size: 18px;
+		
+		}
+		.pricetagspan {
+		font-size: 14px;
+		color: #6C6C6C;
+		
+		}
+		.navbar-inverse {
+		background-color: #3C3C3C;
+		
+		}
+		body {
+		background-color: #FBFBFB;
+		
+		}
+	</style>
+	
 </head>
-<body style="background-color: #F4E1EC;">
+<body>
 
 	<div class="wrapper">
 	<!-- =================  NAVBAR  ================== -->
@@ -94,6 +140,9 @@
 		<%@include file="./navbarStuff/productList.jsp" %>
 	</c:if>
 	
+	<c:if test="${userClickCategoryAdminProducts==true or isUserClickAdminsProducts==true}">
+		<%@include file="./adminsOpt/adminsProducts.jsp" %>
+	</c:if>
 	
 	
 	<c:if test="${isUserClickContactUs==true}">
@@ -108,7 +157,7 @@
 		<%@include file="./userStuff/productDetails.jsp" %>
 	</c:if>
 	<!--  for sidebar A ================== -->
-	<c:if test="${isUserClickPersonalInfo==true || isUserClickChangeMobNo==true || isUserClickManageAddress==true ||isUserClickChangePW==true || isUserClickMyAccount==true || isUserClickOrderDetails==true || isUserClickWishList==true || isUserClickBillingAddress==true}">
+	<c:if test="${isUserClickPersonalInfo==true || isUserClickChangeMobNo==true || isUserClickManageAddress==true ||isUserClickChangePW==true || isUserClickMyAccount==true || isUserClickOrderDetails==true || isUserClickWishList==true || isUserClickBillingAddress==true || isUserClickedUpdateAddress==true}">
 		<%@include file="./userStuff/sidebarA.jsp" %>
 	</c:if>
 	
@@ -138,9 +187,9 @@
 	
 	
 	
-	<c:if test="${isUserClickAdminsProducts==true}">
+	<%-- <c:if test="${isUserClickAdminsProducts==true}">
 		<%@include file="./adminsOpt/adminsProducts.jsp" %>
-	</c:if>
+	</c:if> --%>
 	
 	<c:if test="${isUserClickAdminsHome==true}">
 		<%@include file="./adminsOpt/adminsHome.jsp" %>

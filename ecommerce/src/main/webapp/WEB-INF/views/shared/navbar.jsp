@@ -26,7 +26,7 @@
 		<c:if test="${not empty adminMessage}">  
 	      <li id="Home"><a href="${contextRoot}/adminsHome">Home</a></li>
 	  	</c:if>  --%>
-	  	
+	  	<c:if test="${empty adminMessage}">
 	  	 <li id="Home"><a href="${contextRoot}/home">Home</a></li>
 	  	
   
@@ -36,14 +36,47 @@
          <c:forEach items="${categories}" var="category">
          	 <li><a href="${contextRoot}/show/category/${category.id}/products">${category.name}</a></li>
 		 </c:forEach>
-
+		
+		
+		
         </ul>
       </li>
+      <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
+      </c:if>
+      				 <c:if test="${not empty adminMessage}">
+      				  <li id="Home"><a href="${contextRoot}/home">Home</a></li>
+						<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Products<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${contextRoot}/addProduct">Add product</a></li>
+								<li><a href="${contextRoot}/admin/show/all/adminsProducts">View products</a></li>
+								
+							</ul></li>
+							<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Brands<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${contextRoot}/addCategory">Add brand</a></li>
+									<li><a href="">View brands</a></li>
+								
+							</ul></li>
+							<li class="dropdown"><a class="dropdown-toggle"
+							data-toggle="dropdown" href="#">Suppliers<span
+								class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="${contextRoot}/addSupplier">Add supplier</a></li>
+									<li><a href="">View suppliers</a></li>
+								
+							</ul></li>
+					</c:if>
+      
+      
      <%--  <c:if test="${empty adminMessage}">
      <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
      </c:if> --%>
      
-     <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
+     
      
     <%--  <c:if test="${not empty adminMessage}">
      <li id="adminsProducts"><a href="${contextRoot}/adminsProducts">All Products</a></li>
@@ -83,9 +116,9 @@
 							data-toggle="dropdown" href="#">${adminName}<span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${contextRoot}/addProduct">Add product</a></li>
+								<%-- <li><a href="${contextRoot}/addProduct">Add product</a></li>
 								<li><a href="${contextRoot}/addCategory">Add brand</a></li>
-								<li><a href="${contextRoot}/addSupplier">Add supplier</a></li>
+								<li><a href="${contextRoot}/addSupplier">Add supplier</a></li> --%>
 								<li><a href="${contextRoot}/logout">Log Out</a></li>
 							</ul></li>
 					</c:if>
@@ -98,7 +131,7 @@
       <div class="input-group">
       <input type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Search <span class="glyphicon glyphicon-search"></span></button>
+        <button class="btn btn-default" type="button">Search</button>
       </span>
     </div>
     </form>

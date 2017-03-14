@@ -1,5 +1,5 @@
-<div class="container">
-	<!-- Filters added here -->
+	<div class="container">
+		<!-- Filters added here -->
 		<div class="col-md-12">
     		 <nav class="navbar navbar-default">
 			  <div class="container-fluid">
@@ -21,7 +21,31 @@
 			</nav>
     	</div>
     	<!-- Filters end here -->
-
+    	
+    	
+    	<!-- Added breadcrumb -->
+			<div class="row">
+				<div class="col-lg-12">
+					<c:if test="${isUserClickAdminsProducts==true}">
+					<ol class="breadcrumb">
+						<li><a href="${contextRoot}/home">Home</a></li>
+						<li class="active">All Products</li>
+					</ol>
+					</c:if>
+					
+					<c:if test="${userClickCategoryAdminProducts==true}">
+					<ol class="breadcrumb">
+						<li><a href="${contextRoot}/home">Home</a></li>
+						<li class="active">Category</li>
+						<li class="active">${category.name}</li>
+					</ol>
+					</c:if>
+				</div>
+			</div>
+		<!-- Ended breadcrumb -->
+			
+			
+			<!-- To display sidebar -->
 			<div class="col-md-3">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -29,12 +53,15 @@
 						Brands
 						</h3>
 					</div>
-					<div class="panel-body list-group">
-						<a href="#" class="list-group-item">Samsung</a>
-			            <a href="#" class="list-group-item">HTC</a>
+					<div class="panel-body">
+						
+						<%@include file="menubar.jsp" %>		
+					
 					</div>
 				</div>
 			</div>
+			
+			<!-- to display products -->
 			<div class="col-md-9">
 				<div class="panel panel-default">
 					<div class="panel-heading">
@@ -42,53 +69,40 @@
 					</div>
 					<div class="panel-body">
 						<div class="row">
+						  
+						  <c:forEach items="${products}" var="variable">
+						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="s7edge">
+						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
 						      <div class="caption">
-						        <h3><a href="${contextRoot}/adminsProDetails" style="text-decoration: none;">Samsung Galaxy S7 edge</a></h3>
-						        <h4>&#8377;50900</h4>
-						        <a href="" class="btn btn-md btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></a>
-						        <a href="" class="btn btn-md btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></a>
+						        <h3>
+						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
+						        <h4>&#8377;${variable[0].price}</h4>
+						        <p><a href="#" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="#" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
-
+						  
+						  </c:forEach>
+						  <c:forEach items="${catProducts}" var="variable">
+						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="on8">
+						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
 						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy on8</a></h3>
-						        <h4>&#8377;14900</h4>
-						        <a href="" class="btn btn-md btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></a>
-						        <a href="" class="btn btn-md btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></a>
+						        <h3>
+						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
+						        <h4>&#8377;${variable[0].price}</h4>
+						        <p><a href="#" class="btn btn-primary" role="button">Edit  <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="#" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
-
-						  <div class="col-sm-6 col-md-4">
-						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="note5">
-						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy Note 5</a></h3>
-						        <h4>&#8377;43900</h4>
-						        <a href="" class="btn btn-md btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></a>
-						      <a href="" class="btn btn-md btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></a>
-						      </div>
-						    </div>
-						  </div>
-
-						  <div class="col-sm-6 col-md-4">
-						    <div class="thumbnail">
-						      <img src="http://placehold.it/802x615" alt="A9pro">
-						      <div class="caption">
-						        <h3><a style="text-decoration: none;" href="">Samsung Galaxy A9 pro</a></h3>
-						        <h4>&#8377;32490</h4>
-						        <a href="" class="btn btn-md btn-primary">Edit <span class="glyphicon glyphicon-edit"></span></a>
-						       <a href="" class="btn btn-md btn-danger">Delete <span class="glyphicon glyphicon-trash"></span></a>
-						      </div>
-						    </div>
-						  </div>
+						  
+						  </c:forEach>
+						  
 						</div>
 					</div>	
 				</div>
