@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Address {
@@ -14,11 +17,24 @@ public class Address {
 	
 	private int aid;
 	
+	
+	@Size(min=2,max=50)
 	private String add1;
+	
+	@Size(min=2,max=50)
 	private String add2;
+	
+	@Size(min=2,max=50)
 	private String add3;
+	
+	@Size(min=2,max=50)
 	private String city;
+	
+	@Size(min=2,max=50)
 	private String state;
+	
+	@Min(100000)
+	@Max(999999)
 	private int pincode;
 	
 	@Column(name = "is_active")

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Supplier {
@@ -16,9 +18,13 @@ public class Supplier {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sid;
+	
+	@NotNull
+	@Size(min=2,max=50)
 	private String sname;
 	
-	
+	@NotNull
+	@Size(min=20,max=250)
 	private String sdesc;
 	
 	@Column(name = "is_active")

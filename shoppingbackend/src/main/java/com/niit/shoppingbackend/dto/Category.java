@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Category {
@@ -12,7 +14,14 @@ public class Category {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	
+	@NotNull
+	@Size(min=1,max=50)
 	private String name;
+	
+	
+	@NotNull
+	@Size(min=20,max=250)
 	private String description;
 	
 	/*@Column(name = "image_url")

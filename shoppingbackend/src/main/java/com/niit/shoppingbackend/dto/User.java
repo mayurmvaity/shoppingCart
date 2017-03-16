@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -12,18 +16,51 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
+	
+	
+	
 	private long pno;
+	
+	
+	@Size(min=8,max=20)
 	private String pw;
 	
+	
+	@Size(min=2,max=50)
 	private String fname;
+	
+	
+	@Size(min=2,max=50)
 	private String lname;
+	
+	
+	@Size(min=2,max=50)
 	private String email;
 	
+	
+	
+	@Size(min=2,max=50)
 	private String add1;
+	
+	
+	@Size(min=2,max=50)
 	private String add2;
+	
+	
+	
+	@Size(min=2,max=50)
 	private String add3;
+	
+	
+	@Size(min=2,max=50)
 	private String city;
+	
+	
+	@Size(min=2,max=50)
 	private String state;
+	
+	@Min(100000)
+	@Max(999999)
 	private int pincode;
 	
 	private String role="CUSTOMER";
@@ -31,8 +68,15 @@ public class User {
 	private boolean active = true;
 	
 	
+	@Size(min=8,max=20)
 	transient private String currentpw;
+	
+	
+	@Size(min=8,max=20)
 	transient private String newpw1;
+	
+	
+	@Size(min=8,max=20)
 	transient private String newpw2;
 	
 	

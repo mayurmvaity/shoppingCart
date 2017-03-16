@@ -8,7 +8,7 @@
             	<h3 class="panel-title">Register here</h3>
             </div>
             <div class="panel-body">
-                <form:form method="post" commandName="user" action="${contextRoot}/registeration" name="registration">
+                <form:form method="post" commandName="user" action="${contextRoot}/registeration" >
 
                     
 
@@ -16,25 +16,25 @@
                         <legend>Account Details</legend>
 
                         <div class="form-group col-md-6">
-                            <form:label path="fname">First name</form:label>
+                            <form:label path="fname">First name: <font color='red'><form:errors path="fname" /></font></form:label>
                             <form:input path="fname" type="text" class="form-control" placeholder="First name" />
                             
                         </div>
 
                         <div class="form-group col-md-6">
-                            <form:label path="lname">Last name</form:label>
+                            <form:label path="lname">Last name: <font color='red'><form:errors path="lname" /></font></form:label>
                             <form:input path="lname" type="text" class="form-control" placeholder="Last name" />
                             
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="email">Email</form:label>
+                            <form:label path="email">Email: <font color='red'><form:errors path="email" /></font></form:label>
                             <form:input type="email" class="form-control" path="email" placeholder="Email" />
                            
                         </div>
 
                         <div class="form-group col-md-6">
-                            <form:label path="pw">Password</form:label>
+                            <form:label path="pw">Password: <font color='red'><form:errors path="pw" /></font></form:label>
                             <form:input type="password" class="form-control" path="pw" placeholder="Password" />
                             
                         </div>
@@ -57,7 +57,7 @@
                         </div>
 						
 						<div class="form-group col-md-6">
-                            <form:label path="pno">Mobile number</form:label>
+                            <form:label path="pno">Mobile number: <font color='red'><form:errors path="pno" /></font></form:label>
                             <form:input type="text" class="form-control" path="pno" placeholder="Mobile number" />
                         	
                         </div>
@@ -68,37 +68,37 @@
                         <legend>Address details</legend>
 
                         <div class="form-group col-md-12">
-                            <form:label path="add1">Address line 1</form:label>
+                            <form:label path="add1">Address line 1: <font color='red'><form:errors path="add1" /></font></form:label>
                             <form:input type="text" class="form-control" path="add1" placeholder="Address line 1" />
                       
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="add2">Address line 2</form:label>
+                            <form:label path="add2">Address line 2: <font color='red'><form:errors path="add2" /></font></form:label>
                             <form:input type="text" class="form-control" path="add2" placeholder="Address line 2" />
                            
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="add3">Address line 3</form:label>
+                            <form:label path="add3">Address line 3: <font color='red'><form:errors path="add3" /></font></form:label>
                             <form:input type="text" class="form-control" path="add3" placeholder="Address line 3" />
                             
                         </div>
 
                         <div class="form-group col-md-6">
-                            <form:label path="city">City</form:label>
+                            <form:label path="city">City: <font color='red'><form:errors path="city" /></font></form:label>
                             <form:input type="text" class="form-control" path="city" placeholder="City" />
                             
                         </div>
 
                         <div class="form-group col-md-6">
-                            <form:label path="state">State</form:label>
+                            <form:label path="state">State: <font color='red'><form:errors path="state" /></font></form:label>
                             <form:input type="text" class="form-control" path="state" placeholder="State" />
                             
                         </div>
 						
 						<div class="form-group col-md-12">
-                            <form:label path="pincode">Pin code</form:label>
+                            <form:label path="pincode">Pin code: <font color='red'><form:errors path="pincode" /></font></form:label>
                             <form:input type="text" class="form-control" path="pincode" placeholder="Pin code" />
                             
                         </div>

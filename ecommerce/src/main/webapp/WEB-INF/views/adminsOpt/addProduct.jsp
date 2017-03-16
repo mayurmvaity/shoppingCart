@@ -15,19 +15,19 @@
 								placeholder="Enter Product Id" value="${product.pid}" />
 
                         <div class="form-group col-md-12">
-                         <form:label path="pname">Name</form:label> 
+                         <form:label path="pname">Name: <font color='red'><form:errors path="pname" /></font></form:label> 
                             <form:input type="text" class="form-control" path="pname" placeholder="Product name" value="${product.pname}"/>
                            
                         </div>
                         
                         <div class="form-group col-md-12">
-                         <form:label path="pcolor">Color</form:label> 
+                         <form:label path="pcolor">Color: <font color='red'><form:errors path="pcolor" /></font></form:label> 
                             <form:input type="text" class="form-control" path="pcolor" placeholder="Product color" value="${product.pcolor}"/>
                            
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="price">Price</form:label>
+                            <form:label path="price">Price: <font color='red'><form:errors path="price" /></font></form:label>
                             <form:input path="price" type="text" class="form-control" placeholder="Prcie" value="${product.price}"/>
                             
                         </div>
@@ -53,7 +53,7 @@
                         
 						<div class="form-group col-md-12">
                             <form:label path="pdesc">
-                               Product details</form:label>
+                               Product details: <font color='red'><form:errors path="pdesc" /></font></form:label>
                             <form:textarea path="pdesc" class="form-control" rows="9" cols="25" required="true"
                                 placeholder="Product details" value="${product.pdesc}"/>
                         </div>

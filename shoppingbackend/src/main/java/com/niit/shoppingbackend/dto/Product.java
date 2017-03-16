@@ -10,8 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 
@@ -26,16 +29,28 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pid;
+	
+	@NotNull
+	@Size(min=1,max=50)
 	private String pname;
+	
+	@NotNull
+	@Size(min=20,max=250)
 	private String pdesc;
 	private int cid;
 	
+	
+	@Min(1)
+	@Max(999999)
 	private int price;
 	
 	
 	@Column
 	private String pimage;
 	
+	
+	@NotNull
+	@Size(min=1,max=20)
 	private String pcolor;
 
 	public String getPcolor() {

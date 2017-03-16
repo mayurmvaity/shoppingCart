@@ -28,19 +28,19 @@
 						
 
                         <div class="form-group col-md-12">
-                            <form:label path="fname">First name</form:label>
+                            <form:label path="fname">First name: <font color='red'><form:errors path="fname" /></font></form:label>
                             <form:input type="text" class="form-control" path="fname" value="${user.fname}" placeholder="First name" />
                             
                         </div>
 
 						 <div class="form-group col-md-12">
-                            <form:label path="lname">Last name</form:label>
+                            <form:label path="lname">Last name: <font color='red'><form:errors path="lname" /></font></form:label>
                             <form:input type="text" class="form-control" path="lname" value="${user.lname}" placeholder="Last name" />
                             
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="email">Email</form:label>
+                            <form:label path="email">Email: <font color='red'><form:errors path="email" /></font></form:label>
                             <form:input type="email" class="form-control" path="email" placeholder="Email" value="${user.email}" />
                             
                         </div>

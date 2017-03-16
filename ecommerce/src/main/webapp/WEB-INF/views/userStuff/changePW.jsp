@@ -43,20 +43,20 @@
                         
                         
 									<div class="form-group col-md-12">
-			                            <form:label path="currentpw">Enter current password</form:label>
+			                            <form:label path="currentpw">Enter current password: <font color='red'><form:errors path="currentpw" /></font></form:label>
 			                            <form:input type="password" class="form-control" path="currentpw" placeholder="Current password" />
 			                           
 			                        </div>
 
 
 									<div class="form-group col-md-12">
-			                            <form:label path="newpw1">Enter new password</form:label>
+			                            <form:label path="newpw1">Enter new password: <font color='red'><form:errors path="newpw1" /></font></form:label>
 			                            <form:input type="password" class="form-control" path="newpw1" placeholder="New password" />
 			                           
 			                        </div>
 
 			                        <div class="form-group col-md-12">
-			                            <form:label path="newpw2">Re-enter new password</form:label>
+			                            <form:label path="newpw2">Re-enter new password: <font color='red'><form:errors path="newpw2" /></font></form:label>
 			                            <form:input type="password" class="form-control" path="newpw2" placeholder="Re-enter new password" />
 			                            
 			                        </div>	
