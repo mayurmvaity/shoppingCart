@@ -890,24 +890,7 @@ public class PageController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/adminsProDetails" })
-	public ModelAndView showAdminsProDetailsPage() {
-		
-		log.debug("Starting of show admins prodetails method");
-		
-		System.out.println("clicked on admins product details page");
-		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Admins Product Details");
-		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-		
-		mv.addObject("isUserClickAdminsProDetails", true);
-		
-		log.debug("End of show admins pro details method");
-		
-		return mv;
-	}
+	
 	/*
 	 * Methods to load all the products and based on category
 	 */
@@ -972,8 +955,17 @@ public class PageController {
 		System.out.println("clicked on product details page");
 		ModelAndView mv = new ModelAndView("page");
 		
+		Product product=null;
+		product=productDAO.get(id);
+		int cid=product.getCid();
+		Category category=null;
+		category=categoryDAO.get(cid);
 		
-		mv.addObject("title", "Product Details");
+		
+		mv.addObject("title", category.getName() +" "+product.getPname()+" "+product.getPcolor());
+		
+		
+		//mv.addObject("title", "Product Details");
 		
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
@@ -1043,9 +1035,12 @@ public class PageController {
 		mv.addObject("product",product);
 		
 		log.debug("End of show add product page  method");
-		
+			
 		return mv;
 	}
+	
+	
+	
 	
 	@Autowired
 	ServletContext req;
@@ -1478,7 +1473,108 @@ public class PageController {
 		return mv;
 	}
 	
+	/*============= Starting of Admins new pages ============*/
 	
+	@RequestMapping(value = { "/admin/viewCategories" })
+	public ModelAndView viewCategories() {
+		
+		log.debug("Starting of viewCategories method");
+		
+		System.out.println("clicked on view all categories page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "View All Categories");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		mv.addObject("isUserClickViewCategories", true);
+		
+		
+		
+		log.debug("End of viewCategories method");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = { "/admin/viewSuppliers" })
+	public ModelAndView viewSuppliers() {
+		
+		log.debug("Starting of viewSuppliers method");
+		
+		System.out.println("clicked on view all suppliers page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "View All Suppliers");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		// getting table of suppliers
+		mv.addObject("suppliers",supplierDAO.list());
+		
+		mv.addObject("isUserClickViewSuppliers", true);
+		
+		
+		
+		log.debug("End of viewSuppliers method");
+		
+		return mv;
+	}
+	/*@RequestMapping(value = { "/adminsProDetails" })
+	public ModelAndView showAdminsProDetailsPage() {
+		
+		log.debug("Starting of show admins prodetails method");
+		
+		System.out.println("clicked on admins product details page");
+		ModelAndView mv = new ModelAndView("page");
+		mv.addObject("title", "Admins Product Details");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+		
+		mv.addObject("isUserClickAdminsProDetails", true);
+		
+		log.debug("End of show admins pro details method");
+		
+		return mv;
+	}*/
+	
+	@RequestMapping(value = { "/admin/adminsProDetails/{id}" })
+	public ModelAndView adminsProDetails(@PathVariable("id") int id) {
+		
+		log.debug("Starting of adminsProDetails page method");
+		
+		System.out.println("clicked on adminsProDetails page");
+		ModelAndView mv = new ModelAndView("page");
+		
+		
+		Product product=null;
+		product=productDAO.get(id);
+		int cid=product.getCid();
+		Category category=null;
+		category=categoryDAO.get(cid);
+		
+		
+		mv.addObject("title", category.getName() +" "+product.getPname()+" "+product.getPcolor());
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		mv.addObject("products",productDAO.getPlistByPId(id));
+		
+		/*Product product=null;
+		product=productDAO.get(id);
+		
+		String c=product.getPcolor();
+		
+		mv.addObject("colors",productDAO.getPlistByColor(c));*/
+		
+		
+		mv.addObject("isUserClickAdminsProDetails", true);
+		
+		log.debug("End of adminsProDetails page method");
+		
+		return mv;
+	}
 	
 	
 }

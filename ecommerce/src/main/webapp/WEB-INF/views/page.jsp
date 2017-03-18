@@ -36,51 +36,10 @@
 	<link rel="stylesheet" href="${css}/tableStyle.css" type="text/css">
 	<link rel="stylesheet" href="${css}/myapp.css" type="text/css">
 	<link rel="stylesheet" href="${css}/mytheme.css" type="text/css">
+	<link rel="stylesheet" href="${css}/thestyle.css" type="text/css">
 	
 	<style>
-		.thumbp a {
-		color: #0066C2;
-		font-size: 15px;
-		}
-		.thumbp a:hover {
-		color: #D75500;
 		
-		}
-		.coname {
-		padding-top: 0px;
-		color: #6C6C6C;
-		font-size: 13px;
-		
-		}
-		.productprice {
-		font-size: 16px;
-		font-weight: bold;
-		color: #B12704;
-		
-		}
-		.prodetailsname {
-		color: black;
-		font-size: 20px;
-		
-		}
-		.propricedetails {
-		color: #B12704;
-		font-size: 18px;
-		
-		}
-		.pricetagspan {
-		font-size: 14px;
-		color: #6C6C6C;
-		
-		}
-		.navbar-inverse {
-		background-color: #3C3C3C;
-		
-		}
-		body {
-		background-color: #FBFBFB;
-		
-		}
 	</style>
 	
 </head>
@@ -115,8 +74,12 @@
 		<%@include file="./navbarStuff/login.jsp" %>
 	</c:if>
 	
-	<c:if test="${not empty successMessageU || not empty successMessageA }">
+	<c:if test="${not empty successMessageU }">
 		<%@include file="home.jsp" %>
+	</c:if>
+	
+	<c:if test="${ not empty successMessageA}">
+		<%@include file="./adminsOpt/adminsProducts.jsp" %>
 	</c:if>
 	
 	<%-- <c:if test="${not empty successMessageA}">
@@ -197,6 +160,14 @@
 	
 	<c:if test="${isUserClickAdminsProDetails==true}">
 		<%@include file="./adminsOpt/adminsProDetails.jsp" %>
+	</c:if>
+	
+	<c:if test="${isUserClickViewCategories == true }">
+		<%@include file="./adminsOpt/viewCategories.jsp" %>
+	</c:if>
+	
+	<c:if test="${isUserClickViewSuppliers==true}">
+		<%@include file="./adminsOpt/viewSuppliers.jsp" %>
 	</c:if>
 	
 	</div>

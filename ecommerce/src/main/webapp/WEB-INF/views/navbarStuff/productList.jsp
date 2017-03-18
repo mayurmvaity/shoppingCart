@@ -64,9 +64,9 @@
 			<!-- to display products -->
 			<div class="col-md-9">
 				<div class="panel panel-default">
-					<div class="panel-heading">
+					<!-- <div class="panel-heading">
 						<h3 class="panel-title">Category Query</h3>
-					</div>
+					</div> -->
 					<div class="panel-body">
 						<div class="row">
 						  
@@ -74,11 +74,12 @@
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
+						      <a href="${contextRoot}/productDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
 						      <div class="caption">
-						        <h3>
-						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
-						        <h4>&#8377;${variable[0].price}</h4>
+						        <p class="thumbp">
+						        <a href="${contextRoot}/productDetails/${variable[0].pid}" >${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
+						        <p class="coname">by ${variable[1].name}</p>
+						        <p class="productprice">&#8377;${variable[0].price}</p>
 						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
@@ -90,11 +91,12 @@
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
+						      <a href="${contextRoot}/productDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
 						      <div class="caption">
-						        <h3>
-						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
-						        <h4>&#8377;${variable[0].price}</h4>
+						       <p class="thumbp">
+						        <a href="${contextRoot}/productDetails/${variable[0].pid}">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
+						        <p class="coname">by ${variable[1].name}</p>
+						        <p class="productprice">&#8377;${variable[0].price}</p>
 						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>

@@ -9,8 +9,14 @@
  	<%-- <c:if test="${empty adminMessage}">   	
       <a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
     </c:if> --%>
+    		<c:if test="${empty adminMessage}">
+    			<a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
+    		</c:if>
+    		
+    		<c:if test="${not empty adminMessage}">
+    			<a class="navbar-brand" href="${contextRoot}/admin/show/all/adminsProducts">NEXT173</a>
+    		</c:if>
     
-    		<a class="navbar-brand" href="${contextRoot}/home">NEXT173</a>
     		
     <%-- <c:if test="${not empty adminMessage}">   	
       <a class="navbar-brand" href="${contextRoot}/adminsHome">NEXT173</a>
@@ -44,7 +50,7 @@
       <li id="productList"><a href="${contextRoot}/show/all/products">All Products</a></li>
       </c:if>
       				 <c:if test="${not empty adminMessage}">
-      				  <li id="Home"><a href="${contextRoot}/home">Home</a></li>
+      				<%--   <li id="Home"><a href="${contextRoot}/home">Home</a></li> --%>
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">Products<span
 								class="caret"></span></a>
@@ -58,7 +64,7 @@
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="${contextRoot}/addCategory">Add brand</a></li>
-									<li><a href="">View brands</a></li>
+									<li><a href="${contextRoot}/admin/viewCategories">View brands</a></li>
 								
 							</ul></li>
 							<li class="dropdown"><a class="dropdown-toggle"
@@ -66,7 +72,7 @@
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="${contextRoot}/addSupplier">Add supplier</a></li>
-									<li><a href="">View suppliers</a></li>
+									<li><a href="${contextRoot}/admin/viewSuppliers">View suppliers</a></li>
 								
 							</ul></li>
 					</c:if>
@@ -103,8 +109,8 @@
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="${contextRoot}/myAccount/${userid}">Account</a></li>
-								<li><a href="${contextRoot}/changePW">Change password</a></li>
-								<li><a href="${contextRoot}/manageAddress">Addresses</a></li>
+								<li><a href="${contextRoot}/changePW/${userid}">Change password</a></li>
+								<li><a href="${contextRoot}/user/manageAddress/${userid}">Addresses</a></li>
 								<li><a href="${contextRoot}/wishList">Wish list</a></li>
 								<li><a href="${contextRoot}/orderDetails">Orders</a></li>
 								<li><a href="${contextRoot}/logout">Log Out</a></li>
@@ -126,7 +132,7 @@
 
 
 
-
+	<c:if test="${empty adminMessage}">
 			<form class="navbar-form navbar-left">
       <div class="input-group">
       <input type="text" class="form-control" placeholder="Search for...">
@@ -135,6 +141,7 @@
       </span>
     </div>
     </form>
+    </c:if>
     </div>
   </div>
 </nav>

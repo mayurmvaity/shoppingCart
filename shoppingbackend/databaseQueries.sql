@@ -197,4 +197,15 @@ create table userroles (
 	roleid number(4) not null,
 	
 	constraint fk_userrole foreign key (roleid) references roles(roleid)
+); 
+
+
+
+
+
+create table roles (
+
+	id IDENTITY primary key,
+	role varchar(20) not null
 );
+

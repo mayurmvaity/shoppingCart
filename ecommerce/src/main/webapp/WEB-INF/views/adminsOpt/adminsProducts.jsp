@@ -1,6 +1,6 @@
 	<div class="container">
 		<!-- Filters added here -->
-		<div class="col-md-12">
+		<!-- <div class="col-md-12">
     		 <nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    
@@ -19,7 +19,7 @@
 			    </form>
 			  </div>
 			</nav>
-    	</div>
+    	</div> -->
     	<!-- Filters end here -->
     	
     	
@@ -28,14 +28,14 @@
 				<div class="col-lg-12">
 					<c:if test="${isUserClickAdminsProducts==true}">
 					<ol class="breadcrumb">
-						<li><a href="${contextRoot}/home">Home</a></li>
+						<li><a href="${contextRoot}/admin/show/all/adminsProducts">Home</a></li>
 						<li class="active">All Products</li>
 					</ol>
 					</c:if>
 					
 					<c:if test="${userClickCategoryAdminProducts==true}">
 					<ol class="breadcrumb">
-						<li><a href="${contextRoot}/home">Home</a></li>
+						<li><a href="${contextRoot}/admin/show/all/adminsProducts">Home</a></li>
 						<li class="active">Category</li>
 						<li class="active">${category.name}</li>
 					</ol>
@@ -64,9 +64,9 @@
 			<!-- to display products -->
 			<div class="col-md-9">
 				<div class="panel panel-default">
-					<div class="panel-heading">
+					<!-- <div class="panel-heading">
 						<h3 class="panel-title">Category Query</h3>
-					</div>
+					</div> -->
 					<div class="panel-body">
 						<div class="row">
 						  
@@ -74,13 +74,14 @@
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
+						     <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a> 
 						      <div class="caption">
-						        <h3>
-						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
-						        <h4>&#8377;${variable[0].price}</h4>
-						        <p><a href="#" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <p class="thumbp">
+						        <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}" >${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
+						         <p class="coname">by ${variable[1].name}</p>
+						        <p class="productprice">&#8377;${variable[0].price}</p>
+						        <p><a href="${contextRoot}/admin/productUpdate/${variable[0].pid}" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="${contextRoot}/admin/productDeletion/${variable[0].pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
@@ -90,13 +91,14 @@
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <img src="${variable[0].pimage}" alt="${variable[0].pname}">
+						    <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
 						      <div class="caption">
-						        <h3>
-						        <a href="" style="text-decoration: none;">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></h3>
-						        <h4>&#8377;${variable[0].price}</h4>
-						        <p><a href="#" class="btn btn-primary" role="button">Edit  <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <p class="thumbp">
+						        <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
+						        <p class="coname">by ${variable[1].name}</p>
+						        <p class="productprice">&#8377;${variable[0].price}</p>
+						        <p><a href="${contextRoot}/admin/productUpdate/${variable[0].pid}" class="btn btn-primary" role="button">Edit  <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="${contextRoot}/admin/productDeletion/${variable[0].pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>

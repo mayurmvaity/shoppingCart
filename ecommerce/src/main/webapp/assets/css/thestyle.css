@@ -1,0 +1,122 @@
+@CHARSET "ISO-8859-1";
+
+body {
+		font-family: 'PT Sans', sans-serif;		
+		
+		
+		}
+		
+		/*================ starting of Login page ============*/
+		
+		.forlegends {
+		font-size: 30px;
+		
+		}
+		
+		.forlabels {
+		
+		font-size: 15px;
+		
+		}
+	
+		.foranchor {
+		
+		color: #0066C2;
+		
+		}
+	
+		.foranchor:hover {
+		
+		color: #D75500;
+		
+		}
+	
+		/*============== End of login page ===========*/
+		
+		/*============= Start of thumbnails ============*/
+	
+		.thumbp a {
+		color: #0066C2;
+		font-size: 15px;
+		}
+		.thumbp a:hover {
+		color: #D75500;
+		
+		}
+		.coname {
+		padding-top: 0px;
+		color: #6C6C6C;
+		font-size: 13px;
+		
+		}
+		.productprice {
+		font-size: 16px;
+		font-weight: bold;
+		color: #B12704;
+		
+		}
+		.prodetailsname {
+		color: black;
+		font-size: 20px;
+		
+		}
+		.propricedetails {
+		color: #B12704;
+		font-size: 18px;
+		
+		}
+		.pricetagspan {
+		font-size: 14px;
+		color: #6C6C6C;
+		
+		}
+		
+		.row .thumbnail {
+    	border:0;
+    	box-shadow:0;
+    	border-radius:0;
+		}
+		
+		/*================== End of thumbnails ==================*/
+		/*================== start of view categories ==================*/
+		.viewcatlegend {
+		
+		font-size: 40px;
+		
+		}
+		
+		.tablehead {
+		font-size: 20px;
+		
+		}
+		.tablecontent {
+		font-size: 15px;
+		
+		}
+		/*================== End of view categories ==================*/
+		
+		
+		.navbar-inverse {
+		background-color: #3C3C3C;
+		
+		}
+		body {
+		background-color: #FBFBFB;
+		
+		}
+		
+		/*================== footer ===================*/
+		
+		.forfooter {
+		
+		background-color: #232F3E;
+		padding-bottom: 0px;
+		border-radius: 5px 5px 0px 0px;
+		}
+		
+		.forfooter p {
+		font-size: 14px;
+		color: white;
+		padding: 20px 0px 20px 20px;
+		}
+		
