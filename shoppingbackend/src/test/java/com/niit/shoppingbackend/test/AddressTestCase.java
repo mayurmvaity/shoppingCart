@@ -9,7 +9,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Address;
-import com.niit.shoppingbackend.dto.User;
+import com.niit.shoppingbackend.dto.UserTable;
 
 public class AddressTestCase {
 private static AnnotationConfigApplicationContext context;

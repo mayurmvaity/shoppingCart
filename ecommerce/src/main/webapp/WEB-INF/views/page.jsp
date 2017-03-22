@@ -5,7 +5,7 @@
 
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 
 
@@ -54,6 +54,9 @@
 		${CRUDmsgS}
 		${RegMsg}
 		${Role}	${Usermsg}
+		
+				
+		
 	<div class="content">
 		<h2>
 		<center>Shopping Cart</center>
@@ -74,13 +77,13 @@
 		<%@include file="./navbarStuff/login.jsp" %>
 	</c:if>
 	
-	<c:if test="${not empty successMessageU }">
+	<%-- <c:if test="${not empty successMessageU }">
 		<%@include file="home.jsp" %>
 	</c:if>
 	
 	<c:if test="${ not empty successMessageA}">
 		<%@include file="./adminsOpt/adminsProducts.jsp" %>
-	</c:if>
+	</c:if> --%>
 	
 	<%-- <c:if test="${not empty successMessageA}">
 		<%@include file="adminsOpt/adminsHome.jsp" %>

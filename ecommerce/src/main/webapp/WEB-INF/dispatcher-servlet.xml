@@ -15,6 +15,10 @@
     	<context:component-scan base-package="com.niit.ecommerce.controller" />
     	<context:component-scan base-package="com.niit.shoppingbackend" />
     	
+    	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    		<property name="cacheSeconds" value="0" />
+    	</bean> -->
+    	
     	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	
     		<property name="prefix" value="/WEB-INF/views/" />

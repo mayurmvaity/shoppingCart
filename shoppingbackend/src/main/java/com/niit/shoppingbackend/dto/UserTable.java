@@ -1,72 +1,96 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.springframework.stereotype.Component;
+
+@Component
+@Table(name="usertable")
 @Entity
-public class User {
+public class UserTable implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;
 	
 	
+	@Column
+	@Pattern(regexp = "^([7-9]{1})([0-9]{9})", message = "Not a valid number ,Phone No. must be of 10 digits")
+	private String pno;
 	
-	private long pno;
-	
-	
-	@Size(min=8,max=20)
+	@Column
+	@Size(min=8,max=20, message="Please select atleast 8 character password!")
 	private String pw;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid first name!")
 	private String fname;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid last name!")
 	private String lname;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Email(message="please enter valid email address")
 	private String email;
 	
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid address line!")
 	private String add1;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid address line!")
 	private String add2;
 	
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid address line!")
 	private String add3;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid city name!")
 	private String city;
 	
-	
-	@Size(min=2,max=50)
+	@Column
+	@Size(min=2,max=50, message="Please enter valid state name!")
 	private String state;
 	
-	@Min(100000)
-	@Max(999999)
+	@Column
+	@Size(min=111111,max=999999, message="Please enter valid pincode!")
 	private int pincode;
 	
+	@Column
 	private String role="CUSTOMER";
+	
+	public String getPno() {
+		return pno;
+	}
+	public void setPno(String pno) {
+		this.pno = pno;
+	}
+
 	@Column(name="is_active")
 	private boolean active = true;
 	
+	/*@OneToOne(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="cartId")
+	@JsonIgnore
+	private Cart cart;*/
 	
 	@Size(min=8,max=20)
 	transient private String currentpw;
@@ -110,12 +134,7 @@ public class User {
 		this.uid = uid;
 	}
 	
-	public long getPno() {
-		return pno;
-	}
-	public void setPno(long pno) {
-		this.pno = pno;
-	}
+	
 	public String getPw() {
 		return pw;
 	}

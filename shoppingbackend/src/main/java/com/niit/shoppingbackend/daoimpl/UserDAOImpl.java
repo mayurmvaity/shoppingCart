@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.User;
+import com.niit.shoppingbackend.dto.UserTable;
 
 
 @Repository("userDAO")
@@ -20,14 +20,14 @@ public class UserDAOImpl implements UserDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public User get(int id) {
+	public UserTable get(int id) {
 		
-		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(id));
+		return sessionFactory.getCurrentSession().get(UserTable.class, Integer.valueOf(id));
 	
 	}
 
 	@Override
-	public List<User> list() {
+	public List<UserTable> list() {
 		String selectActiveUser = "FROM User WHERE active = :active";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveUser);
@@ -38,7 +38,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean add(User user) {
+	public boolean add(UserTable user) {
 		try {
 			// add the category to the database table
 			sessionFactory.getCurrentSession().save(user);
@@ -51,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(UserTable user) {
 		try {
 			
 			sessionFactory.getCurrentSession().update(user);
@@ -64,7 +64,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(UserTable user) {
 		user.setActive(false);
 		 
 		try {
@@ -79,7 +79,7 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public User valid(String email, String pw) {
+	public UserTable valid(String email, String pw) {
 		String hlist = "from User u where u.active= :active and u.email = :email and u.pw= :pw";
 		
 		
@@ -90,9 +90,24 @@ public class UserDAOImpl implements UserDAO {
 		query.setParameter("email", email);
 		
 		List results = query.getResultList();
-		return (User) results.get(0);
+		return (UserTable) results.get(0);
 		
 		
 	}
+
+	@Override
+	public UserTable getUserByEmail(String email) {
+		
+			String huser = "FROM UserTable WHERE email =:email";
+			Query query = sessionFactory.getCurrentSession().createQuery(huser);
+			query.setParameter("email", email);
+			List<UserTable> ulist = query.getResultList();
+			if (ulist != null && !ulist.isEmpty()) {
+				return ulist.get(0);
+			}
+			return null;
+	}
+	
+
 
 }

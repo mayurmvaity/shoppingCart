@@ -127,25 +127,26 @@ insert into Product values(50,'3T','This is OnePlus 3T desc','image',29999,9,tru
 insert into Product values(51,'One','This is OnePlus One desc','image',9999,9,true);
 
 
-create table user (
+create table usertable (
 	uid IDENTITY primary key,
-	pno number(10) not null unique,
+	pno varchar(10) not null unique,
+	email varchar(100) not null unique,
 	pw varchar(20) not null,
 	fname varchar(20) not null,
 	lname varchar(20) not null,
-	email varchar(100) not null unique,
 	add1 varchar(100) not null,
 	add2 varchar(100) not null,
 	add3 varchar(100) not null,
 	city varchar(100) not null,
 	state varchar(100) not null,
 	pincode number(6) not null,
-	role varchar(10) not null,
+	role varchar(15) not null,
 	is_active boolean not null
 	
 );
 
-insert into User values (4,1122334455,'admin','wolly','west','ww@dc.com','hsdvh','hjasdvfhj','jhasdj','central city','US','666666','ADMIN',true);
+insert into usertable values (2,1122330055,'ww@dc.com','admin','wolly','west','hsdvh','hjasdvfhj','jhasdj','central city','US','666666','ADMIN',true);
+insert into usertable values (1,9920188240,'mv@dc.com','mayur','Mayur','Vaity','hsdvh','hjasdvfhj','jhasdj','central city','US','666666','USER',true);
 
 create table address (
 
@@ -202,10 +203,4 @@ create table userroles (
 
 
 
-
-create table roles (
-
-	id IDENTITY primary key,
-	role varchar(20) not null
-);
 

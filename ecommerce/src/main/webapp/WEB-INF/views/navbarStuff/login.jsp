@@ -11,7 +11,7 @@
 				
 				<legend class="col-md-12 forlegends">Log In</legend>
 				
-				<form action="validate" method="post">
+				<form action="<c:url value="j_spring_security_check"/>" method="post">
 				
 					
 					
@@ -33,7 +33,7 @@
                         <div class="col-md-12">
                             <button type="submit" class="btn btn-primary">
                                 Log In
-                            </button>
+                            </button><input type="hidden" name="${csrf.parametername}" value="${_csrf.token}" />
                             <a href="${contextRoot}/register" class="foranchor">New here? register</a>
                         </div>
                     </div>

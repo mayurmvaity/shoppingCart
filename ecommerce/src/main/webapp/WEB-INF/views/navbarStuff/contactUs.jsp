@@ -1,16 +1,16 @@
 <div class="container">
 	
 		<div class="jumbotron jumbotron-sm">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12">
-                <h1 class="h1">
-                    Contact us <small>Feel free to contact us</small></h1>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-sm-12 col-lg-12">
+		                <h1 class="h1">
+		                    Contact us <small>Feel free to contact us</small></h1>
+		            </div>
+		        </div>
+		    </div>
+		</div>
+
     <div class="row">
         <div class="col-md-8">
             <div class="well well-sm">
@@ -66,7 +66,7 @@
             </form>
         </div>
     </div>
-</div>
+
 		
 		
 
