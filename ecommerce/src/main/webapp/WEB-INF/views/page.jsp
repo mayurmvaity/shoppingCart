@@ -12,6 +12,7 @@
 <spring:url var="css" value="/resources/css" />
 <spring:url var="js" value="/resources/js" />
 <spring:url var="images" value="/resources/images" />
+<spring:url var="jq" value="/resources/jq" />
 
 <c:set var="contextRoot" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -32,6 +33,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
+	
+	
+	
 	
 	<link rel="stylesheet" href="${css}/tableStyle.css" type="text/css">
 	<link rel="stylesheet" href="${css}/myapp.css" type="text/css">
@@ -180,6 +185,8 @@
 	
 	
 	<!-- ========================= JAVASCRIPT FILES==================== -->
+	
+	
 	<script src="${js}/tableIndex.js"></script>
 	<script src="${js}/tableJquery.min.js"></script>
 		<!-- Javascrip file for active menu -->

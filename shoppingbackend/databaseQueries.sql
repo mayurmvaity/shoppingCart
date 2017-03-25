@@ -164,21 +164,24 @@ create table address (
 create table cart (
 
 	cartid IDENTITY primary key,
-	userid number(5) foreign key references user(uid) on delete cascade,
 	items number(5) not null,
-	totalcost number(15) not null
-	
+	totalcost number(15) not null,
+	is_active boolean not null,
+	userid number(5) not null,
+	constraint fk_key foreign key (userid) references usertable(uid) 
 );
 
 create table cartitem (
 
 	itemid IDENTITY primary key,
-	cartid number(5) foreign key references cart(cartid) on delete cascade,
+	cartid number(5) not null,
 	ino number(5) not null,
 	iprice number(9) not null,
 	iquantity number(4) not null,
 	itotal number(15) not null,
-	wishlist boolean not null
+	is_active boolean not null,
+	constraint fk_key_cart foreign key (cartid) references cart(cartid),
+	constraint fk_key_product foreign key (ino) references product(pid)
 	
 	
 );
@@ -199,8 +202,5 @@ create table userroles (
 	
 	constraint fk_userrole foreign key (roleid) references roles(roleid)
 ); 
-
-
-
 
 

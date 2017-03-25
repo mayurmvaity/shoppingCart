@@ -6,17 +6,15 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.Category;
-import com.niit.shoppingbackend.dto.User;
+import com.niit.shoppingbackend.dto.UserTable;
 
 public class UserTestCase {
 private static AnnotationConfigApplicationContext context;
 	
 	private static UserDAO userDAO;
 	
-	private User user;
+	private UserTable user;
 	
 	@BeforeClass
 	public static void init() {

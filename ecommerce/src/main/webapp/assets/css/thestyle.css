@@ -1,8 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 body {
-		font-family: 'PT Sans', sans-serif;		
-		
+		font-family: 'PT Sans', sans-serif;
 		
 		}
 		
@@ -32,6 +31,8 @@ body {
 		}
 	
 		/*============== End of login page ===========*/
+		
+		
 		
 		/*============= Start of thumbnails ============*/
 	
@@ -120,3 +121,26 @@ body {
 		padding: 20px 0px 20px 20px;
 		}
 		
+		/*===================== astrisks =====================*/
+		.reqstar {
+		/*color: #B12704;*/
+		color: red;
+		font-size: 20px;
+		
+		}
+		
+		/*================== Contact us page =====================*/
+		.foraboutheader {
+			font-style: oblique;
+			color: #D75500;
+		
+		}
+		
+		.fortip {
+			color: #0066C2;
+		
+		}
+		.fortip:hover {
+			color: #D75500;
+		
+		}

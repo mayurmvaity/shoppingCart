@@ -156,7 +156,7 @@
 											<%-- <li><a href="${contextRoot}/admin/addProduct">Add product</a></li>
 											<li><a href="${contextRoot}/admin/addCategory">Add brand</a></li>
 											<li><a href="${contextRoot}/admin/addSupplier">Add supplier</a></li> --%>
-											<li><a href="${contextRoot}/logout" />Log Out</a></li>
+											<li><a href="<c:url value="/logout"/>" />Log Out</a></li> 
 										</ul>
 									</li>
 							</security:authorize>
@@ -166,7 +166,7 @@
 
 
 
-	<c:if test="${pageContext.request.userPrincipal.name == null }">
+	<%-- <c:if test="${pageContext.request.userPrincipal.name == null }">
 				
 			<form class="navbar-form navbar-left">
       <div class="input-group">
@@ -190,7 +190,7 @@
     </div>
     </form>
     </security:authorize>
-    </c:if>
+    </c:if> --%>
     
     
     </div>

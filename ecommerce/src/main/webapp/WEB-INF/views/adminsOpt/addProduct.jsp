@@ -15,19 +15,19 @@
 								placeholder="Enter Product Id" value="${product.pid}" />
 
                         <div class="form-group col-md-12">
-                         <form:label path="pname">Name: <font color='red'><form:errors path="pname" /></font></form:label> 
+                         <form:label path="pname">Name: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="pname" /></font></form:label> 
                             <form:input type="text" class="form-control" path="pname" placeholder="Product name" value="${product.pname}"/>
                            
                         </div>
                         
                         <div class="form-group col-md-12">
-                         <form:label path="pcolor">Color: <font color='red'><form:errors path="pcolor" /></font></form:label> 
+                         <form:label path="pcolor">Color: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="pcolor" /></font></form:label> 
                             <form:input type="text" class="form-control" path="pcolor" placeholder="Product color" value="${product.pcolor}"/>
                            
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="price">Price: <font color='red'><form:errors path="price" /></font></form:label>
+                            <form:label path="price">Price : <span class="reqstar">&#42;</span> (in &#8377;) <font color='red'><form:errors path="price" /></font></form:label>
                             <form:input path="price" type="text" class="form-control" placeholder="Prcie" value="${product.price}"/>
                             
                         </div>
@@ -35,7 +35,7 @@
                         
 						
 						<div class="form-group col-md-12">
-                            <form:label path="cid">Brand</form:label>
+                            <form:label path="cid">Brand <span class="reqstar">&#42;</span></form:label>
                             
                          	<form:select path="cid" class="form-control">
 								<c:forEach items="${categories}" var="category">
@@ -47,13 +47,13 @@
                         </div>
 						
                        <div class="form-group col-md-12">
-                              <form:label path="image">Upload image</form:label>
+                              <form:label path="image">Upload image <span class="reqstar">&#42;</span></form:label>
                               <form:input type="file" path="image" />
                        </div>
                         
 						<div class="form-group col-md-12">
                             <form:label path="pdesc">
-                               Product details: <font color='red'><form:errors path="pdesc" /></font></form:label>
+                               Product details: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="pdesc" /></font></form:label>
                             <form:textarea path="pdesc" class="form-control" rows="9" cols="25" required="true"
                                 placeholder="Product details" value="${product.pdesc}"/>
                         </div>

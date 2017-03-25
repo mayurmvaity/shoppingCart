@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -71,11 +73,22 @@ public class UserTable implements Serializable {
 	private String state;
 	
 	@Column
-	@Size(min=111111,max=999999, message="Please enter valid pincode!")
+	@Min(100000)
+	@Max(999999)
 	private int pincode;
 	
+	
+	
+	
+	public int getPincode() {
+		return pincode;
+	}
+	public void setPincode(int pincode) {
+		this.pincode = pincode;
+	}
+
 	@Column
-	private String role="CUSTOMER";
+	private String role="ROLE_USER";
 	
 	public String getPno() {
 		return pno;
@@ -189,12 +202,8 @@ public class UserTable implements Serializable {
 	public void setState(String state) {
 		this.state = state;
 	}
-	public int getPincode() {
-		return pincode;
-	}
-	public void setPincode(int pincode) {
-		this.pincode = pincode;
-	}
+	
+	
 	public String getRole() {
 		return role;
 	}

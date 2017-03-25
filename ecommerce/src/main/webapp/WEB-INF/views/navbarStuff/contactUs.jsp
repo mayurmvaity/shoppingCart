@@ -18,13 +18,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">
-                                Name</label>
+                            <label for="name">Name <span class="reqstar">&#42;</span></label>
                             <input type="text" class="form-control" name="cname" placeholder="Name" required />
                         </div>
                         <div class="form-group">
-                            <label for="email">
-                                Email</label>
+                            <label for="email">Email <span class="reqstar">&#42;</span></label>
                             <div class="input-group">
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                                 </span>
@@ -34,9 +32,8 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="name">
-                                Message</label>
-                            <textarea name="cmessage" class="form-control" rows="9" cols="25" required
+                            <label for="name">Message <span class="reqstar">&#42;</span></label>
+                            <textarea name="cmessage" class="form-control" rows="4" cols="25" required
                                 placeholder="Message"></textarea>
                         </div>
                     </div>

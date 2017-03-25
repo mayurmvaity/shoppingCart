@@ -17,13 +17,13 @@
 					
 					<fieldset>
 						<div class="form-group col-md-12">
-                            <label for="" class="forlabels">Email</label>
+                            <label for="" class="forlabels">Email </label>
                             <input type="text" class="form-control" name="userID" placeholder="Email">
                            
                         </div>
                         
                         <div class="form-group col-md-12">
-                            <label for="password" class="forlabels">Password</label>
+                            <label for="password" class="forlabels">Password </label>
                             <input type="password" class="form-control" name="password" placeholder="Password">
                             
                         </div>

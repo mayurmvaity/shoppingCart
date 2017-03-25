@@ -12,7 +12,7 @@
                         
 
                         <div class="form-group col-md-12">
-                            <form:label path="name">Name: <font color='red'><form:errors path="name" /></font></form:label>
+                            <form:label path="name">Name: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="name" /></font></form:label>
                             <form:input type="text" class="form-control" path="name" placeholder="Brand name" value="${category.name}" />
                            
                         </div>
@@ -21,7 +21,7 @@
                         
 						<div class="form-group col-md-12">
                             <form:label path="description">
-                              Brand description: <font color='red'><form:errors path="description" /></font></form:label>
+                              Brand description: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="description" /></font></form:label>
                             <form:textarea path="description" class="form-control" rows="9" cols="25" required="true"
                                 placeholder="Brand description" value="${category.description}" />
                         </div>

@@ -16,14 +16,14 @@
 
 
                         <div class="form-group col-md-12">
-                            <form:label path="sname">Name: <font color='red'><form:errors path="sname" /></font></form:label>
+                            <form:label path="sname">Name: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="sname" /></font></form:label>
                             <form:input type="text" class="form-control" path="sname" placeholder="Supplier name" value="${supplier.sname}" />
                            
                         </div>
 
                         <div class="form-group col-md-12">
                             <form:label path="sdesc">
-                               Supplier description: <font color='red'><form:errors path="sdesc" /></font></form:label>
+                               Supplier description: <span class="reqstar">&#42;</span> <font color='red'><form:errors path="sdesc" /></font></form:label>
                             <form:textarea path="sdesc" class="form-control" rows="9" cols="25" required="true"
                                 placeholder="Supplier address" value="${supplier.sdesc}" />
                         </div>

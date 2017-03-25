@@ -1,6 +1,6 @@
 	<div class="container">
 		<!-- Filters added here -->
-		<div class="col-md-12">
+		<!-- <div class="col-md-12">
     		 <nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    
@@ -19,7 +19,7 @@
 			    </form>
 			  </div>
 			</nav>
-    	</div>
+    	</div> -->
     	<!-- Filters end here -->
     	
     	

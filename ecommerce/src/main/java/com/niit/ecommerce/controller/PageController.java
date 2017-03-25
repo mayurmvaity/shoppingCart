@@ -186,15 +186,15 @@ public class PageController {
 		return mv;
 	}*/
 	
-	@RequestMapping(value = "/Logout", method = RequestMethod.GET)
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public ModelAndView logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		
-		ModelAndView mv=new ModelAndView();
-		session.invalidate(); // session.removeAttribute("loginMessage");
+		ModelAndView mv=new ModelAndView("page");
+		//session.invalidate(); // session.removeAttribute("loginMessage");
 		mv.addObject("title", "Home");
 		
 		//passing the list of categories
@@ -208,6 +208,16 @@ public class PageController {
 		mv.addObject("isUserClickedLogout", true);
 		return mv;
 	}
+	
+	  /*@RequestMapping(value="/logout", method = RequestMethod.GET)
+	  public String logoutPage (HttpServletRequest request, HttpServletResponse response) {
+	      Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	      if (auth != null){    
+	          new SecurityContextLogoutHandler().logout(request, response, auth);
+	      }
+	      return "redirect:/login?logout";//You can redirect wherever you want, but generally it's a good practice to show login screen again.
+	  }*/
+
 
 	@RequestMapping("/403")
 	public ModelAndView error() {

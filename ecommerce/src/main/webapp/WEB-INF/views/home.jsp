@@ -11,19 +11,19 @@
   <!-- Wrapper for slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="http://placehold.it/1274x444" alt="S6s">
+      <img src="${images}/gionees6s.jpg" alt="S6s">
     </div>
 
     <div class="item">
-      <img src="http://placehold.it/1274x444" alt="HTC10">
+      <img src="${images}/HTC10.jpg" alt="HTC10">
     </div>
 
     <div class="item">
-      <img src="http://placehold.it/1274x444" alt="s7edge">
+      <img src="${images}/s7edgec.jpg" alt="s7edge">
     </div>
 
     <div class="item">
-      <img src="http://placehold.it/1274x444" alt="vivov5plus">
+      <img src="${images}/vivov5plus.jpg" alt="vivov5plus">
     </div>
   </div>
 
