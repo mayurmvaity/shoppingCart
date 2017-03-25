@@ -141,6 +141,7 @@ create table usertable (
 	state varchar(100) not null,
 	pincode number(6) not null,
 	role varchar(15) not null,
+	cartid number(10),
 	is_active boolean not null
 	
 );
@@ -164,11 +165,10 @@ create table address (
 create table cart (
 
 	cartid IDENTITY primary key,
-	items number(5) not null,
-	totalcost number(15) not null,
-	is_active boolean not null,
-	userid number(5) not null,
-	constraint fk_key foreign key (userid) references usertable(uid) 
+	items number(5) ,
+	totalcost number(15) ,
+	is_active boolean not null
+	
 );
 
 create table cartitem (

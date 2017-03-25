@@ -5,14 +5,21 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
+import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.dto.Cart;
+import com.niit.shoppingbackend.dto.Cartitem;
+import com.niit.shoppingbackend.dto.Product;
+import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
 @RequestMapping(value = { "/user" })
@@ -25,6 +32,10 @@ public class OrderController {
 	
 	@Autowired
 	private UserDAO userDAO;
+	
+	@Autowired
+	private CartDAO cartDAO;
+	
 	
 	@Autowired
 	private AddressDAO addressDAO;
@@ -161,6 +172,31 @@ public class OrderController {
 		
 		return mv;
 	}
-
+	
+	/*@RequestMapping(value= {"/addToCart/{userid}/{id}"}, method=RequestMethod.POST)
+	public ModelAndView addToCart(@PathVariable("id") int id, @PathVariable("userid") int userid) {
+		log.debug("beginning of add to cart method");
+		ModelAndView mv = new ModelAndView("page");
+		
+		Product product=null;
+		product= productDAO.get(id);
+		UserTable user=userDAO.get(userid);
+		
+		Cartitem cartitem = null;
+		cartitem.setIno(id);
+		cartitem.setIprice(product.getPrice());
+		cartitem.setIquantity(1);
+		
+		Cart cart=user.getCart();
+		int i=cart.getItems();
+		cart.setItems(++i);
+		long cost=cart.getTotalcost();
+		cost=cost+product.getPrice();
+		cart.setTotalcost(cost);
+		
+		log.debug("end of add to cart method");
+		return mv;
+	}*/
+	
 	
 }

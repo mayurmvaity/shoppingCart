@@ -79,6 +79,17 @@ public class UserTable implements Serializable {
 	
 	
 	
+
+	@OneToOne
+	@JoinColumn(name="cartid")
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
 	public int getPincode() {
 		return pincode;
@@ -218,16 +229,9 @@ public class UserTable implements Serializable {
 	}
 	
 	
-	/*
-	 * toString() method
-	 * */
 	
-	@Override
-	public String toString() {
-		return "User [uid=" + uid + ", pno=" + pno + ", pw=" + pw + ", fname=" + fname + ", lname=" + lname + ", email="
-				+ email + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", city=" + city + ", state=" + state
-				+ ", pincode=" + pincode + ", role=" + role + ", active=" + active + "]";
-	}
+	
+	
 	
 	public boolean pwvalidate() {
 		
@@ -258,6 +262,17 @@ public class UserTable implements Serializable {
 		}
 		
 		
+	}
+	
+	/*
+	 * toString() method
+	 * */
+	@Override
+	public String toString() {
+		return "UserTable [uid=" + uid + ", pno=" + pno + ", pw=" + pw + ", fname=" + fname + ", lname=" + lname
+				+ ", email=" + email + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", city=" + city
+				+ ", state=" + state + ", pincode=" + pincode + ", cart=" + cart + ", role=" + role + ", active="
+				+ active + "]";
 	}
 	
 }

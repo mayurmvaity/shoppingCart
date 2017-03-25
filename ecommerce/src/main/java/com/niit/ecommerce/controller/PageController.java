@@ -4,7 +4,6 @@ package com.niit.ecommerce.controller;
 
 import java.security.Principal;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,14 +25,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
+import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.Address;
+import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Category;
 import com.niit.shoppingbackend.dto.Product;
-import com.niit.shoppingbackend.dto.Supplier;
 import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
@@ -52,6 +51,10 @@ public class PageController {
 	
 	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private CartDAO cartDAO;
+	
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
@@ -497,8 +500,11 @@ public class PageController {
 
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
-
+		
+		
+		
 		mv.addObject("isUserClickRegPage", true);
+		//mv.addObject("cart",cart);
 		mv.addObject("user",user);
 		
 		log.debug("End of show registration page method");
@@ -526,12 +532,17 @@ public class PageController {
 			return mv;
 		}
 		
+		
+		
 		if(user.getUid()==0) {
 		boolean b=userDAO.add(user);
 		
 		if(b)
 		{
-			
+			Cart cart = new Cart();
+			boolean x=cartDAO.add(cart);
+			user.setCart(cart);
+			boolean y=userDAO.update(user);
 			mv.addObject("RegMsg","Registered Successfully");
 		}
 		else

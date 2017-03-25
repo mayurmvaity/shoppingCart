@@ -18,7 +18,7 @@ public class Cart {
 	@Column
 	private long totalcost;
 	
-	@Column
+	/*@Column
 	private int userid;
 	
 	public int getUserid() {
@@ -26,7 +26,7 @@ public class Cart {
 	}
 	public void setUserid(int userid) {
 		this.userid = userid;
-	}
+	}*/
 
 	@Column(name="is_active")
 	private boolean active = true;
