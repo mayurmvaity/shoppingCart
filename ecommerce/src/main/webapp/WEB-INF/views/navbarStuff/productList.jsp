@@ -80,8 +80,8 @@
 						        <a href="${contextRoot}/productDetails/${variable[0].pid}" >${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
 						        <p class="coname">by ${variable[1].name}</p>
 						        <p class="productprice">&#8377;${variable[0].price}</p>
-						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        </p>
 						      </div>
 						    </div>
 						  </div>
@@ -97,8 +97,8 @@
 						        <a href="${contextRoot}/productDetails/${variable[0].pid}">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
 						        <p class="coname">by ${variable[1].name}</p>
 						        <p class="productprice">&#8377;${variable[0].price}</p>
-						        <p><a href="#" class="btn btn-primary" role="button">to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger" role="button">to Wish List <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        </p>
 						      </div>
 						    </div>
 						  </div>

@@ -79,4 +79,16 @@ public class CartItemDAOImpl implements CartitemDAO {
 		}
 	}
 
+	@Override
+	public List<Cartitem> getByUserid(int userid) {
+		String selectActiveCartitem = "FROM Cartitem WHERE active = :active and userid = :userid";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCartitem);
+		
+		query.setParameter("active", true);
+		query.setParameter("userid", userid);
+		
+		return query.getResultList();
+	}
+
 }

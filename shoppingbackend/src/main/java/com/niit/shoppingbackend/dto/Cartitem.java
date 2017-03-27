@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cartitem {
@@ -14,9 +16,20 @@ public class Cartitem {
 	private int itemid;
 	
 	@Column
-	private int cartid;
-	@Column
-	private int ino;
+	private int userid;
+	
+	
+	public int getUserid() {
+		return userid;
+	}
+	public void setUserid(int userid) {
+		this.userid = userid;
+	}
+	
+	@OneToOne
+	@JoinColumn(name="pid")
+	private Product product;
+	
 	@Column
 	private long iprice;
 	@Column
@@ -39,18 +52,8 @@ public class Cartitem {
 	public void setItemid(int itemid) {
 		this.itemid = itemid;
 	}
-	public int getCartid() {
-		return cartid;
-	}
-	public void setCartid(int cartid) {
-		this.cartid = cartid;
-	}
-	public int getIno() {
-		return ino;
-	}
-	public void setIno(int ino) {
-		this.ino = ino;
-	}
+	
+	
 	public long getIprice() {
 		return iprice;
 	}
@@ -69,11 +72,20 @@ public class Cartitem {
 	public void setItotal(long itotal) {
 		this.itotal = itotal;
 	}
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	@Override
 	public String toString() {
-		return "Cartitem [itemid=" + itemid + ", cartid=" + cartid + ", ino=" + ino + ", iprice=" + iprice
-				+ ", iquantity=" + iquantity + ", itotal=" + itotal + "]";
-	} 
+		return "Cartitem [itemid=" + itemid + ", userid=" + userid + ", product=" + product + ", iprice=" + iprice
+				+ ", iquantity=" + iquantity + ", itotal=" + itotal + ", active=" + active + "]";
+	}
+	
+	
+	
 	
 	
 	

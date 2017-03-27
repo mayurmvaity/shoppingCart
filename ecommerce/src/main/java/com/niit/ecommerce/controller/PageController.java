@@ -26,6 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
+import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
@@ -54,6 +55,9 @@ public class PageController {
 	
 	@Autowired
 	private CartDAO cartDAO;
+	
+	@Autowired
+	private CartitemDAO cartitemDAO;
 	
 	
 	@Autowired
@@ -445,6 +449,8 @@ public class PageController {
 			session.setAttribute("username", user.getFname());
 			session.setAttribute("Role",user.getRole());
 			session.setAttribute("userid",user.getUid());
+			session.setAttribute("cartid",user.getCart());
+			session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 			mv.addObject("title", "Home");
 			mv.addObject("user",user);
 			mv.addObject("userClickHome", true);

@@ -12,4 +12,6 @@ public interface CartitemDAO {
 	boolean update(Cartitem cartitem);
 	boolean delete(Cartitem cartitem);
 	
+	List<Cartitem> getByUserid(int userid);
+	
 }

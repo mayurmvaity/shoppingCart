@@ -129,7 +129,7 @@
 						
 						<li id="myCart"><a href="${contextRoot}/user/myCart"><span
 								class="glyphicon glyphicon-shopping-cart"></span> My Cart <span
-								class="badge">14</span></a></li>
+								class="badge">${cartid.items}</span></a></li>
 
 						<li class="dropdown"><a class="dropdown-toggle"
 							data-toggle="dropdown" href="#">${username}<span
@@ -138,7 +138,7 @@
 								<li><a href="${contextRoot}/user/myAccount/${userid}">Account</a></li>
 								<li><a href="${contextRoot}/user/changePW/${userid}">Change password</a></li>
 								<li><a href="${contextRoot}/user/manageAddress/${userid}">Addresses</a></li>
-								<li><a href="${contextRoot}/user/wishList">Wish list</a></li>
+								<%-- <li><a href="${contextRoot}/user/wishList">Wish list</a></li> --%>
 								<li><a href="${contextRoot}/user/orderDetails">Orders</a></li>
 								<li><a href="${contextRoot}/logout">Log Out</a></li>
 							</ul></li>

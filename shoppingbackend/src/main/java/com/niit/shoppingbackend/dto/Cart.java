@@ -1,10 +1,14 @@
 package com.niit.shoppingbackend.dto;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Cart {
@@ -13,6 +17,7 @@ public class Cart {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartid;
 	
+
 	@Column
 	private int items;
 	@Column
@@ -56,10 +61,16 @@ public class Cart {
 	public void setTotalcost(long totalcost) {
 		this.totalcost = totalcost;
 	}
-	
 	@Override
 	public String toString() {
-		return "Cart [cartid=" + cartid + ", items=" + items + ", totalcost=" + totalcost + "]";
+		return "Cart [cartid=" + cartid + ", items=" + items + ", totalcost=" + totalcost + ", active=" + active + "]";
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -10,7 +10,7 @@
 			            <ul class="list-group">
 			              <a href="${contextRoot}/user/myAccount/${userid}" id="myAccount" class="list-group-item">Account details</a>
 			              <a href="${contextRoot}/user/orderDetails" id="orderDetails" class="list-group-item">Orders</a>
-			              <a href="${contextRoot}/user/wishList" id="wishList" class="list-group-item">Wish list</a>
+			            <%--   <a href="${contextRoot}/user/wishList" id="wishList" class="list-group-item">Wish list</a> --%>
 			              
 			            </ul> 
 			            <legend class="text-center"></legend>

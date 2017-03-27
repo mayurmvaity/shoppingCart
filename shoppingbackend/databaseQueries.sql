@@ -165,7 +165,7 @@ create table address (
 create table cart (
 
 	cartid IDENTITY primary key,
-	items number(5) ,
+	items number(5),
 	totalcost number(15) ,
 	is_active boolean not null
 	
@@ -174,33 +174,17 @@ create table cart (
 create table cartitem (
 
 	itemid IDENTITY primary key,
-	cartid number(5) not null,
-	ino number(5) not null,
+	userid number(5) not null,
+	pid number(5) not null,
 	iprice number(9) not null,
 	iquantity number(4) not null,
 	itotal number(15) not null,
 	is_active boolean not null,
-	constraint fk_key_cart foreign key (cartid) references cart(cartid),
+	constraint fk_key_user foreign key (userid) references usertable(uid),
 	constraint fk_key_product foreign key (ino) references product(pid)
 	
 	
 );
 
-create table roles (
-
-	roleid IDENTITY primary key ,
-	rolename varchar(20) not null unique
-
-);
-
-create table userroles (
-	
-	urid identity primary key, userid , user name, pw 
-	email varchar(50) not null, 
-	pw varchar(20) not null,
-	roleid number(4) not null,
-	
-	constraint fk_userrole foreign key (roleid) references roles(roleid)
-); 
-
-
+insert into cartitem values (1,33,70,42999,2,85998,true);
+insert into cartitem values (2,33,100,8000,3,24000,true);

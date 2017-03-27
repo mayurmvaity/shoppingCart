@@ -73,7 +73,7 @@
 						        <p class="productprice">&#8377;${innerv[0].price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
 						        <p><a href="#" class="btn btn-primary btn-sm " role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="#" class="btn btn-danger btn-sm" role="button"><span class="glyphicon glyphicon-info-sign"></span></a></p>
+						       </p>
 						      </div>
 						    </div>
 						  </div>

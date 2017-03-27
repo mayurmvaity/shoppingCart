@@ -12,14 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
+import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Cartitem;
-import com.niit.shoppingbackend.dto.Product;
-import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
 @RequestMapping(value = { "/user" })
@@ -35,6 +33,9 @@ public class OrderController {
 	
 	@Autowired
 	private CartDAO cartDAO;
+	
+	@Autowired
+	private CartitemDAO cartitemDAO;
 	
 	
 	@Autowired
@@ -197,6 +198,33 @@ public class OrderController {
 		log.debug("end of add to cart method");
 		return mv;
 	}*/
+	
+	@RequestMapping(value="/removeCartitem/{id}")
+	public ModelAndView removeCartitem(@PathVariable("id") int id)
+	{
+		log.debug("Beginning of remove cart");
+		ModelAndView mv = new ModelAndView("page");
+		
+		Cartitem cartitem = null;
+		cartitem=cartitemDAO.get(id);
+		
+		boolean b=cartitemDAO.delete(cartitem);
+		
+		if(b) {
+			mv.addObject("CartMsg","Cart item deleted");
+		}
+		else
+		{
+			mv.addObject("CartMsg","Cart item not deleted");
+		}
+		
+		mv.addObject("isUserClickMyCart",true);
+		
+		log.debug("End of remove cart");
+		return mv;
+		
+		
+	}
 	
 	
 }
