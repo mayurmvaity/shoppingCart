@@ -1,9 +1,9 @@
-<c:forEach items="${products}" var="product">
+
 	<div class="container">
 			<div class="col-md-7">
 				<div class="panel panel-default">
 					<div class="panel-body">
-						<img src="${product[0].pimage}" alt="${product[0].pname}" width="600px">
+						<img src="${product.pimage}" alt="${product.pname}" width="600px">
 					</div>
 				</div>
 			</div>
@@ -11,9 +11,9 @@
 					<div class="row">
 						<div class="panel panel-default">
 							 	<div class="panel-body">
-							    	<p class="prodetailsname">${product[1].name} ${product[0].pname} ( ${product[0].pcolor} )</p>
+							    	<p class="prodetailsname">${product.category.name} ${product.pname} ( ${product.pcolor} )</p>
 									<hr />
-									<p class="propricedetails"><span class="pricetagspan">Price:</span> &#8377; ${product[0].price}</p>
+									<p class="propricedetails"><span class="pricetagspan">Price:</span> &#8377; ${product.price}</p>
 								</div>
 						</div>
 						
@@ -22,7 +22,7 @@
 						<div class="panel panel-default">
 						  <div class="panel-body">
 						    	<h4>Description</h4>
-								<p>${product[0].pdesc}</p>
+								<p>${product.pdesc}</p>
 						  </div>
 						</div>
 						
@@ -39,7 +39,7 @@
 					</div>
 			</div>
 		</div>
-</c:forEach>
+
 
 
 

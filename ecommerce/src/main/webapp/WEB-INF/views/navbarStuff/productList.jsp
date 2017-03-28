@@ -70,16 +70,16 @@
 					<div class="panel-body">
 						<div class="row">
 						  
-						  <c:forEach items="${products}" var="variable">
+						  <c:forEach items="${products}" var="product">
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <a href="${contextRoot}/productDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
+						      <a href="${contextRoot}/productDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a>
 						      <div class="caption">
 						        <p class="thumbp">
-						        <a href="${contextRoot}/productDetails/${variable[0].pid}" >${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
-						        <p class="coname">by ${variable[1].name}</p>
-						        <p class="productprice">&#8377;${variable[0].price}</p>
+						        <a href="${contextRoot}/productDetails/${product.pid}" >${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
+						        <p class="coname">by ${product.category.name}</p>
+						        <p class="productprice">&#8377;${product.price}</p>
 						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        </p>
 						      </div>
@@ -87,16 +87,16 @@
 						  </div>
 						  
 						  </c:forEach>
-						  <c:forEach items="${catProducts}" var="variable">
+						  <c:forEach items="${catProducts}" var="product">
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <a href="${contextRoot}/productDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
+						      <a href="${contextRoot}/productDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a>
 						      <div class="caption">
 						       <p class="thumbp">
-						        <a href="${contextRoot}/productDetails/${variable[0].pid}">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
-						        <p class="coname">by ${variable[1].name}</p>
-						        <p class="productprice">&#8377;${variable[0].price}</p>
+						        <a href="${contextRoot}/productDetails/${product.pid}">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
+						        <p class="coname">by ${product.category.name}</p>
+						        <p class="productprice">&#8377;${product.price}</p>
 						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        </p>
 						      </div>

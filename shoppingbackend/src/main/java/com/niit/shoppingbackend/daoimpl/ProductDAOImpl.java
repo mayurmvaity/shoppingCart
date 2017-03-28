@@ -92,7 +92,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	
-	@Override
+	/*@Override
 	public List<CPro> getPlist(){
 		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active";
 		//String hlist="FROM Category where active= :active";
@@ -104,13 +104,11 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		
 		return query.getResultList();
-	}
+	}*/
 
 	@Override
 	public List getPlistById(int id) {
-		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active and p.cid= :cid";
-		//String hlist="FROM Category where active= :active";
-		//String hlist="select p.pid, p.pname, p.pdesc, p.pimage, p.price, p.pcolor, c.name from Product p join Category c ON p.cid=c.id where c.is_active=true and p.is_active=true;";
+		String hlist = "from Product where active= :active and id= :cid";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(hlist);
 		
@@ -122,7 +120,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	
-	@Override
+	/*@Override
 	public List getPlistByPId(int id) {
 		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active and p.pid= :pid";
 		//String hlist="FROM Category where active= :active";
@@ -135,9 +133,9 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		
 		return query.getResultList();
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public List getPlistByColor(String color) {
 		String hlist = "from Product p left outer join Category c ON p.cid=c.id where p.active= :active and c.active= :active and p.pcolor= :pcolor";
 		//String hlist="FROM Category where active= :active";
@@ -150,7 +148,7 @@ public class ProductDAOImpl implements ProductDAO {
 		
 		
 		return query.getResultList();
-	}
+	}*/
 
 	
 

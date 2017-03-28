@@ -17,8 +17,9 @@ create table product (
 	pimage VARCHAR(50) not null,
 	price number(9)not null,
 	pcolor VARCHAR(20) not null,
-	cid NUMBER(4) references category(id) on delete cascade,
-	is_active BOOLEAN not null
+	id NUMBER(4) not null,
+	is_active BOOLEAN not null,
+	constraint fk_key_category foreign key (id) references category(id)
 	
 );
 

@@ -57,20 +57,20 @@
         		
 						 
       
-        				<c:forEach items="${products}" var="innerv">
+        				<c:forEach items="${products}" var="product">
         				  	
         			
-						  <c:if test="${variable.id == innerv[0].cid}">
+						  <c:if test="${variable.id == product.category.id}">
 						 	
 						 	<c:if test="${count<4}">
 						  <div class="col-sm-6 col-md-3">
 						    <div class="thumbnail">
-						     <a href="${contextRoot}/productDetails/${innerv[0].pid}"><img src="${innerv[0].pimage}" alt="${innerv[0].pname}"></a> 
+						     <a href="${contextRoot}/productDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a> 
 						      <div class="caption">
 						        <p class="thumbp">
-						        <a href="${contextRoot}/productDetails/${innerv[0].pid}" style="text-decoration: none;">${innerv[1].name} ${innerv[0].pname} ( ${innerv[0].pcolor} )</a></p>
-						        <p class="coname">by ${innerv[1].name}</p>
-						        <p class="productprice">&#8377;${innerv[0].price}</p>
+						        <a href="${contextRoot}/productDetails/${product.pid}" style="text-decoration: none;">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
+						        <p class="coname">by ${product.category.name}</p>
+						        <p class="productprice">&#8377;${product.price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
 						        <p><a href="#" class="btn btn-primary btn-sm " role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						       </p>

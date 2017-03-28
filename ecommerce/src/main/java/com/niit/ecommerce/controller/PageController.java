@@ -113,7 +113,7 @@ public class PageController {
 		mv.addObject("categories",categoryDAO.list());
 					
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+		mv.addObject("products", productDAO.list());
 
 		UserTable user=null;
 		user=userDAO.valid(id, pwd);
@@ -208,7 +208,7 @@ public class PageController {
 		mv.addObject("categories",categoryDAO.list());
 		
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+				mv.addObject("products", productDAO.list());
 		
 		
 		
@@ -345,7 +345,7 @@ public class PageController {
 		mv.addObject("categories", categoryDAO.list());
 
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+		mv.addObject("products", productDAO.list());
 		
 		mv.addObject("userClickAllProducts", true);
 		
@@ -394,28 +394,13 @@ public class PageController {
 		
 		Product product=null;
 		product=productDAO.get(id);
-		int cid=product.getCid();
-		Category category=null;
-		category=categoryDAO.get(cid);
 		
-		
-		mv.addObject("title", category.getName() +" "+product.getPname()+" "+product.getPcolor());
-		
-		
-		//mv.addObject("title", "Product Details");
+		mv.addObject("title", product.getCategory().getName() +" "+product.getPname()+" "+product.getPcolor());
 		
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
 		
-		mv.addObject("products",productDAO.getPlistByPId(id));
-		
-		/*Product product=null;
-		product=productDAO.get(id);
-		
-		String c=product.getPcolor();
-		
-		mv.addObject("colors",productDAO.getPlistByColor(c));*/
-		
+		mv.addObject("product",productDAO.get(id));
 		
 		mv.addObject("isUserClickProductDetails", true);
 		
@@ -437,7 +422,7 @@ public class PageController {
 		mv.addObject("categories", categoryDAO.list());
 		
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+				mv.addObject("products", productDAO.list());
 	
 		if(principal!= null)
 		{

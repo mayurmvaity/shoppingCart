@@ -59,8 +59,8 @@ public class ProductController {
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
 				
-				//passing the join of product and category
-				mv.addObject("listProducts", productDAO.getPlist());
+				//passing the list of products for the table below
+				mv.addObject("listProducts", productDAO.list());
 		
 		mv.addObject("isUserClickAddProduct", true);
 		mv.addObject("product",product);
@@ -93,7 +93,7 @@ public class ProductController {
 			return mv;
 			
 		}
-		
+		System.out.println(product);
 		
 		String p=req.getRealPath("/");
 		String path=product.getFilePath(p,req.getContextPath());
@@ -101,7 +101,7 @@ public class ProductController {
 		
 		if(product.getPid()==0) {
 		boolean b=productDAO.add(product);
-		
+		System.out.println(b);
 		if(b)
 		{
 			
@@ -132,8 +132,8 @@ public class ProductController {
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
 				
-		//passing the join of product and category
-		mv.addObject("listProducts", productDAO.getPlist());
+		//passing the list of products for the table below
+		mv.addObject("listProducts", productDAO.list());
 		
 		mv.addObject("isUserClickAddProduct", true);
 		

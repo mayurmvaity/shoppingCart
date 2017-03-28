@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -37,7 +39,10 @@ public class Product {
 	@NotNull
 	@Size(min=20,max=250)
 	private String pdesc;
-	private int cid;
+	
+	@OneToOne
+	@JoinColumn(name="id")
+	private Category category;
 	
 	
 	@Min(1)
@@ -97,11 +102,17 @@ public class Product {
 	public void setPdesc(String pdesc) {
 		this.pdesc = pdesc;
 	}
-	public int getCid() {
-		return cid;
+	
+	@Override
+	public String toString() {
+		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", category=" + category + ", price="
+				+ price + ", pimage=" + pimage + ", pcolor=" + pcolor + ", active=" + active + "]";
 	}
-	public void setCid(int cid) {
-		this.cid = cid;
+	public Category getCategory() {
+		return category;
+	}
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	public boolean isActive() {
 		return active;
@@ -128,11 +139,7 @@ public class Product {
 	 * */
 	
 	
-	@Override
-	public String toString() {
-		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", cid=" + cid + ", price=" + price
-				+ ", pimage=" + pimage + ", pcolor=" + pcolor + ", active=" + active + "]";
-	}
+	
 	
 	
 	public String getFilePath(String path1,String contextPath) {

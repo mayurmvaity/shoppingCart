@@ -94,7 +94,7 @@ public class UserController {
 		mv.addObject("categories",categoryDAO.list());
 					
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+		mv.addObject("products", productDAO.list());
 		
 		
 		boolean c = user.pwvalidate();	

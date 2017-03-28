@@ -15,9 +15,8 @@ public interface ProductDAO {
 	boolean update(Product product);
 	boolean delete(Product product);
 	
-	List<CPro> getPlist();
+	
 	List getPlistById(int id);
 	
-	List getPlistByPId(int id);
-	List getPlistByColor(String color);
+	
 }

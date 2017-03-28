@@ -55,7 +55,7 @@ public class AdminController {
 		mv.addObject("categories", categoryDAO.list());
 
 		//passing the list of products
-		mv.addObject("products", productDAO.getPlist());
+		mv.addObject("products", productDAO.list());
 		
 		mv.addObject("isUserClickAdminsProducts", true);
 		
@@ -168,24 +168,17 @@ public class AdminController {
 		
 		Product product=null;
 		product=productDAO.get(id);
-		int cid=product.getCid();
-		Category category=null;
-		category=categoryDAO.get(cid);
 		
 		
-		mv.addObject("title", category.getName() +" "+product.getPname()+" "+product.getPcolor());
+		mv.addObject("title", product.getCategory().getName() +" "+product.getPname()+" "+product.getPcolor());
 		
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
 		
-		mv.addObject("products",productDAO.getPlistByPId(id));
+		//passing details of product by id
+		mv.addObject("product",productDAO.getPlistById(id));
 		
-		/*Product product=null;
-		product=productDAO.get(id);
 		
-		String c=product.getPcolor();
-		
-		mv.addObject("colors",productDAO.getPlistByColor(c));*/
 		
 		
 		mv.addObject("isUserClickAdminsProDetails", true);

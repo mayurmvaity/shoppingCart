@@ -70,35 +70,35 @@
 					<div class="panel-body">
 						<div class="row">
 						  
-						  <c:forEach items="${products}" var="variable">
+						  <c:forEach items="${products}" var="product">
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						     <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a> 
+						     <a href="${contextRoot}/admin/adminsProDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a> 
 						      <div class="caption">
 						        <p class="thumbp">
-						        <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}" >${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
-						         <p class="coname">by ${variable[1].name}</p>
-						        <p class="productprice">&#8377;${variable[0].price}</p>
-						        <p><a href="${contextRoot}/admin/productUpdate/${variable[0].pid}" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="${contextRoot}/admin/productDeletion/${variable[0].pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <a href="${contextRoot}/admin/adminsProDetails/${product.pid}" >${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
+						         <p class="coname">by ${product.category.name}</p>
+						        <p class="productprice">&#8377;${product.price}</p>
+						        <p><a href="${contextRoot}/admin/productUpdate/${product.pid}" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="${contextRoot}/admin/productDeletion/${product.pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
 						  
 						  </c:forEach>
-						  <c:forEach items="${catProducts}" var="variable">
+						  <c:forEach items="${catProducts}" var="product">
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						    <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}"><img src="${variable[0].pimage}" alt="${variable[0].pname}"></a>
+						    <a href="${contextRoot}/admin/adminsProDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a>
 						      <div class="caption">
 						        <p class="thumbp">
-						        <a href="${contextRoot}/admin/adminsProDetails/${variable[0].pid}">${variable[1].name} ${variable[0].pname} ( ${variable[0].pcolor} )</a></p>
-						        <p class="coname">by ${variable[1].name}</p>
-						        <p class="productprice">&#8377;${variable[0].price}</p>
-						        <p><a href="${contextRoot}/admin/productUpdate/${variable[0].pid}" class="btn btn-primary" role="button">Edit  <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="${contextRoot}/admin/productDeletion/${variable[0].pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <a href="${contextRoot}/admin/adminsProDetails/${product.pid}">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
+						        <p class="coname">by ${product.category.name}</p>
+						        <p class="productprice">&#8377;${product.price}</p>
+						        <p><a href="${contextRoot}/admin/productUpdate/${product.pid}" class="btn btn-primary" role="button">Edit  <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="${contextRoot}/admin/productDeletion/${product.pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
 						      </div>
 						    </div>
 						  </div>
