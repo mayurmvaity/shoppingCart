@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="panel panel-default">
 							 	<div class="panel-body">
-							    	<a href="" class="btn btn-primary btn-lg">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+							    	<a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary btn-lg">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 							    	
 								</div>
 						</div>

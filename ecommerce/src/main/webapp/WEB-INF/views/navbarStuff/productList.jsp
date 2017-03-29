@@ -80,7 +80,7 @@
 						        <a href="${contextRoot}/productDetails/${product.pid}" >${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
 						        <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice">&#8377;${product.price}</p>
-						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        </p>
 						      </div>
 						    </div>
@@ -97,7 +97,7 @@
 						        <a href="${contextRoot}/productDetails/${product.pid}">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
 						        <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice">&#8377;${product.price}</p>
-						        <p><a href="#" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        </p>
 						      </div>
 						    </div>

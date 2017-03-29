@@ -72,7 +72,7 @@
 						        <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice">&#8377;${product.price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
-						        <p><a href="#" class="btn btn-primary btn-sm " role="button"><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						       </p>
 						      </div>
 						    </div>
