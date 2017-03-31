@@ -87,17 +87,17 @@
 						  </div>
 						  
 						  </c:forEach>
-						  <c:forEach items="${catProducts}" var="product">
+						  <c:forEach items="${catProducts}" var="cproduct">
 						  
 						  <div class="col-sm-6 col-md-4">
 						    <div class="thumbnail">
-						      <a href="${contextRoot}/productDetails/${product.pid}"><img src="${product.pimage}" alt="${product.pname}"></a>
+						      <a href="${contextRoot}/productDetails/${cproduct.pid}"><img src="${cproduct.pimage}" alt="${cproduct.pname}"></a>
 						      <div class="caption">
 						       <p class="thumbp">
-						        <a href="${contextRoot}/productDetails/${product.pid}">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
-						        <p class="coname">by ${product.category.name}</p>
-						        <p class="productprice">&#8377;${product.price}</p>
-						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <a href="${contextRoot}/productDetails/${cproduct.pid}">${cproduct.category.name} ${cproduct.pname} ( ${cproduct.pcolor} )</a></p>
+						        <p class="coname">by ${cproduct.category.name}</p>
+						        <p class="productprice">&#8377;${cproduct.price}</p>
+						        <p><a href="${contextRoot}/user/addToCart/${userid}/${cproduct.pid}" class="btn btn-primary" role="button">Add to cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 						        </p>
 						      </div>
 						    </div>

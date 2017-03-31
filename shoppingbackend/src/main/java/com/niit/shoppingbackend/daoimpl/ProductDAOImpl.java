@@ -108,12 +108,15 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public List getPlistById(int id) {
-		String hlist = "from Product where active= :active and id= :cid";
+		
+		Category category=categoryDAO.get(id);
+		
+		String hlist = "from Product where active= :active and category= :category";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(hlist);
 		
 		query.setParameter("active", true);
-		query.setParameter("cid", id);
+		query.setParameter("category", category);
 		
 		
 		return query.getResultList();

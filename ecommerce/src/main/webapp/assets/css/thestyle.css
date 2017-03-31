@@ -2,6 +2,8 @@
 
 body {
 		font-family: 'PT Sans', sans-serif;
+		background-color: #FBFBFB;
+		
 		
 		}
 		
@@ -56,6 +58,14 @@ body {
 		color: #B12704;
 		
 		}
+		.productprice .rupeesymbol {
+			font-family: 'Oswald', sans-serif;
+			font-weight: normal;
+			font-size: 13px;
+		
+		}
+		
+		
 		.prodetailsname {
 		color: black;
 		font-size: 20px;
@@ -69,6 +79,13 @@ body {
 		.pricetagspan {
 		font-size: 14px;
 		color: #6C6C6C;
+		
+		}
+		
+		.rupeesymbol {
+			font-family: 'Oswald', sans-serif;
+			font-weight: normal;
+			font-size: 14px;
 		
 		}
 		
@@ -101,10 +118,7 @@ body {
 		background-color: #3C3C3C;
 		
 		}
-		body {
-		background-color: #FBFBFB;
 		
-		}
 		
 		/*================== footer ===================*/
 		
@@ -144,3 +158,66 @@ body {
 			color: #D75500;
 		
 		}
+		
+		/******************** mycart page ***********************/
+		.formycartheader {
+			font-color: black;
+			font-size: 22px;		
+			font-weight: bold;
+		}
+		
+		.panel .table > tbody > tr > td  > p > a {
+			color: #0066C2;	
+			font-size: 17px;
+			font-weight: bold;
+			
+		}
+		.panel .table > tbody > tr > td  > p > a:hover {
+			color: #D75500;	
+			font-size: 17px;
+			font-weight: bold;
+			
+		}	
+		
+		
+		.panel .table > tbody > tr > td  > p {
+			color: #000;
+			font-size: 14px;
+			
+		}
+		
+		.panel .table > tbody > tr > td .productprice {
+		font-size: 17px;
+		font-weight: bold;
+		color: #B12704;
+		
+		}
+		
+		.panel .table > thead > tr > th {
+			color: #6C6C6C;
+			font-size: 14px;
+			font-weight: normal;
+		
+		}
+		.panel .panel-body .subtotaltext {
+			color: #000;
+			font-weight: bold;
+			font-size: 17px;
+			
+		}
+		.panel .panel-body .subtotaltext .cartsubtotal {
+			color: #B12704;
+			
+		}
+		.panel .panel-body .subtotaltext .cartsubtotal .rupeesymbol {
+			font-family: 'Oswald', sans-serif;
+			font-weight: normal;
+			font-size: 13px;
+		}
+		.panel .table > tbody > tr > td .productprice .rupeesymbol {
+			font-family: 'Oswald', sans-serif;
+			font-weight: normal;
+			font-size: 13px;
+		
+		}
+		

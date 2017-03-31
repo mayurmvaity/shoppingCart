@@ -53,16 +53,15 @@
 	<div class="wrapper">
 	<!-- =================  NAVBAR  ================== -->
 	<%@include file="./shared/navbar.jsp" %>
-		${contextRoot} says - ${greeting}
+		
+		<div class="alert alert-info fade in">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  			<strong>Info!</strong> ${contextRoot} says - ${greeting}
 		${CRUDmsgP}
 		${CRUDmsgC}
 		${CRUDmsgS}
 		${RegMsg}
-		${Role}	${Usermsg} ${CartMsg}
-		
-				
-		
-	<div class="content">
+		${Role}	${Usermsg} ${CartMsg}  ${CartUpdated}
 		<h2>
 		<center>Shopping Cart</center>
 	</h2>
@@ -70,6 +69,13 @@
 	<center>${successMessage}</center>
 	<center>${errorMessage}</center>
 	${loginMessage} ${adminMessage}
+		
+		
+		</div>
+				
+		
+	<div class="content">
+		
 	<hr>
 		
 	<!-- =====================  MAIN  ======================== -->	

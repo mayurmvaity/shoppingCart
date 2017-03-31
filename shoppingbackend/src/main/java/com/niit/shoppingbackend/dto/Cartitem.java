@@ -37,6 +37,16 @@ public class Cartitem {
 	@Column
 	private long itotal;
 	
+	@Column
+	private boolean ordered = false;
+	
+	public boolean isOrdered() {
+		return ordered;
+	}
+	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
+	}
+
 	@Column(name="is_active")
 	private boolean active = true;
 	
@@ -81,8 +91,11 @@ public class Cartitem {
 	@Override
 	public String toString() {
 		return "Cartitem [itemid=" + itemid + ", userid=" + userid + ", product=" + product + ", iprice=" + iprice
-				+ ", iquantity=" + iquantity + ", itotal=" + itotal + ", active=" + active + "]";
+				+ ", iquantity=" + iquantity + ", itotal=" + itotal + ", ordered=" + ordered + ", active=" + active
+				+ "]";
 	}
+	
+	
 	
 	
 	

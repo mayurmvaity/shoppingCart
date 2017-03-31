@@ -182,5 +182,66 @@ public class AddressController {
 		return mv;
 	}
 	
+	@RequestMapping(value={ "/addAddressNew/{id}" }, method= RequestMethod.POST)
+	public ModelAndView addAddressNew(@PathVariable("id") int id, @ModelAttribute("address") @Valid Address address, BindingResult result) {
+		// actually you have to take the data from db
+		// temporarily
+		
+		log.debug("Starting of add new address method");
+		
+		ModelAndView mv = new ModelAndView("page");
+		
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		//passing the list of addresses
+		mv.addObject("Addresses",addressDAO.getByAid(id));
+		
+		if(result.hasErrors()) {
+			
+			mv.addObject("isUserClickManageAddress",true);
+			return mv;
+			
+		}
+		
+		
+		try{
+			if(address.getAddid()==0) {
+			boolean b=addressDAO.add(address);
+			if(b)
+			{
+				mv.addObject("Usermsg","Address added");
+			}
+			else
+			{
+				mv.addObject("Usermsg","Address not added");
+			}
+			}
+			else {
+				boolean b=addressDAO.update(address);
+				if(b)
+				{
+					mv.addObject("Usermsg","Address Updated");
+				}
+				else
+				{
+					mv.addObject("Usermsg","Address not updated");
+				}
+				
+				
+				
+			}
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		log.debug("End of add new address method");
+		
+		return mv;
+	}
+	
+	
 	
 }

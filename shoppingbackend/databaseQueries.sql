@@ -180,12 +180,25 @@ create table cartitem (
 	iprice number(9) not null,
 	iquantity number(4) not null,
 	itotal number(15) not null,
+	ordered boolean not null,
 	is_active boolean not null,
 	constraint fk_key_user foreign key (userid) references usertable(uid),
-	constraint fk_key_product foreign key (ino) references product(pid)
+	constraint fk_key_product foreign key (pid) references product(pid)
 	
 	
 );
 
 insert into cartitem values (1,33,70,42999,2,85998,true);
 insert into cartitem values (2,33,100,8000,3,24000,true);
+
+create table ordertable {
+
+	oid identity primary key,
+	uid number(6) not null,
+	addid number(6) not null,
+	amt number(15) not null,
+	is_active boolean not null,
+	constraint fk_key_usertable foreign key (uid) references usertable(uid),
+	constraint fk_key_address foreign key (addid) references address(addid)
+
+}

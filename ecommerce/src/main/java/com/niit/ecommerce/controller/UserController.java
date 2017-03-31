@@ -20,6 +20,7 @@ import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
@@ -141,6 +142,7 @@ public class UserController {
 				UserTable user=null;
 				user=userDAO.get(id);
 				mv.addObject("user",user);
+		
 				
 		
 		mv.addObject("isUserClickBillingAddress", true);

@@ -7,10 +7,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
@@ -20,6 +19,8 @@ import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.dto.Address;
+import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Cartitem;
 import com.niit.shoppingbackend.dto.Product;
 import com.niit.shoppingbackend.dto.UserTable;
@@ -99,14 +100,16 @@ public class OrderController {
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
+				
+				
 		
 		mv.addObject("isUserClickMyCart", true);
 		log.debug("End of show my cart page method");
 		return mv;
 	}
 
-	@RequestMapping(value = { "/selectAddress" })
-	public ModelAndView showSelectAddressPage() {
+	@RequestMapping(value = { "/selectAddress/{id}" })
+	public ModelAndView showSelectAddressPage(@PathVariable("id") int id, @ModelAttribute("address") Address address ,BindingResult result) {
 		log.debug("Starting of show select address page method");
 		
 		
@@ -116,6 +119,10 @@ public class OrderController {
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
+				
+				
+				//passing the list of addresses
+				mv.addObject("addresses",addressDAO.getByAid(id));
 		
 		mv.addObject("isUserClickSelectAddress", true);
 		
@@ -182,22 +189,20 @@ public class OrderController {
 	@RequestMapping(value= {"/addToCart/{userid}/{id}"})
 	public ModelAndView addToCart(@PathVariable("id") int id, @PathVariable("userid") int userid, HttpServletRequest request) {
 		log.debug("beginning of add to cart method");
-		System.out.println("start of add to cart method");
+		
 		ModelAndView mv = new ModelAndView("page");
 		
 		 
 		 Product product= productDAO.get(id);
 		UserTable user=userDAO.get(userid);
 		
-		System.out.println(id+"  "+userid);
-		System.out.println(product.toString());
-		System.out.println(user.toString());
-		
+		if(!(cartitemDAO.productExists(userid, id)))
+		{
 		// cartitem added
 		Cartitem cartitem = new Cartitem();
 		cartitem.setUserid(user.getUid());
 		
-		System.out.println(user.getUid());
+		
 		cartitem.setProduct(product);
 		cartitem.setIprice(product.getPrice());
 		
@@ -206,19 +211,63 @@ public class OrderController {
 		long total=product.getPrice()*quantity;
 		cartitem.setItotal(total);
 		
-		System.out.println(cartitem.toString());
+		
 		
 		boolean b=cartitemDAO.add(cartitem);
-		if(b) mv.addObject("CartMsg","cartitem added");
+		if(b) { 
+			
+			mv.addObject("CartMsg","cartitem added");
+			
+			//cart actions
+			Cart cart=user.getCart();
+			int i=cart.getItems();
+			cart.setItems(++i);
+			long cost=cart.getTotalcost();
+			cost=cost+cartitem.getItotal();
+			cart.setTotalcost(cost);
+			
+			boolean c=cartDAO.update(cart);
+			if(c) mv.addObject("CartUpdated","Cart updated");
+			else mv.addObject("CartUpdated","cart did Not update");
+			
+			
+			}
 		else mv.addObject("CartMsg","cartitem not added");
 		
-		//cart actions
-		/*Cart cart=user.getCart();
-		int i=cart.getItems();
-		cart.setItems(++i);
-		long cost=cart.getTotalcost();
-		cost=cost+product.getPrice();
-		cart.setTotalcost(cost);*/
+		}
+		else
+		{
+			// for same product
+			Cartitem cartitem = cartitemDAO.getByPid(userid, id);
+			int q=cartitem.getIquantity();
+			cartitem.setIquantity(++q);
+			long tc=cartitem.getItotal();
+			tc+=cartitem.getIprice();
+			cartitem.setItotal(tc);
+			
+			boolean b=cartitemDAO.update(cartitem);
+			if(b) {
+				mv.addObject("CartMsg","cartitem added");
+				
+				Cart cart=user.getCart();
+				int i=cart.getItems();
+				cart.setItems(++i);
+				long tcost=cart.getTotalcost();
+				tcost=tcost+cartitem.getIprice();
+				cart.setTotalcost(tcost);
+				
+				boolean c=cartDAO.update(cart);
+				if(c) mv.addObject("CartUpdated","Cart updated for same product");
+				else mv.addObject("CartUpdated","cart did Not update for same product");
+				
+			} 
+			else mv.addObject("CartMsg","cartitem same product found not added");
+			
+			
+		}
+			
+		
+		mv.addObject("userClickHome", true);
 		
 		log.debug("end of add to cart method");
 		return mv;
@@ -233,9 +282,31 @@ public class OrderController {
 		Cartitem cartitem = null;
 		cartitem=cartitemDAO.get(id);
 		
+		int userid=cartitem.getUserid();
+		UserTable user=userDAO.get(userid);
+		Cart cart=user.getCart();
+		
+		long cost=cartitem.getItotal();
+		int q=cartitem.getIquantity();
+		
+		
 		boolean b=cartitemDAO.delete(cartitem);
 		
 		if(b) {
+			
+			
+			int items=cart.getItems();
+			items=items-q;
+			
+			cart.setItems(items);
+			long cartCost=cart.getTotalcost();
+			cartCost=cartCost-cost;
+			cart.setTotalcost(cartCost);
+			
+			boolean c=cartDAO.update(cart);
+			if(c) mv.addObject("CartUpdated","Cart updated");
+			else mv.addObject("CartUpdated","Cart did not update");
+			
 			mv.addObject("CartMsg","Cart item deleted");
 		}
 		else

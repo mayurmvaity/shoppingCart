@@ -128,7 +128,7 @@
 
 						
 						<li id="myCart"><a href="${contextRoot}/user/myCart"><span
-								class="glyphicon glyphicon-shopping-cart"></span> My Cart <span
+								class="glyphicon glyphicon-shopping-cart"></span> Cart <span
 								class="badge">${cartid.items}</span></a></li>
 
 						<li class="dropdown"><a class="dropdown-toggle"

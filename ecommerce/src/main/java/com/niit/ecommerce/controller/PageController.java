@@ -376,7 +376,7 @@ public class PageController {
 		mv.addObject("category", category);
 
 		//passing the list of products
-		mv.addObject("catProducts",productDAO.getPlistById(xid));
+		mv.addObject("catProducts",productDAO.getPlistById(id));
 		
 		mv.addObject("userClickCategoryProducts", true);
 		

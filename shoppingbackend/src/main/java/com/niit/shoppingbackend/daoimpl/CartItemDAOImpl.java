@@ -91,4 +91,39 @@ public class CartItemDAOImpl implements CartitemDAO {
 		return query.getResultList();
 	}
 
+	@Override
+	public boolean productExists(int userid, int pid) {
+		String selectActiveCartitem = "FROM Cartitem WHERE active = :active and pid = :pid and userid = :userid";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCartitem);
+		
+		query.setParameter("active", true);
+		query.setParameter("pid", pid);
+		query.setParameter("userid", userid);
+		System.out.println(query);
+		try{
+		
+		if(query.getSingleResult()==null) return false;
+		else return true;
+		}
+		catch(Exception e) {
+			System.out.println("exception occurred");
+			return false;
+		}
+		
+	}
+
+	@Override
+	public Cartitem getByPid(int userid, int pid) {
+		String selectActiveCartitem = "FROM Cartitem WHERE active = :active and pid = :pid and userid = :userid";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCartitem);
+		
+		query.setParameter("active", true);
+		query.setParameter("pid", pid);
+		query.setParameter("userid", userid);
+
+		return (Cartitem) query.getSingleResult();
+	}
+
 }

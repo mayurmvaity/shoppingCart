@@ -70,7 +70,7 @@
 						        <p class="thumbp">
 						        <a href="${contextRoot}/productDetails/${product.pid}" style="text-decoration: none;">${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
 						        <p class="coname">by ${product.category.name}</p>
-						        <p class="productprice">&#8377;${product.price}</p>
+						        <p class="productprice"><span class="rupeesymbol">&#8377;</span>${product.price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
 						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						       </p>
