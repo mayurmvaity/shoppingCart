@@ -131,10 +131,11 @@ public class OrderController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/confirmPurchase" })
-	public ModelAndView showConfirmPurchasePage() {
+	@RequestMapping(value = { "/confirmPurchase/{id}/{aid}" })
+	public ModelAndView showConfirmPurchasePage(@PathVariable("id") int id,@PathVariable("aid") int aid) {
 		
 		log.debug("Starting of show confirm purchase page method");
+		
 		
 		System.out.println("clicked on confirm purchase page");
 		ModelAndView mv = new ModelAndView("page");
@@ -142,7 +143,22 @@ public class OrderController {
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
-		
+				
+				
+				UserTable user=userDAO.get(id);
+				
+				// passing a user
+				mv.addObject("user",user);
+				
+				// passing cartitems list
+				mv.addObject("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				
+				// passing shipping address
+				mv.addObject("shipadd",addressDAO.get(aid));
+				
+				// passing cart of user
+				mv.addObject("cartx",user.getCart());
+				
 		mv.addObject("isUserClickConfirmPurchase", true);
 		
 		log.debug("End of show confirm purchase page method");

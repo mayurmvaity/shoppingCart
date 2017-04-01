@@ -38,13 +38,13 @@ public class Cartitem {
 	private long itotal;
 	
 	@Column
-	private boolean ordered = false;
-	
-	public boolean isOrdered() {
-		return ordered;
+	private int oid=0;
+
+	public int getOid() {
+		return oid;
 	}
-	public void setOrdered(boolean ordered) {
-		this.ordered = ordered;
+	public void setOid(int oid) {
+		this.oid = oid;
 	}
 
 	@Column(name="is_active")
@@ -91,9 +91,10 @@ public class Cartitem {
 	@Override
 	public String toString() {
 		return "Cartitem [itemid=" + itemid + ", userid=" + userid + ", product=" + product + ", iprice=" + iprice
-				+ ", iquantity=" + iquantity + ", itotal=" + itotal + ", ordered=" + ordered + ", active=" + active
-				+ "]";
+				+ ", iquantity=" + iquantity + ", itotal=" + itotal + ", oid=" + oid + ", active=" + active + "]";
 	}
+	
+	
 	
 	
 	

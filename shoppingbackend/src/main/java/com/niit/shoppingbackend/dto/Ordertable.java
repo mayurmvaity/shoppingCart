@@ -26,6 +26,17 @@ public class Ordertable {
 	@Column
 	private long amt;
 
+	@Column(name="is_delivered")
+	private boolean delivered=false;
+	
+	public boolean isDelivered() {
+		return delivered;
+	}
+
+	public void setDelivered(boolean delivered) {
+		this.delivered = delivered;
+	}
+
 	@Column(name="is_active")
 	private boolean active=true;
 	
@@ -71,10 +82,12 @@ public class Ordertable {
 
 	@Override
 	public String toString() {
-		return "Order [oid=" + oid + ", user=" + user + ", address=" + address + ", amt=" + amt + ", active=" + active
-				+ "]";
+		return "Ordertable [oid=" + oid + ", user=" + user + ", address=" + address + ", amt=" + amt + ", delivered="
+				+ delivered + ", active=" + active + "]";
 	}
 
+	
+	
 	
 	
 	

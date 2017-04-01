@@ -221,3 +221,30 @@ body {
 		
 		}
 		
+		/**************    Confirm purchase page      ******************/
+		 .forusername {
+		 	font-weight: bold;
+		 	font-size: 18px;
+		 	
+		 }
+		 .foruserpno {
+		 	font-weight: normal;
+		 	font-size: 14px;
+		 	
+		 }
+		 .pnobold {
+		 	font-weight: bold;
+		 	font-size: 15px;
+		 }
+		 .panel .table > tbody > tr > td .productname {
+		 	color: #D75500;
+		 	font-weight: bold;
+		 	font-size: 18px;
+		 	
+		 }
+		 .panel .table > tbody > tr > td .productdesc {
+		 	color: #000;
+		 	font-weight: normal;
+		 	font-size: 14px;
+		 
+		 }
