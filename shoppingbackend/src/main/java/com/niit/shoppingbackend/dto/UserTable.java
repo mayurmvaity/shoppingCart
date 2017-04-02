@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 @Table(name="usertable")
 @Entity
 public class UserTable implements Serializable {
-
+ 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;

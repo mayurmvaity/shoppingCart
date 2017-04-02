@@ -11,7 +11,7 @@
 			<c:forEach items="${addresses}" var="address">
 				<div class="col-sm-6 col-md-3">
 					<div class="thumbnail">
-
+ 
 						<div class="caption">
 							<p>${address.add1}</p>
 							<p>${address.add2}</p>

@@ -8,7 +8,7 @@ create table category (
 	constraint pk_category_id PRIMARY KEY (id)
 	
 );
-
+ 
 create table product (
 
 	pid IDENTITY primary key,

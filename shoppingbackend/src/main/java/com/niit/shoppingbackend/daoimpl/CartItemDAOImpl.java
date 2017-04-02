@@ -24,7 +24,7 @@ public class CartItemDAOImpl implements CartitemDAO {
 	public Cartitem get(int id) {
 
 		return sessionFactory.getCurrentSession().get(Cartitem.class, Integer.valueOf(id));
-		
+		 
 	}
 
 	@Override

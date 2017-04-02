@@ -24,7 +24,7 @@ import com.niit.shoppingbackend.dto.Address;
 @Controller
 @RequestMapping(value = { "/user" })
 public class AddressController {
-
+ 
 	private static Logger log = Logger.getLogger(PageController.class);
 
 	@Autowired

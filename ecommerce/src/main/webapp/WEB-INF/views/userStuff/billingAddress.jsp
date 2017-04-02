@@ -7,7 +7,7 @@
 									<div class="col-md-8 col-md-offset-2">
 										<form:form method="post" action="${contextRoot}/user/updateBillingAddress" commandName="user">
 											<fieldset>
-											
+											 
 											
 											 <form:hidden path="uid" class="form-control"
 													placeholder="Enter Product Id" value="${user.uid}" />

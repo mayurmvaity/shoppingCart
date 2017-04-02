@@ -38,7 +38,7 @@ import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
 public class PageController {
-	
+	 
 	private static Logger log = Logger.getLogger(PageController.class);
 
 	@Autowired

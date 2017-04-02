@@ -244,6 +244,7 @@ public class OrderController {
 		ModelAndView mv = new ModelAndView("page");
 		
 		order.setOrdered(true);
+	
 		
 		
 		

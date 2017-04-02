@@ -18,7 +18,7 @@ public class Cartitem {
 	@Column
 	private int userid;
 	
-	
+	 
 	public int getUserid() {
 		return userid;
 	}

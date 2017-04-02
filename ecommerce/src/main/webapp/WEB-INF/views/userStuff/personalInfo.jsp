@@ -6,6 +6,7 @@
 						<div class="col-md-8 col-md-offset-2">
 							<form:form method="post" action="${contextRoot}/user/updatePersonalInfo" commandName="user">
 							<fieldset>
+							
                          <form:hidden path="uid" class="form-control"
 								placeholder="Enter Product Id" value="${user.uid}" />
 						<form:hidden path="add1" class="form-control"
