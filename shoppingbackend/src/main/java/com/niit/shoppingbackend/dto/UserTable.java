@@ -47,6 +47,17 @@ public class UserTable implements Serializable {
 	private String lname;
 	
 	@Column
+	@Size(min=1,max=1)
+	private String gender="M";
+	
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	@Column
 	@Email(message="please enter valid email address")
 	private String email;
 	
@@ -263,16 +274,17 @@ public class UserTable implements Serializable {
 		
 		
 	}
+	@Override
+	public String toString() {
+		return "UserTable [uid=" + uid + ", pno=" + pno + ", pw=" + pw + ", fname=" + fname + ", lname=" + lname
+				+ ", gender=" + gender + ", email=" + email + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3
+				+ ", city=" + city + ", state=" + state + ", pincode=" + pincode + ", cart=" + cart + ", role=" + role
+				+ ", active=" + active + "]";
+	}
 	
 	/*
 	 * toString() method
 	 * */
-	@Override
-	public String toString() {
-		return "UserTable [uid=" + uid + ", pno=" + pno + ", pw=" + pw + ", fname=" + fname + ", lname=" + lname
-				+ ", email=" + email + ", add1=" + add1 + ", add2=" + add2 + ", add3=" + add3 + ", city=" + city
-				+ ", state=" + state + ", pincode=" + pincode + ", cart=" + cart + ", role=" + role + ", active="
-				+ active + "]";
-	}
+	
 	
 }

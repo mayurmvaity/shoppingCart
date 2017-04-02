@@ -46,13 +46,16 @@
                         </div> -->
 						
 						<div class="form-group col-md-6">
-                            <label for="country" class="forlabels">Gender <span class="reqstar">&#42;</span></label>
-                            <select class="form-control" name="gender" >
+                            <label path="gender" class="forlabels">Gender <span class="reqstar">&#42;</span></label>
+                            <!-- <select class="form-control" name="gender" >
                             	<option>Select one</option>
                                 <option>Male</option>
                                 <option>Female</option>
                                 
-                            </select>
+                            </select> -->
+                            <form:radiobutton path="gender" value="M"/>Male
+							<form:radiobutton path="gender" value="F"/>Female
+                            
                             
                         </div>
 						

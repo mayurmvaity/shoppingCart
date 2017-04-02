@@ -7,13 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Ordertable {
 
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int oid;
+	private int orderid;
 	
 	@OneToOne
 	@JoinColumn(name="uid")
@@ -24,7 +25,29 @@ public class Ordertable {
 	private Address address;
 	
 	@Column
-	private long amt;
+	private long amount;
+	
+	@Column(name="is_ordered")
+	private boolean ordered=false;
+	
+	@Column
+	private String payment;
+	
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+	public boolean isOrdered() {
+		return ordered;
+	}
+
+	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
+	}
 
 	@Column(name="is_delivered")
 	private boolean delivered=false;
@@ -48,12 +71,22 @@ public class Ordertable {
 		this.active = active;
 	}
 
-	public int getOid() {
-		return oid;
+	
+
+	public int getOrderid() {
+		return orderid;
 	}
 
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
+	public long getAmount() {
+		return amount;
+	}
+
+	public void setAmount(long amount) {
+		this.amount = amount;
 	}
 
 	public UserTable getUser() {
@@ -72,22 +105,13 @@ public class Ordertable {
 		this.address = address;
 	}
 
-	public long getAmt() {
-		return amt;
-	}
-
-	public void setAmt(long amt) {
-		this.amt = amt;
-	}
-
 	@Override
 	public String toString() {
-		return "Ordertable [oid=" + oid + ", user=" + user + ", address=" + address + ", amt=" + amt + ", delivered="
-				+ delivered + ", active=" + active + "]";
+		return "Ordertable [orderid=" + orderid + ", user=" + user + ", address=" + address + ", amount=" + amount
+				+ ", ordered=" + ordered + ", payment=" + payment + ", delivered=" + delivered + ", active=" + active
+				+ "]";
 	}
 
-	
-	
 	
 	
 	

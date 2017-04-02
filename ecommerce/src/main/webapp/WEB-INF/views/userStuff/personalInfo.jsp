@@ -25,6 +25,13 @@
 						
 						<form:hidden path="pw" class="form-control"
 								placeholder="Enter Product Id" value="${user.pw}" />
+								
+								<form:hidden path="cart.cartid" class="form-control"
+								placeholder="Enter Product Id" value="${user.cart.cartid}" />
+								<form:hidden path="gender" class="form-control"
+								placeholder="Enter Product Id" value="${user.gender}" />
+								<form:hidden path="role" class="form-control"
+								placeholder="Enter Product Id" value="${user.role}" />
 						
 
                         <div class="form-group col-md-12">
@@ -44,7 +51,7 @@
                             <form:input type="email" class="form-control" path="email" placeholder="Email" value="${user.email}" />
                             
                         </div>
-							<div class="form-group col-md-12">
+							<!-- <div class="form-group col-md-12">
                             <label for="country">Gender</label>
                             <select class="form-control" name="gender" >
                             	<option>Select one</option>
@@ -53,7 +60,7 @@
                                 
                             </select>
                            
-                        </div>
+                        </div> -->
                         </fieldset>
                         <div class="form-group">
 	                        <div class="col-md-12">

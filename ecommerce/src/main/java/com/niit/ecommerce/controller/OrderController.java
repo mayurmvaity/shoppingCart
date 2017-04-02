@@ -1,5 +1,7 @@
 package com.niit.ecommerce.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,12 +18,14 @@ import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Cartitem;
+import com.niit.shoppingbackend.dto.Ordertable;
 import com.niit.shoppingbackend.dto.Product;
 import com.niit.shoppingbackend.dto.UserTable;
 
@@ -52,6 +56,9 @@ public class OrderController {
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 
 	@Autowired
 	private HttpSession session;
@@ -159,6 +166,50 @@ public class OrderController {
 				// passing cart of user
 				mv.addObject("cartx",user.getCart());
 				
+				Ordertable ordertable = new Ordertable();		// order created
+				boolean d = orderDAO.add(ordertable);
+				System.out.println(d+" "+ordertable.toString());
+				
+				Cart cart=user.getCart();
+				ordertable.setAmount(cart.getTotalcost());					// total cost set in order table
+				ordertable.setAddress(addressDAO.get(aid)); 			// address id set in order table
+				ordertable.setUser(user);  								// user set in order table
+				ordertable.setOrdered(false); 							// ordered set to false
+				System.out.println(ordertable.toString());
+				boolean c=orderDAO.update(ordertable);					// order added to table
+				if(c) mv.addObject("OrderMsgx","ordertable tuple added");
+				else mv.addObject("OrderMsgx","ordertable tuple not added");
+				
+				// setting orderid in cartitem table
+				int oid=ordertable.getOrderid();
+				// passing orderid to page
+				mv.addObject("oid",oid);
+				
+				System.out.println(oid);
+				try {
+				List<Cartitem> clist = cartitemDAO.getByUserid(id);
+				
+					if(clist != null){
+						for(Cartitem citem : clist)
+						{
+							citem.setOid(oid);
+							boolean b=cartitemDAO.update(citem);
+							
+							System.out.println(citem.getOid()+" "+b);
+						}
+						
+						mv.addObject("OrderMsg","Cartitems updated");
+					}
+					else
+					{
+						mv.addObject("OrderMsg","Cartitems NOT updated");
+					}
+				}
+				catch(Exception e)
+				{
+					mv.addObject("OrderMsg","Cartitems NOT updated");
+				}
+				
 		mv.addObject("isUserClickConfirmPurchase", true);
 		
 		log.debug("End of show confirm purchase page method");
@@ -166,8 +217,8 @@ public class OrderController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/paymentMode" })
-	public ModelAndView showPaymentModePage() {
+	@RequestMapping(value = { "/paymentMode/{orderid}" })
+	public ModelAndView showPaymentModePage(@PathVariable("orderid") int orderid) {
 		
 		log.debug("Starting of show payment mode page method");
 		
@@ -178,12 +229,35 @@ public class OrderController {
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
 		
+				// passing the ordertable
+				mv.addObject("orderitem",orderDAO.get(orderid));
 		mv.addObject("isUserClickPaymentMode", true);
 		log.debug("End of show payment mode page method");
 		
 		return mv;
 	}
 
+	@RequestMapping(value= { "/addPaymentMode" })
+	public ModelAndView addPaymentMode(@ModelAttribute("orderitem") Ordertable order, BindingResult result) {
+		
+		log.debug("beginning of add payment mode");
+		ModelAndView mv = new ModelAndView("page");
+		
+		order.setOrdered(true);
+		
+		
+		
+		boolean b=orderDAO.update(order);
+		System.out.println("order pay type="+order.getPayment());
+		
+		if(b) mv.addObject("OrderMsg","Payment Mode added || order has been placed");
+		else mv.addObject("OrderMsg","Payment mode NOT added");
+		
+		log.debug("beginning of add payment mode");
+		return mv;
+	}
+	
+	
 	@RequestMapping(value = { "/orderDetailsButton" })
 	public ModelAndView showOrderDetailsButtonPage() {
 		log.debug("Starting of show Order details button page method");

@@ -24,6 +24,13 @@
 											<form:hidden path="email" class="form-control"
 													placeholder="Enter Product Id" value="${user.email}" />
 													
+											<form:hidden path="cart.cartid" class="form-control"
+								placeholder="Enter Product Id" value="${user.cart.cartid}" />
+								<form:hidden path="gender" class="form-control"
+								placeholder="Enter Product Id" value="${user.gender}" />
+								<form:hidden path="role" class="form-control"
+								placeholder="Enter Product Id" value="${user.role}" />
+						
 						
 											
 		                        				<legend>Change address</legend>

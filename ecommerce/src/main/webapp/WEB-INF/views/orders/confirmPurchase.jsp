@@ -80,7 +80,7 @@
 						</div>
 			</div>
 			<div class="well text-right">
-				<a class="btn btn-lg btn-warning" href="${contextRoot}/user/paymentMode">Proceed to pay</a>
+				<a class="btn btn-lg btn-warning" href="${contextRoot}/user/paymentMode/${oid}">Proceed to Pay</a>
 			</div>
 
 

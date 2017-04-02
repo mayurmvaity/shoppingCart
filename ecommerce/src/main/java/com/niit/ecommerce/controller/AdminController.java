@@ -176,7 +176,7 @@ public class AdminController {
 		mv.addObject("categories",categoryDAO.list());
 		
 		//passing details of product by id
-		mv.addObject("product",productDAO.getPlistById(id));
+		mv.addObject("product",product);
 		
 		
 		

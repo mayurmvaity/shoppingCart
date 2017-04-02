@@ -61,7 +61,7 @@
 		${CRUDmsgC}
 		${CRUDmsgS}
 		${RegMsg}
-		${Role}	${Usermsg} ${CartMsg}  ${CartUpdated}
+		${Role}	${Usermsg} ${CartMsg}  ${CartUpdated} ${OrderMsg} ${OrderMsgx} 
 		<h2>
 		<center>Shopping Cart</center>
 	</h2>

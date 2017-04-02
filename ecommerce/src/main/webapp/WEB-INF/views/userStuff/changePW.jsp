@@ -37,6 +37,12 @@
 						<form:hidden path="pno" class="form-control"
 								placeholder="Enter Product Id" value="${user.pno}" />
 						
+						<form:hidden path="cart.cartid" class="form-control"
+								placeholder="Enter Product Id" value="${user.cart.cartid}" />
+								<form:hidden path="gender" class="form-control"
+								placeholder="Enter Product Id" value="${user.gender}" />
+								<form:hidden path="role" class="form-control"
+								placeholder="Enter Product Id" value="${user.role}" />
 					
 								
 								

@@ -135,6 +135,7 @@ create table usertable (
 	pw varchar(20) not null,
 	fname varchar(20) not null,
 	lname varchar(20) not null,
+	gender char(1) not null,
 	add1 varchar(100) not null,
 	add2 varchar(100) not null,
 	add3 varchar(100) not null,
@@ -194,11 +195,13 @@ insert into cartitem values (2,33,100,8000,3,24000,true);
 create table ordertable (
 
 	orderid IDENTITY primary key,
-	uid number(6) not null,
+	uid number(6),
 	addid number(6),
-	amount number(15) not null,
+	amount number(15),
 	is_active boolean not null,
+	is_ordered boolean not null,
 	is_delivered boolean not null,
+	payment varchar(6),
 	constraint fk_key_userx foreign key (uid) references usertable(uid),
 	constraint fk_key_addrs foreign key (addid) references address(addid)
 

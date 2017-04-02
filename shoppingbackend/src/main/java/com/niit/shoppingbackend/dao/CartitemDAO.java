@@ -16,4 +16,6 @@ public interface CartitemDAO {
 	
 	boolean productExists(int userid,int pid);
 	Cartitem getByPid(int userid,int pid);
+	
+	
 }

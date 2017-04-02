@@ -30,7 +30,12 @@
 										<form:hidden path="pw" class="form-control"
 												placeholder="Enter Product Id" value="${user.pw}" />
 										
-										
+										<form:hidden path="cart.cartid" class="form-control"
+								placeholder="Enter Product Id" value="${user.cart.cartid}" />
+								<form:hidden path="gender" class="form-control"
+								placeholder="Enter Product Id" value="${user.gender}" />
+								<form:hidden path="role" class="form-control"
+								placeholder="Enter Product Id" value="${user.role}" />
 										
 					                        <div class="form-group col-md-12">
 					                            <form:label path="pno">Enter new mobile number</form:label>
