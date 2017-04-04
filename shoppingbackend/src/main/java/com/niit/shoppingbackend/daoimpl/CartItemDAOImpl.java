@@ -81,17 +81,7 @@ public class CartItemDAOImpl implements CartitemDAO {
 
 	/*@Override
 	public boolean delete(Cartitem cartitem) {
-		cartitem.setActive(false);
-		 
-		try {
-	
-			sessionFactory.getCurrentSession().update(cartitem);
-			return true;
-		}
-		catch(Exception ex) {
-			ex.printStackTrace();
-			return false;
-		}
+		
 	}
 	*/
 	
@@ -142,7 +132,33 @@ public class CartItemDAOImpl implements CartitemDAO {
 		return (Cartitem) query.getSingleResult();
 	}
 
+	@Override
+	public boolean placeOrder(Cartitem cartitem) {
+		cartitem.setActive(false);
+		 
+		try {
 	
+			sessionFactory.getCurrentSession().update(cartitem);
+			return true;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public List<Cartitem> getOrderedItems(int userid, int oid) {
+		String selectActiveCartitem = "FROM Cartitem WHERE active = :active and userid = :userid and oid = :oid";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveCartitem);
+		
+		query.setParameter("active", false);
+		query.setParameter("userid", userid);
+		query.setParameter("oid", oid);
+		
+		return query.getResultList();
+	}
 	
 
 }

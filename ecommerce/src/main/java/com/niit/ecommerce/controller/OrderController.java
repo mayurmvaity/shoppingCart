@@ -1,5 +1,6 @@
 package com.niit.ecommerce.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,12 +20,14 @@ import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
 import com.niit.shoppingbackend.dao.OrderDAO;
+import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Cartitem;
+import com.niit.shoppingbackend.dto.Orderi;
 import com.niit.shoppingbackend.dto.Ordertable;
 import com.niit.shoppingbackend.dto.Product;
 import com.niit.shoppingbackend.dto.UserTable;
@@ -47,6 +50,8 @@ public class OrderController {
 	@Autowired
 	private CartitemDAO cartitemDAO;
 	
+	@Autowired
+	private OrderiDAO orderiDAO;
 	
 	@Autowired
 	private AddressDAO addressDAO;
@@ -237,16 +242,49 @@ public class OrderController {
 		return mv;
 	}
 
-	@RequestMapping(value= { "/addPaymentMode" })
-	public ModelAndView addPaymentMode(@ModelAttribute("orderitem") Ordertable order, BindingResult result) {
+	@RequestMapping(value= { "/addPaymentMode/{userid}/{oid}" })
+	public ModelAndView addPaymentMode(@ModelAttribute("orderitem") Ordertable order, @PathVariable("userid") int userid, @PathVariable("oid") int oid, BindingResult result) {
 		
 		log.debug("beginning of add payment mode");
 		ModelAndView mv = new ModelAndView("page");
 		
 		order.setOrdered(true);
-	
 		
+		List<Cartitem> clist = cartitemDAO.getByUserid(userid);
+		for(Cartitem cl: clist)
+		{
+			boolean b=cartitemDAO.placeOrder(cl);
+			if(b) {
+				mv.addObject("OrderMsgx","Cart item set to ordered"); System.out.println("cartitem set to ordered");
+				}
+			else { 
+				mv.addObject("OrderMsgx","Cart item not set to ordered");
+				System.out.println("cartitem not set to ordered");
+			}
+			
+			Orderi orderi=new Orderi();
+			orderi.setUid(cl.getUserid());
+			orderi.setQuantity(cl.getIquantity());
+			orderi.setItotal(cl.getItotal());
+			orderi.setOrdered(true);
+			orderi.setDelivered(false);
+			//orderi.setPid(cl.getProduct().getPid());
+			orderi.setProduct(cl.getProduct());
+			orderi.setOrderid(oid);
+			
+			boolean x=orderiDAO.add(orderi);
+			if(x) System.out.println("Order item added to orderi table");
+			else System.out.println("Order item not added to orderi table");
+			
+		}
 		
+		Cart cart=cartDAO.get(userDAO.get(userid).getCart().getCartid());
+		cart.setItems(0);
+		cart.setTotalcost(0);
+		
+		boolean x = cartDAO.update(cart);
+		if(x) System.out.println("cart cleared");
+		else System.out.println("cart not cleared");
 		
 		boolean b=orderDAO.update(order);
 		System.out.println("order pay type="+order.getPayment());
@@ -254,6 +292,12 @@ public class OrderController {
 		if(b) mv.addObject("OrderMsg","Payment Mode added || order has been placed");
 		else mv.addObject("OrderMsg","Payment mode NOT added");
 		
+		// passing order details to orderdetails page
+		//mv.addObject("carto",cartitemDAO.getOrderedItems(userid, oid));
+		mv.addObject("carto",orderiDAO.getUndelivered(userid));
+		
+		
+		mv.addObject("isUserClickOrderDetails",true);
 		log.debug("beginning of add payment mode");
 		return mv;
 	}
@@ -277,17 +321,24 @@ public class OrderController {
 		return mv;
 	}
 	
-	@RequestMapping(value= {"/addToCart/{userid}/{id}"})
-	public ModelAndView addToCart(@PathVariable("id") int id, @PathVariable("userid") int userid, HttpServletRequest request) {
+	@RequestMapping(value= {"/addToCart/{id}"})
+	public ModelAndView addToCart(Principal principal, @PathVariable("id") int id, HttpServletRequest request) {
 		log.debug("beginning of add to cart method");
 		
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=null;
+		try{
 		
-		 
+		user=userDAO.getUserByEmail(principal.getName());
+		}
+		catch(Exception e)
+		{
+			System.out.println(e+"THUIS IS EXCEPTION");
+		}
 		 Product product= productDAO.get(id);
-		UserTable user=userDAO.get(userid);
+		//UserTable user=userDAO.get(userid);
 		
-		if(!(cartitemDAO.productExists(userid, id)))
+		if(!(cartitemDAO.productExists(user.getUid(), id)))
 		{
 		// cartitem added
 		Cartitem cartitem = new Cartitem();
@@ -329,7 +380,7 @@ public class OrderController {
 		else
 		{
 			// for same product
-			Cartitem cartitem = cartitemDAO.getByPid(userid, id);
+			Cartitem cartitem = cartitemDAO.getByPid(user.getUid(), id);
 			int q=cartitem.getIquantity();
 			cartitem.setIquantity(++q);
 			long tc=cartitem.getItotal();

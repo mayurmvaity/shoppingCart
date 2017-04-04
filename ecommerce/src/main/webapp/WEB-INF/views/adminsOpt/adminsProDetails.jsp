@@ -31,8 +31,8 @@
 					<div class="row">
 						<div class="panel panel-default">
 							 	<div class="panel-body">
-							    	<button class="btn btn-primary btn-lg">Edit</button>
-							    	<button class="btn btn-danger btn-lg">Remove</button>
+							    	<a href="${contextRoot}/admin/productUpdate/${product.pid}" class="btn btn-primary btn-lg">Edit</a>
+							    	<a href="${contextRoot}/admin/productDeletion/${product.pid}" class="btn btn-danger btn-lg">Remove</a>
 								</div>
 						</div>
 						

@@ -28,6 +28,7 @@ import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
@@ -59,6 +60,8 @@ public class PageController {
 	@Autowired
 	private CartitemDAO cartitemDAO;
 	
+	@Autowired
+	private OrderiDAO orderiDAO;
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
@@ -130,6 +133,7 @@ public class PageController {
 			session.setAttribute("username", user.getFname());
 			session.setAttribute("Role",user.getRole());
 			session.setAttribute("userid",user.getUid());
+			
 			mv.addObject("title", "Home");
 			mv.addObject("user",user);
 			
@@ -436,6 +440,9 @@ public class PageController {
 			session.setAttribute("userid",user.getUid());
 			session.setAttribute("cartid",user.getCart());
 			session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+			// passing order details to orderdetails page
+						//mv.addObject("carto",cartitemDAO.getOrderedItems(userid, oid));
+						session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
 			mv.addObject("title", "Home");
 			mv.addObject("user",user);
 			mv.addObject("userClickHome", true);

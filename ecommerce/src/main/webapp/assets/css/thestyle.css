@@ -248,3 +248,31 @@ body {
 		 	font-size: 14px;
 		 
 		 }
+		 /************* Navbar edit ***************/
+		 .navbar-inverse .container-fluid .navbar-nav > li > a:hover, 
+		 .navbar-inverse .container-fluid .navbar-nav .active > a:hover {
+		 	background-color: #D75500;
+		 }
+		 
+		 .navbar-inverse .container-fluid .navbar-nav .active > a {
+		 	color: #fff;
+		 	background-color: #D75500;
+		 }
+		 /***************** order details page ********************/
+		.panel .table > tbody > tr > td > .odname {
+			color: #D75500;
+		 
+		 }
+		 
+		 .panel .table > tbody > tr > td > .odprice {
+		 	font-family: 'Oswald', sans-serif;
+			font-weight: bold;
+			font-size: 15px;
+		 	color: #B12704;
+		 }
+		 
+		  .panel .table > tbody > tr > td > .odprice .rsymbol {
+		  	font-weight: normal;
+			font-size: 13px;
+		  
+		  }

@@ -6,7 +6,7 @@
 					</div>
 					<div class="panel-body">
 						
-						<form:form method="POST" action="${contextRoot}/user/addPaymentMode" commandName="orderitem">
+						<form:form method="POST" action="${contextRoot}/user/addPaymentMode/${userid}/${orderitem.orderid}" commandName="orderitem">
 						
 							<form:hidden path="orderid" class="form-control"
 								placeholder="Enter Product Id" value="${orderitem.orderid}" />

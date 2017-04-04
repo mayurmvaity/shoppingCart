@@ -1,0 +1,133 @@
+package com.niit.shoppingbackend.dto;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
+public class Orderi {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int oitemid;
+	
+	@Column
+	private int orderid;
+	
+	@Column
+	private int uid;
+	
+	/*@Column
+	private int pid;*/
+	
+	@OneToOne
+	@JoinColumn(name="pid")
+	private Product product;
+	
+	@Column 
+	private int quantity;
+	
+	@Column
+	private long itotal;
+	
+	@Column(name="is_ordered")
+	private boolean ordered = false;
+	
+	
+
+	public int getOitemid() {
+		return oitemid;
+	}
+
+	public void setOitemid(int oitemid) {
+		this.oitemid = oitemid;
+	}
+
+	public int getOrderid() {
+		return orderid;
+	}
+
+	public void setOrderid(int orderid) {
+		this.orderid = orderid;
+	}
+
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
+
+	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public long getItotal() {
+		return itotal;
+	}
+
+	public void setItotal(long itotal) {
+		this.itotal = itotal;
+	}
+
+	public boolean isOrdered() {
+		return ordered;
+	}
+
+	public void setOrdered(boolean ordered) {
+		this.ordered = ordered;
+	}
+
+	public boolean isDelivered() {
+		return delivered;
+	}
+
+	public void setDelivered(boolean delivered) {
+		this.delivered = delivered;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	@Column(name="is_delivered")
+	private boolean delivered = false;
+	
+	@Column(name="is_active")
+	private boolean active = true;
+
+
+
+	@Override
+	public String toString() {
+		return "Orderi [oitemid=" + oitemid + ", orderid=" + orderid + ", uid=" + uid + ", product=" + product
+				+ ", quantity=" + quantity + ", itotal=" + itotal + ", ordered=" + ordered + ", delivered=" + delivered
+				+ ", active=" + active + "]";
+	}
+	
+	
+	
+}

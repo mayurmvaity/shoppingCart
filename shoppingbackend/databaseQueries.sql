@@ -206,3 +206,22 @@ create table ordertable (
 	constraint fk_key_addrs foreign key (addid) references address(addid)
 
 );
+
+create table orderi (
+	oitemid identity primary key,
+	orderid number(6),
+	uid number(6),
+	pid number(6),
+	quantity number(6),
+	itotal number(15),
+	is_ordered boolean not null,
+	is_delivered boolean not null,
+	is_active boolean not null,
+	constraint fk_key_userxy foreign key (uid) references usertable(uid),
+	constraint fk_key_addrss foreign key (orderid) references ordertable(orderid),
+	constraint fk_key_productx foreign key (pid) references product(pid)
+	
+
+	
+);
+

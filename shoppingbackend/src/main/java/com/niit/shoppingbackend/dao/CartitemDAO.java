@@ -17,5 +17,6 @@ public interface CartitemDAO {
 	boolean productExists(int userid,int pid);
 	Cartitem getByPid(int userid,int pid);
 	
-	
+	boolean placeOrder(Cartitem cartitem);
+	List<Cartitem> getOrderedItems(int userid, int oid);
 }

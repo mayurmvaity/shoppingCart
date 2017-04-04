@@ -72,7 +72,7 @@
 						        <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice"><span class="rupeesymbol">&#8377;</span>${product.price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
-						        <p><a href="${contextRoot}/user/addToCart/${userid}/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><a href="${contextRoot}/user/addToCart/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						       </p>
 						      </div>
 						    </div>

@@ -1,5 +1,7 @@
 package com.niit.ecommerce.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,6 +21,7 @@ import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Address;
+import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
 @RequestMapping(value = { "/user" })
@@ -183,7 +185,7 @@ public class AddressController {
 	}
 	
 	@RequestMapping(value={ "/addAddressNew/{id}" }, method= RequestMethod.POST)
-	public ModelAndView addAddressNew(@PathVariable("id") int id, @ModelAttribute("address") @Valid Address address, BindingResult result) {
+	public ModelAndView addAddressNew(Principal principal,@PathVariable("id") int id, @ModelAttribute("address") @Valid Address address, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -194,8 +196,7 @@ public class AddressController {
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
 		
-		//passing the list of addresses
-		mv.addObject("Addresses",addressDAO.getByAid(id));
+		
 		
 		if(result.hasErrors()) {
 			
@@ -237,6 +238,15 @@ public class AddressController {
 			System.out.println(e);
 		}
 		
+		
+		UserTable user=null;
+		user=userDAO.getUserByEmail(principal.getName());
+		
+		//passing the list of addresses
+		mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
+		
+		
+		mv.addObject("isUserClickSelectAddress", true);
 		log.debug("End of add new address method");
 		
 		return mv;
