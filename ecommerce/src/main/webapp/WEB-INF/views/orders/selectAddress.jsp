@@ -21,7 +21,7 @@
 							<p>${address.pincode}</p>
 							<div class="checkbox">
 								<label> 
-								<a href="${contextRoot}/user/confirmPurchase/${userid}/${address.addid}" class="btn btn-primary" role="button">Deliver here</a>
+								<a href="${contextRoot}/user/confirmPurchase/${address.addid}" class="btn btn-primary" role="button">Deliver here</a>
 								</label>
 							</div>
 						</div>

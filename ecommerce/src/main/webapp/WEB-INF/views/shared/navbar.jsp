@@ -135,9 +135,9 @@
 							data-toggle="dropdown" href="#">${username}<span
 								class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="${contextRoot}/user/myAccount/${userid}">Account</a></li>
-								<li><a href="${contextRoot}/user/changePW/${userid}">Change password</a></li>
-								<li><a href="${contextRoot}/user/manageAddress/${userid}">Addresses</a></li>
+								<li><a href="${contextRoot}/user/myAccount">Account</a></li>
+								<li><a href="${contextRoot}/user/changePW">Change password</a></li>
+								<li><a href="${contextRoot}/user/manageAddress">Addresses</a></li>
 								<%-- <li><a href="${contextRoot}/user/wishList">Wish list</a></li> --%>
 								<li><a href="${contextRoot}/user/orderDetails">Orders</a></li>
 								<li><a href="${contextRoot}/logout">Log Out</a></li>

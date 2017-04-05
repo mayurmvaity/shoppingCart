@@ -57,7 +57,7 @@ public class SupplierController {
 		
 		
 		
-		//passing the list of categories
+				//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
 				// getting table of suppliers
 				mv.addObject("suppliers",supplierDAO.list());
@@ -72,7 +72,7 @@ public class SupplierController {
 
 	
 	@RequestMapping("/supplierDeletion/{id}")
-	public ModelAndView supplierDeletion(@PathVariable("id") int id) {
+	public ModelAndView supplierDeletion(@PathVariable("id") int id,@ModelAttribute("supplier") Supplier supplier1, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -99,29 +99,43 @@ public class SupplierController {
 			mv.addObject("CRUDmsgS","Supplier NOT deleted");
 		}
 		
+			/********************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		// getting table of suppliers
+		mv.addObject("suppliers",supplierDAO.list());
+			/*********************/
+		mv.addObject("isUserClickViewSuppliers", true);
 		log.debug("End of supplier deletion method");
 		return mv;
 	}
 	
 	@RequestMapping("/supplierUpdate/{id}")
-	public ModelAndView supplierUpdate(@PathVariable("id") int id) {
+	public ModelAndView supplierUpdate(@PathVariable("id") int id,@ModelAttribute("supplier") Supplier supplier1, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
 		log.debug("Starting of supplier update method");
 		
 		ModelAndView mv = new ModelAndView("page");
-		// getting table of suppliers
-				mv.addObject("suppliers",supplierDAO.list());
+		
 		
 		Supplier supplier=null;
 		supplier=supplierDAO.get(id);
 		
-		//passing list of categories to navbar
-		mv.addObject("categories",categoryDAO.list());
+		
 		
 		//passing this supplier info
 		mv.addObject("supplier",supplier);
+		
+		
+		/********************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		// getting table of suppliers
+		mv.addObject("suppliers",supplierDAO.list());
+			/*********************/
+		
 		
 		mv.addObject("isUserClickedUpdateSupplier",true);
 		
@@ -136,10 +150,7 @@ public class SupplierController {
 		log.debug("Starting of supplier addition method");
 		
 		ModelAndView mv = new ModelAndView("page");
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
-		// getting table of suppliers
-		mv.addObject("suppliers",supplierDAO.list());
+		
 		
 		if(result.hasErrors())
 		{
@@ -173,6 +184,15 @@ public class SupplierController {
 			
 			
 		}
+		
+		/********************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		// getting table of suppliers
+		mv.addObject("suppliers",supplierDAO.list());
+			/*********************/
+		
+		mv.addObject("isUserClickViewSuppliers", true);
 		
 		log.debug("End of supplier addition method");
 		return mv;

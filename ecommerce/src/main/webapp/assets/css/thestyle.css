@@ -221,6 +221,11 @@ body {
 		
 		}
 		
+		.container .forshoppingbutton {
+			color: #0066C2;
+			
+		}
+		
 		/**************    Confirm purchase page      ******************/
 		 .forusername {
 		 	font-weight: bold;
@@ -276,3 +281,4 @@ body {
 			font-size: 13px;
 		  
 		  }
+		  

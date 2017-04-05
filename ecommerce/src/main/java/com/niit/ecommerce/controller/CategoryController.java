@@ -54,8 +54,10 @@ public class CategoryController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Add New Brand");
 		
+		/*************/
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
+		/***************/
 		
 		mv.addObject("isUserClickAddCategory", true);
 		
@@ -93,6 +95,12 @@ public class CategoryController {
 			mv.addObject("CRUDmsgC","Category NOT deleted");
 		}
 		
+		/*************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		/***************/
+		
+		mv.addObject("isUserClickViewCategories", true);
 		log.debug("End of category deletion method");
 		
 		return mv;
@@ -110,8 +118,10 @@ public class CategoryController {
 		Category category=null;
 		category=categoryDAO.get(id);
 		
-		//passing list of categories to navbar
+		/*************/
+		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
+		/***************/
 		
 		//passing this category info
 		mv.addObject("category",category);
@@ -164,6 +174,12 @@ public class CategoryController {
 			
 		}
 		
+		/*************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		/***************/
+		
+		mv.addObject("isUserClickViewCategories", true);
 		log.debug("End of category addition method");
 		
 		return mv;

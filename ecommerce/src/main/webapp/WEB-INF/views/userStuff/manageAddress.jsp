@@ -4,7 +4,7 @@
 							</div>
 								<div class="panel-body">
 									<div class="col-md-8 col-md-offset-2">
-										<form:form method="post" action="${contextRoot}/user/addNewAddress/${userid}" commandName="address">
+										<form:form method="post" action="${contextRoot}/user/addNewAddress" commandName="address">
 											<fieldset>
 		                        				<legend>Add new address</legend>
 		                        				
@@ -12,7 +12,7 @@
 													placeholder="Enter Product Id" value="${address.addid}" />
 		                        				
 		                        				<form:hidden path="aid" class="form-control"
-													placeholder="Enter Product Id" value="${userid}" />
+													placeholder="Enter Product Id" value="${address.aid}" />
 		                        				
 		                        				
 											<div class="form-group col-md-12">
@@ -72,7 +72,7 @@
 								</div>
 								<div class="panel-body">
 										<div class="row">
-										<c:forEach items="${Addresses}" var="addresses">
+										<c:forEach items="${addresses}" var="addresses">
 										  <div class="col-sm-6 col-md-4">
 										    <div class="thumbnail">
 										     

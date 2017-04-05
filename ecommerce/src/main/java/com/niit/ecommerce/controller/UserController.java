@@ -1,5 +1,7 @@
 package com.niit.ecommerce.controller;
 
+import java.security.Principal;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -10,17 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
+import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
-import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.UserTable;
 
 @Controller
@@ -39,7 +41,13 @@ public class UserController {
 	private AddressDAO addressDAO;
 	
 	@Autowired
+	private CartitemDAO cartitemDAO;
+	
+	@Autowired
 	private ProductDAO productDAO;
+	
+	@Autowired
+	private OrderiDAO orderiDAO;
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
@@ -47,25 +55,40 @@ public class UserController {
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping(value = { "/changePW/{id}" })
-	public ModelAndView showChangePWPage(@PathVariable("id") int id) {
+	@RequestMapping(value = { "/changePW" })
+	public ModelAndView showChangePWPage(Principal principal) {
 		
 		log.debug("Starting of change pw method");
 		
 		
 		System.out.println("clicked on change PW page");
 		ModelAndView mv = new ModelAndView("page");
+		
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		mv.addObject("title", "Change Password");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		
 				
-				UserTable user=null;
-				user=userDAO.get(id);
+				
+				//user=userDAO.get(id);
 				
 				// passing the current object
 				mv.addObject("user",user);
 				
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
 				
 		mv.addObject("isUserClickChangePW", true);
 		
@@ -75,12 +98,13 @@ public class UserController {
 	}
 	
 	@RequestMapping(value={ "/validatePassword" }, method = RequestMethod.POST)
-	public ModelAndView validatePassword(@ModelAttribute("user") @Valid UserTable user,BindingResult result, HttpServletRequest request) {
+	public ModelAndView validatePassword(Principal principal, @ModelAttribute("user") @Valid UserTable user,BindingResult result, HttpServletRequest request) {
 		// actually you have to take the data from db
 		// temporarily
 		log.debug("Starting of validate pw method");
 		
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
 		
 		if(result.hasErrors()) {
 			
@@ -88,14 +112,7 @@ public class UserController {
 			return mv;
 		}
 		
-		
-		
-		
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
-					
-		//passing the list of products
-		mv.addObject("products", productDAO.list());
+	
 		
 		
 		boolean c = user.pwvalidate();	
@@ -118,6 +135,22 @@ public class UserController {
 		
 			log.debug("End of validate pw method");
 			
+			/**************/
+			// passing the list of categories
+			mv.addObject("categories", categoryDAO.list());
+			//passing the list of products
+			mv.addObject("products", productDAO.list());
+			//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+			session.setAttribute("username", user1.getFname());
+			session.setAttribute("Role",user1.getRole());
+			session.setAttribute("userid",user1.getUid());
+			session.setAttribute("cartid",user1.getCart());
+			session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+			// passing order details to orderdetails page
+			session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+				/***************/
+			
+			mv.addObject("isUserClickMyAccount", true);
 		
 		return mv;
 	}
@@ -127,23 +160,36 @@ public class UserController {
 	
 	
 	
-	@RequestMapping(value = { "/billingAddress/{id}" })
-	public ModelAndView showBillingAddressPage(@PathVariable("id") int id) {
+	@RequestMapping(value = { "/billingAddress" })
+	public ModelAndView showBillingAddressPage(Principal principal) {
 		log.debug("Starting of show biling address method");
 		
 		
 		System.out.println("clicked on billing address page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		mv.addObject("title", "Billing Address");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-				
-				UserTable user=null;
-				user=userDAO.get(id);
-				mv.addObject("user",user);
 		
 				
+				/*UserTable user=null;
+				user=userDAO.get(id);*/
+				mv.addObject("user",user);
+		
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
 		
 		mv.addObject("isUserClickBillingAddress", true);
 		log.debug("End of show biling address method");
@@ -152,13 +198,13 @@ public class UserController {
 	}
 
 	@RequestMapping(value= { "/updateBillingAddress" }, method= RequestMethod.POST)
-	public ModelAndView updateBillingAddress(@ModelAttribute("user") @Valid UserTable user,BindingResult result) {
+	public ModelAndView updateBillingAddress(Principal principal, @ModelAttribute("user") @Valid UserTable user,BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		log.debug("Starting of update billing address method");
 		
 		ModelAndView mv = new ModelAndView("page");
-		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
 		if(result.hasErrors()) {
 			
 			mv.addObject("isUserClickBillingAddress",true);
@@ -182,29 +228,60 @@ public class UserController {
 			System.out.println(e);
 		}
 		
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
+		mv.addObject("isUserClickMyAccount", true);
 		log.debug("End of update billing address method");
 		
 		return mv;
 	}
 	
 
-	@RequestMapping(value = { "/myAccount/{id}" })
-	public ModelAndView showMyAccountPage(@PathVariable("id") int id) {
+	@RequestMapping(value = { "/myAccount" })
+	public ModelAndView showMyAccountPage(Principal principal) {
 		
 		log.debug("Starting of show my account page method");
 		
 		System.out.println("clicked on my account page");
 		ModelAndView mv = new ModelAndView("page");
+		
+		UserTable user = userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "My Account");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
 		
-				UserTable user=null;
-				user=userDAO.get(id);
+				/*UserTable user=null;
+				user=userDAO.get(id);*/
 				
 				mv.addObject("user",user);
 				
+					/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
 				
 		mv.addObject("isUserClickMyAccount", true);
 		
@@ -213,22 +290,42 @@ public class UserController {
 		return mv;
 	}
 	
-	@RequestMapping(value = { "/personalInfo/{id}" })
-	public ModelAndView showPersonalInfoPage(@PathVariable("id") int id) {
+	@RequestMapping(value = { "/personalInfo" })
+	public ModelAndView showPersonalInfoPage(Principal principal) {
 		
 		log.debug("Starting of show personal info page method");
 		
 		System.out.println("clicked on personal info page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Personal Information");
 		
 		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
 				
-		UserTable user=null;
-				user=userDAO.get(id);
+		
 				mv.addObject("user",user);
+				
+				UserTable user1=userDAO.getUserByEmail(principal.getName());
 
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user1.getFname());
+				session.setAttribute("Role",user1.getRole());
+				session.setAttribute("userid",user1.getUid());
+				session.setAttribute("cartid",user1.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+					/***************/
+				
+				
+				
 		mv.addObject("isUserClickPersonalInfo", true);
 		
 		log.debug("End of show personal info page method");
@@ -237,7 +334,7 @@ public class UserController {
 	}
 	
 	@RequestMapping(value={ "/updatePersonalInfo" }, method = RequestMethod.POST)
-	public ModelAndView updatePersonalInfo(@ModelAttribute("user") @Valid UserTable user, BindingResult result) {
+	public ModelAndView updatePersonalInfo(Principal principal, @ModelAttribute("user") @Valid UserTable user, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		log.debug("Starting of update personal info page method");
@@ -267,26 +364,58 @@ public class UserController {
 			System.out.println(e);
 		}
 		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
+		mv.addObject("isUserClickMyAccount", true);
+		
 		log.debug("End of update personal info page method");
 		
 		return mv;
 	}
 	
-	@RequestMapping(value = { "/changeMobNo/{id}" })
-	public ModelAndView showChangeMobNoPage(@PathVariable("id") int id) {
+	@RequestMapping(value = { "/changeMobNo" })
+	public ModelAndView showChangeMobNoPage(Principal principal) {
 		
 		log.debug("Starting of show change mobile no page method");
 		
 		System.out.println("clicked on change mobile no page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		mv.addObject("title", "Change Mobile Number");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
-		
-				UserTable user=null;
-				user=userDAO.get(id);
+				
 				mv.addObject("user",user);
+				
+					/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
+				
 
 		mv.addObject("isUserClickChangeMobNo", true);
 		
@@ -296,13 +425,14 @@ public class UserController {
 	}
 
 	@RequestMapping(value={ "/updateMobileNo" }, method=RequestMethod.POST)
-	public ModelAndView updateMobileNo(@ModelAttribute("user") UserTable user) {
+	public ModelAndView updateMobileNo(Principal principal, @ModelAttribute("user") UserTable user) {
 		// actually you have to take the data from db
 		// temporarily
 		
 		log.debug("Starting of update mobile no page method");
 		
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
 		
 		try{
 			boolean b=userDAO.update(user);
@@ -319,6 +449,23 @@ public class UserController {
 		{
 			System.out.println(e);
 		}
+		
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
+		mv.addObject("isUserClickMyAccount", true);
 		
 		log.debug("End of update mobile no page method");
 		

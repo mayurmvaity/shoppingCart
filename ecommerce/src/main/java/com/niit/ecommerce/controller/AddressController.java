@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
+import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
@@ -43,24 +45,49 @@ public class AddressController {
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
+	
+	@Autowired
+	private CartitemDAO cartitemDAO;
+	
+	@Autowired
+	private OrderiDAO orderiDAO;
 
 	@Autowired
 	private HttpSession session;
 	
-	@RequestMapping(value = { "/manageAddress/{id}" })
-	public ModelAndView showManageAddressPage(@PathVariable("id") int id, @ModelAttribute("address") Address address, BindingResult result) {
+	@RequestMapping(value = { "/manageAddress" })
+	public ModelAndView showManageAddressPage(Principal principal, @ModelAttribute("address") Address address, BindingResult result) {
 		
 		log.debug("Starting of show manage address page method");
 		
 		System.out.println("clicked on manage addresses page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Manage Addresses");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		
 				
 				//passing the list of addresses
-				mv.addObject("Addresses",addressDAO.getByAid(id));
+				mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
+				
+				UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+				/**************/
+			// passing the list of categories
+			mv.addObject("categories", categoryDAO.list());
+			//passing the list of products
+			mv.addObject("products", productDAO.list());
+			//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+			session.setAttribute("username", user1.getFname());
+			session.setAttribute("Role",user1.getRole());
+			session.setAttribute("userid",user1.getUid());
+			session.setAttribute("cartid",user1.getCart());
+			session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+			// passing order details to orderdetails page
+			session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+				/***************/
+				
 		
 		mv.addObject("isUserClickManageAddress", true);
 		
@@ -69,20 +96,19 @@ public class AddressController {
 		return mv;
 	}
 	
-	@RequestMapping(value={ "/addNewAddress/{id}" }, method= RequestMethod.POST)
-	public ModelAndView addNewAddress(@PathVariable("id") int id, @ModelAttribute("address") @Valid Address address, BindingResult result) {
+	@RequestMapping(value={ "/addNewAddress" }, method= RequestMethod.POST)
+	public ModelAndView addNewAddress(Principal principal, @ModelAttribute("address") @Valid Address address, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
 		log.debug("Starting of add new address method");
 		
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
 		
-		//passing the list of addresses
-		mv.addObject("Addresses",addressDAO.getByAid(id));
+		
+		
 		
 		if(result.hasErrors()) {
 			
@@ -124,13 +150,38 @@ public class AddressController {
 			System.out.println(e);
 		}
 		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+		//passing the list of addresses
+		mv.addObject("addresses",addressDAO.getByAid(user1.getUid()));
+		
+		//passing this address info
+		Address address1=new Address();
+		mv.addObject("address",address1);
+		
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
+		mv.addObject("isUserClickManageAddress", true);
 		log.debug("End of add new address method");
 		
 		return mv;
 	}
 	
 	@RequestMapping("/deleteAddresses/{id}")
-	public ModelAndView deleteAddresses(@PathVariable("id") int id) {
+	public ModelAndView deleteAddresses(@PathVariable("id") int id, Principal principal, @ModelAttribute("address") @Valid Address address1, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -138,6 +189,10 @@ public class AddressController {
 		
 		
 		ModelAndView mv = new ModelAndView("page");
+		
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
+		
 		
 		Address address=null;
 		address=addressDAO.get(id);
@@ -155,13 +210,36 @@ public class AddressController {
 			mv.addObject("Usermsg","address NOT deleted");
 		}
 
+		
+		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+		//passing the list of addresses
+		mv.addObject("addresses",addressDAO.getByAid(user1.getUid()));
+		
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
+		mv.addObject("isUserClickManageAddress", true);
 		log.debug("End of delete address method");
 		
 		return mv;
 	}
 
 	@RequestMapping("/updateAddress/{id}")
-	public ModelAndView updateAddress(@PathVariable("id") int id) {
+	public ModelAndView updateAddress(@PathVariable("id") int id, Principal principal, @ModelAttribute("address") @Valid Address address1, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -172,11 +250,33 @@ public class AddressController {
 		Address address=null;
 		address=addressDAO.get(id);
 		
-		//passing list of categories to navbar
-		mv.addObject("categories",categoryDAO.list());
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		
-		//passing this category info
+		//passing the list of addresses
+		mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
+		
+		//passing this address info
 		mv.addObject("address",address);
+		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+	
+		
+		
 		
 		mv.addObject("isUserClickedUpdateAddress",true);
 		
@@ -193,8 +293,9 @@ public class AddressController {
 		
 		ModelAndView mv = new ModelAndView("page");
 		
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
+		
+		/*//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());*/
 		
 		
 		
@@ -244,6 +345,25 @@ public class AddressController {
 		
 		//passing the list of addresses
 		mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
+		
+		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user1.getFname());
+		session.setAttribute("Role",user1.getRole());
+		session.setAttribute("userid",user1.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			/***************/
+		
 		
 		
 		mv.addObject("isUserClickSelectAddress", true);

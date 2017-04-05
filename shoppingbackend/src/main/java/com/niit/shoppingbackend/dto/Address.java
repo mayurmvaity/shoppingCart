@@ -33,8 +33,7 @@ public class Address {
 	@Size(min=2,max=50)
 	private String state;
 	
-	@Min(100000)
-	@Max(999999)
+	
 	private int pincode;
 	
 	@Column(name = "is_active")

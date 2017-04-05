@@ -129,13 +129,20 @@ public class ProductController {
 		
 		mv.addObject("title", "Add Product");
 		
-		//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());
+		Product product1=new Product();
+		mv.addObject("product",product1);
 				
-		//passing the list of products for the table below
-		mv.addObject("listProducts", productDAO.list());
 		
-		mv.addObject("isUserClickAddProduct", true);
+		
+		/*******************/
+		// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+		/***********************/
+		
+		mv.addObject("isUserClickAdminsProducts", true);
 		
 		log.debug("End of product addition  method");
 		
@@ -143,7 +150,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/productDeletion/{id}")
-	public ModelAndView productDeletion(@PathVariable("id") int id) {
+	public ModelAndView productDeletion(@PathVariable("id") int id, @ModelAttribute("product") Product product1, BindingResult result ) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -169,11 +176,19 @@ public class ProductController {
 
 		log.debug("End of product deletion  method");
 		
+		/*******************/
+		// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+		/***********************/
+		mv.addObject("isUserClickAdminsProducts", true);
 		return mv;
 	}
 	
 	@RequestMapping("/productUpdate/{id}")
-	public ModelAndView productUpdate(@PathVariable("id") int id) {
+	public ModelAndView productUpdate(@PathVariable("id") int id, @ModelAttribute("product") Product product1, BindingResult result ) {
 		// actually you have to take the data from db
 		// temporarily
 		
@@ -184,8 +199,12 @@ public class ProductController {
 		Product product=null;
 		product=productDAO.get(id);
 		
-		//passing list of categories to navbar
+		/*******************/
+		//passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
+		//passing the list of products for the table below
+		mv.addObject("listProducts", productDAO.list());
+		/***********************/
 		
 		//passing this category info
 		mv.addObject("product",product);

@@ -69,17 +69,33 @@ public class OrderController {
 	private HttpSession session;
 	
 	@RequestMapping(value = { "/orderDetails" })
-	public ModelAndView showOrderDetailsPage() {
+	public ModelAndView showOrderDetailsPage(Principal principal) {
 		
 		log.debug("Starting of show order details page method");
 		
 		System.out.println("clicked on order details page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Order Details");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
 		
+		
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
+				
 		mv.addObject("isUserClickOrderDetails", true);
 		
 		log.debug("End of show order details page method");
@@ -103,39 +119,70 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = { "/myCart" })
-	public ModelAndView showMyCartPage() {
+	public ModelAndView showMyCartPage(Principal principal) {
 		
 		log.debug("Starting of show my cart page method");
 		System.out.println("clicked on my cart page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "My Cart");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
 				
-				
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+			/***************/
 		
 		mv.addObject("isUserClickMyCart", true);
 		log.debug("End of show my cart page method");
 		return mv;
 	}
 
-	@RequestMapping(value = { "/selectAddress/{id}" })
-	public ModelAndView showSelectAddressPage(@PathVariable("id") int id, @ModelAttribute("address") Address address ,BindingResult result) {
+	@RequestMapping(value = { "/selectAddress" })
+	public ModelAndView showSelectAddressPage(Principal principal, @ModelAttribute("address") Address address ,BindingResult result) {
 		log.debug("Starting of show select address page method");
 		
 		
 		System.out.println("clicked on select address page");
 		ModelAndView mv = new ModelAndView("page");
+		
+		UserTable user=null;
+		user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Select Address");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		
 				
 				
 				//passing the list of addresses
-				mv.addObject("addresses",addressDAO.getByAid(id));
+				mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
 		
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
+				
 		mv.addObject("isUserClickSelectAddress", true);
 		
 		log.debug("End of show select address page method");
@@ -143,21 +190,25 @@ public class OrderController {
 		return mv;
 	}
 
-	@RequestMapping(value = { "/confirmPurchase/{id}/{aid}" })
-	public ModelAndView showConfirmPurchasePage(@PathVariable("id") int id,@PathVariable("aid") int aid) {
+	@RequestMapping(value = { "/confirmPurchase/{aid}" })
+	public ModelAndView showConfirmPurchasePage(Principal principal,@PathVariable("aid") int aid) {
 		
 		log.debug("Starting of show confirm purchase page method");
 		
 		
 		System.out.println("clicked on confirm purchase page");
 		ModelAndView mv = new ModelAndView("page");
+		
+		UserTable user=null;
+		user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Confirm Purchase");
 		
 		//passing the list of categories
 				mv.addObject("categories",categoryDAO.list());
 				
 				
-				UserTable user=userDAO.get(id);
+				//UserTable user=userDAO.get(id);
 				
 				// passing a user
 				mv.addObject("user",user);
@@ -192,7 +243,7 @@ public class OrderController {
 				
 				System.out.println(oid);
 				try {
-				List<Cartitem> clist = cartitemDAO.getByUserid(id);
+				List<Cartitem> clist = cartitemDAO.getByUserid(user.getUid());
 				
 					if(clist != null){
 						for(Cartitem citem : clist)
@@ -215,6 +266,22 @@ public class OrderController {
 					mv.addObject("OrderMsg","Cartitems NOT updated");
 				}
 				
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
+				
+				
 		mv.addObject("isUserClickConfirmPurchase", true);
 		
 		log.debug("End of show confirm purchase page method");
@@ -223,34 +290,54 @@ public class OrderController {
 	}
 
 	@RequestMapping(value = { "/paymentMode/{orderid}" })
-	public ModelAndView showPaymentModePage(@PathVariable("orderid") int orderid) {
+	public ModelAndView showPaymentModePage(Principal principal, @PathVariable("orderid") int orderid) {
 		
 		log.debug("Starting of show payment mode page method");
 		
 		System.out.println("clicked on payment mode page");
 		ModelAndView mv = new ModelAndView("page");
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		mv.addObject("title", "Payment Mode");
 		
-		//passing the list of categories
-				mv.addObject("categories",categoryDAO.list());
+		
 		
 				// passing the ordertable
 				mv.addObject("orderitem",orderDAO.get(orderid));
+				
+				/**************/
+				// passing the list of categories
+				mv.addObject("categories", categoryDAO.list());
+				//passing the list of products
+				mv.addObject("products", productDAO.list());
+				//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+				session.setAttribute("username", user.getFname());
+				session.setAttribute("Role",user.getRole());
+				session.setAttribute("userid",user.getUid());
+				session.setAttribute("cartid",user.getCart());
+				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+				// passing order details to orderdetails page
+				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+					/***************/
+				
+				
 		mv.addObject("isUserClickPaymentMode", true);
 		log.debug("End of show payment mode page method");
 		
 		return mv;
 	}
 
-	@RequestMapping(value= { "/addPaymentMode/{userid}/{oid}" })
-	public ModelAndView addPaymentMode(@ModelAttribute("orderitem") Ordertable order, @PathVariable("userid") int userid, @PathVariable("oid") int oid, BindingResult result) {
+	@RequestMapping(value= { "/addPaymentMode/{oid}" })
+	public ModelAndView addPaymentMode(Principal principal, @ModelAttribute("orderitem") Ordertable order, @PathVariable("oid") int oid, BindingResult result) {
 		
 		log.debug("beginning of add payment mode");
 		ModelAndView mv = new ModelAndView("page");
 		
+		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		order.setOrdered(true);
 		
-		List<Cartitem> clist = cartitemDAO.getByUserid(userid);
+		List<Cartitem> clist = cartitemDAO.getByUserid(user.getUid());
 		for(Cartitem cl: clist)
 		{
 			boolean b=cartitemDAO.placeOrder(cl);
@@ -278,7 +365,7 @@ public class OrderController {
 			
 		}
 		
-		Cart cart=cartDAO.get(userDAO.get(userid).getCart().getCartid());
+		Cart cart=cartDAO.get(userDAO.get(user.getUid()).getCart().getCartid());
 		cart.setItems(0);
 		cart.setTotalcost(0);
 		
@@ -292,9 +379,27 @@ public class OrderController {
 		if(b) mv.addObject("OrderMsg","Payment Mode added || order has been placed");
 		else mv.addObject("OrderMsg","Payment mode NOT added");
 		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+		
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user1.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+			/***************/
+		
+		
+		/*// passing order details to orderdetails page
 		//mv.addObject("carto",cartitemDAO.getOrderedItems(userid, oid));
-		mv.addObject("carto",orderiDAO.getUndelivered(userid));
+		mv.addObject("carto",orderiDAO.getUndelivered(user.getUid()));*/
 		
 		
 		mv.addObject("isUserClickOrderDetails",true);
@@ -407,7 +512,20 @@ public class OrderController {
 			
 			
 		}
-			
+			/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+			/***************/
 		
 		mv.addObject("userClickHome", true);
 		
@@ -455,6 +573,23 @@ public class OrderController {
 		{
 			mv.addObject("CartMsg","Cart item not deleted");
 		}
+		
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+			/***************/
+		
+		
 		
 		mv.addObject("isUserClickMyCart",true);
 		

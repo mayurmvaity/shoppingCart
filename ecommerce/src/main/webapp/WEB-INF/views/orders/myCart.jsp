@@ -1,7 +1,7 @@
 <div class="container">
 			<p class="formycartheader">Shopping Cart</p>
 
-			
+			<c:if test="${cartid.items>0 }">
 			<div class="panel panel-default">
 				<%-- <div class="panel-heading">
 					<h3 class="panel-title">My Cart <span class="badge">${cartid.items}</span></h3>
@@ -51,8 +51,14 @@
 					<a href="${contextRoot}/home" class="btn btn-default btn-lg pull-right">Continue shopping</a>
 					</div>
 					<div class="col-md-2">
-						<a href="${contextRoot}/user/selectAddress/${userid}" class="btn btn-warning btn-lg pull-right">Place order</a>
+						<a href="${contextRoot}/user/selectAddress" class="btn btn-warning btn-lg pull-right">Place order</a>
 					</div>
 					</div>
 			</div>
+			
+			</c:if>
+			<c:if test="${cartid.items == 0}">
+				<p>Your Shopping Cart is empty.</p>
+				<a class="forshoppingbutton" href="${contextRoot}/home">Continue shopping</a>
+			</c:if>
 		</div>
