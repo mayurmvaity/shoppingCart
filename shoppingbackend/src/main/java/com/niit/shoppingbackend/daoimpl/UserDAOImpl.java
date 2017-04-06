@@ -107,6 +107,28 @@ public class UserDAOImpl implements UserDAO {
 			}
 			return null;
 	}
+
+	@Override
+	public boolean userExists(String email) {
+		
+		String selectActiveUser = "FROM UserTable WHERE active = :active and email = :email";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveUser);
+		
+		query.setParameter("active", true);
+		query.setParameter("email", email);
+		System.out.println(query);
+		try{
+		
+		if(query.getSingleResult()==null) return false;
+		else return true;
+		}
+		catch(Exception e) {
+			System.out.println("exception occurred");
+			return false;
+		}
+		
+	}
 	
 
 

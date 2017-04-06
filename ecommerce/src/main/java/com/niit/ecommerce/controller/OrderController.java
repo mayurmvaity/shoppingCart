@@ -24,6 +24,7 @@ import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
+import com.niit.shoppingbackend.daoimpl.OrderDAOImpl;
 import com.niit.shoppingbackend.dto.Address;
 import com.niit.shoppingbackend.dto.Cart;
 import com.niit.shoppingbackend.dto.Cartitem;
@@ -94,6 +95,8 @@ public class OrderController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 		mv.addObject("isUserClickOrderDetails", true);
@@ -124,11 +127,57 @@ public class OrderController {
 		log.debug("Starting of show my cart page method");
 		System.out.println("clicked on my cart page");
 		ModelAndView mv = new ModelAndView("page");
-		UserTable user=userDAO.getUserByEmail(principal.getName());
+		
 		
 		mv.addObject("title", "My Cart");
 		
+		UserTable user1=userDAO.getUserByEmail(principal.getName());
+		List<Cartitem> crl=cartitemDAO.getByUserid(user1.getUid());
+		for(Cartitem ci:crl)
+		{
+			Product product=productDAO.get(ci.getProduct().getPid());
+			if(product.getStock()<ci.getIquantity())
+			{
+				Cartitem cartitem = ci;
+				//cartitem=cartitemDAO.get(id);
 				
+				int userid=cartitem.getUserid();
+				UserTable user=userDAO.get(userid);
+				Cart cart=user.getCart();
+				
+				long cost=cartitem.getItotal();
+				int q=cartitem.getIquantity();
+				
+				
+				boolean b=cartitemDAO.delete(cartitem);
+				
+				if(b) {
+					
+					
+					int items=cart.getItems();
+					items=items-q;
+					
+					cart.setItems(items);
+					long cartCost=cart.getTotalcost();
+					cartCost=cartCost-cost;
+					cart.setTotalcost(cartCost);
+					
+					boolean c=cartDAO.update(cart);
+					if(c) mv.addObject("CartUpdated","Cart updated");
+					else mv.addObject("CartUpdated","Cart did not update");
+					
+					mv.addObject("CartMsg","Cart item deleted");
+				}
+				else
+				{
+					mv.addObject("CartMsg","Cart item not deleted");
+				}
+			}
+		}
+		
+		
+		
+		UserTable user=userDAO.getUserByEmail(principal.getName());
 		/**************/
 		// passing the list of categories
 		mv.addObject("categories",categoryDAO.list());
@@ -142,6 +191,9 @@ public class OrderController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user));
+		
 			/***************/
 		
 		mv.addObject("isUserClickMyCart", true);
@@ -181,6 +233,8 @@ public class OrderController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 		mv.addObject("isUserClickSelectAddress", true);
@@ -279,6 +333,8 @@ public class OrderController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 				
@@ -318,6 +374,8 @@ public class OrderController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 				
@@ -340,6 +398,9 @@ public class OrderController {
 		List<Cartitem> clist = cartitemDAO.getByUserid(user.getUid());
 		for(Cartitem cl: clist)
 		{
+			Product product=productDAO.get(cl.getProduct().getPid());
+			if(product.getStock()>=cl.getIquantity())
+			{
 			boolean b=cartitemDAO.placeOrder(cl);
 			if(b) {
 				mv.addObject("OrderMsgx","Cart item set to ordered"); System.out.println("cartitem set to ordered");
@@ -357,12 +418,32 @@ public class OrderController {
 			orderi.setDelivered(false);
 			//orderi.setPid(cl.getProduct().getPid());
 			orderi.setProduct(cl.getProduct());
-			orderi.setOrderid(oid);
+			orderi.setOrder(order);
+			orderi.setAddress(order.getAddress());
+			
+			int stock=product.getStock();
+			stock=stock-cl.getIquantity();
+			product.setStock(stock);
+			boolean y = productDAO.update(product);
+			if(y) System.out.println("Product stock updated");
+			else System.out.println("Product stock not updated");
 			
 			boolean x=orderiDAO.add(orderi);
 			if(x) System.out.println("Order item added to orderi table");
 			else System.out.println("Order item not added to orderi table");
-			
+			}
+			else
+			{
+				Ordertable ordertable=orderDAO.get(cl.getOid());
+				long amount=ordertable.getAmount();
+				amount=amount-cl.getItotal();
+				ordertable.setAmount(amount);
+				
+				boolean z = orderDAO.update(ordertable);
+				if(z) System.out.println("Out of stock found");
+				else System.out.println("Out of stock not found");
+				
+			}
 		}
 		
 		Cart cart=cartDAO.get(userDAO.get(user.getUid()).getCart().getCartid());
@@ -394,6 +475,8 @@ public class OrderController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user1));
 			/***************/
 		
 		
@@ -525,6 +608,8 @@ public class OrderController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user));
 			/***************/
 		
 		mv.addObject("userClickHome", true);
@@ -587,6 +672,8 @@ public class OrderController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user));
 			/***************/
 		
 		

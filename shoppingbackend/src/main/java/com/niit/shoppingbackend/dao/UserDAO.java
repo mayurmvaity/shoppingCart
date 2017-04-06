@@ -15,4 +15,5 @@ public interface UserDAO {
 	UserTable valid(String email, String pw);
 	
 	UserTable getUserByEmail(String email);
+	boolean userExists(String email);
 }

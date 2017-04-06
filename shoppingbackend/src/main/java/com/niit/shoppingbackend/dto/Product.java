@@ -49,7 +49,16 @@ public class Product {
 	@Max(999999)
 	private int price;
 	
+	@Column
+	private int stock;
 	
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
 	@Column
 	private String pimage;
 	
@@ -103,10 +112,11 @@ public class Product {
 		this.pdesc = pdesc;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Product [pid=" + pid + ", pname=" + pname + ", pdesc=" + pdesc + ", category=" + category + ", price="
-				+ price + ", pimage=" + pimage + ", pcolor=" + pcolor + ", active=" + active + "]";
+				+ price + ", stock=" + stock + ", pimage=" + pimage + ", pcolor=" + pcolor + ", active=" + active + "]";
 	}
 	public Category getCategory() {
 		return category;

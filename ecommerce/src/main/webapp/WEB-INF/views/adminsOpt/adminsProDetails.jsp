@@ -13,7 +13,7 @@
 							 	<div class="panel-body">
 							    	<p class="prodetailsname">${product.category.name} ${product.pname} ( ${product.pcolor} )</p>
 									<hr />
-									<p class="propricedetails"><span class="pricetagspan">Price:</span> &#8377; ${product.price}</p>
+									<p class="propricedetails"><span class="pricetagspan">Price:</span> &#8377; ${product.price} <hr /> Stock: ${product.stock}</p>
 								</div>
 						</div>
 						

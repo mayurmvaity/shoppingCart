@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.niit.shoppingbackend.dao.OrderDAO;
 import com.niit.shoppingbackend.dto.Ordertable;
+import com.niit.shoppingbackend.dto.UserTable;
 
 @Repository("orderDAO")
 @Transactional
@@ -74,4 +75,19 @@ public class OrderDAOImpl implements OrderDAO {
 		}
 	}
 
+	@Override
+	public List<Ordertable> getByUser(UserTable user) {
+		String selectActiveSupplier = "FROM Ordertable WHERE active = :active and delivered = :delivered and ordered =:ordered and user = :user";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveSupplier);
+		
+		query.setParameter("active", true);
+		query.setParameter("delivered", false);
+		query.setParameter("ordered", true);
+		query.setParameter("user", user);
+		
+		return query.getResultList();
+	}
+	
+	
 }

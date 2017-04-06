@@ -27,7 +27,8 @@
             <c:forEach items="${cartitems}" var="cartit">
               <tr>
                 <th scope="row"><img src="${cartit.product.pimage}" width="200px"></th>
-                <td><p><a href="${contextRoot}/productDetails/${cartit.product.pid}">${cartit.product.category.name} ${cartit.product.pname}</a> by ${cartit.product.category.name} </p><p>${cartit.product.pdesc}</p></td>
+                <td><p><a href="${contextRoot}/productDetails/${cartit.product.pid}">${cartit.product.category.name} ${cartit.product.pname}</a> by ${cartit.product.category.name} </p><p>${cartit.product.pdesc}</p> 
+                </td>
                 <td><p class="productprice"><span class="rupeesymbol">&#8377;</span>${cartit.iprice}</p></td>
                 <td>${cartit.iquantity}</td>
                 <td>Free</td>

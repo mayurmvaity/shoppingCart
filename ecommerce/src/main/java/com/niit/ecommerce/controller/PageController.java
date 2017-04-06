@@ -28,6 +28,7 @@ import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderDAO;
 import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
@@ -62,6 +63,9 @@ public class PageController {
 	
 	@Autowired
 	private OrderiDAO orderiDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
@@ -443,6 +447,8 @@ public class PageController {
 			// passing order details to orderdetails page
 						//mv.addObject("carto",cartitemDAO.getOrderedItems(userid, oid));
 						session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+						
+						session.setAttribute("orders", orderDAO.getByUser(user));
 			mv.addObject("title", "Home");
 			mv.addObject("user",user);
 			mv.addObject("userClickHome", true);
@@ -531,7 +537,8 @@ public class PageController {
 		}
 		
 		
-		
+		if(!(userDAO.userExists(user.getEmail())))
+		{
 		if(user.getUid()==0) {
 		boolean b=userDAO.add(user);
 		
@@ -542,13 +549,20 @@ public class PageController {
 			user.setCart(cart);
 			boolean y=userDAO.update(user);
 			mv.addObject("RegMsg","Registered Successfully");
+			mv.addObject("isUserClickLoginPage", true);
 		}
 		else
 		{
 			mv.addObject("RegMsg","Couldn't register");
+			mv.addObject("isUserClickRegPage", true);
 		}
 		}
-		
+		}
+		else
+		{
+			mv.addObject("Emailerror","Same User email cannot be registered");
+			mv.addObject("isUserClickRegPage", true);
+		}
 		
 		/*mv.addObject("title", "Home");
 		

@@ -30,7 +30,7 @@
                         <div class="form-group col-md-12">
                             <form:label path="email" class="forlabels">Email: <span class="reqstar">&#42;</span><font color='red'><form:errors path="email" /></font></form:label>
                             <form:input type="email" class="form-control" path="email" placeholder="Email" />
-                           
+                           	<p><span style="color: red; font-weight: bold;">${Emailerror}</span></p>
                         </div>
 
                         <div class="form-group col-md-6">

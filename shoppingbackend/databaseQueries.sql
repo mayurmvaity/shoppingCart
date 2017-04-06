@@ -18,6 +18,7 @@ create table product (
 	price number(9)not null,
 	pcolor VARCHAR(20) not null,
 	id NUMBER(4) not null,
+	stock NUMBER(10) not null,
 	is_active BOOLEAN not null,
 	constraint fk_key_category foreign key (id) references category(id)
 	
@@ -200,6 +201,7 @@ create table ordertable (
 	amount number(15),
 	is_active boolean not null,
 	is_ordered boolean not null,
+	is_dispatched boolean not null,
 	is_delivered boolean not null,
 	payment varchar(6),
 	constraint fk_key_userx foreign key (uid) references usertable(uid),
@@ -214,12 +216,14 @@ create table orderi (
 	pid number(6),
 	quantity number(6),
 	itotal number(15),
+	addid number(6),
 	is_ordered boolean not null,
 	is_delivered boolean not null,
 	is_active boolean not null,
 	constraint fk_key_userxy foreign key (uid) references usertable(uid),
 	constraint fk_key_addrss foreign key (orderid) references ordertable(orderid),
-	constraint fk_key_productx foreign key (pid) references product(pid)
+	constraint fk_key_productx foreign key (pid) references product(pid),
+	constraint fk_key_deladd foreign key (addid) references address(addid)
 	
 
 	

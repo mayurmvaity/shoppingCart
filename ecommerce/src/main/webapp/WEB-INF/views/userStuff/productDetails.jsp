@@ -27,16 +27,30 @@
 						</div>
 						
 					</div>
-
+					<c:if test="${product.stock > 0}">
 					<div class="row">
 						<div class="panel panel-default">
 							 	<div class="panel-body">
+							 		<p class="forinstock">In stock</p>
+							 	
 							    	<a href="${contextRoot}/user/addToCart/${product.pid}" class="btn btn-primary btn-lg">Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span></a>
 							    	
 								</div>
 						</div>
 						
 					</div>
+					</c:if>
+					<c:if test="${product.stock <= 0 }">
+						<div class="row">
+						<div class="panel panel-default">
+							 	<div class="panel-body">
+							 		<p class="fornotinstock">Not in stock</p>
+							 	
+								</div>
+						</div>
+						
+					</div>
+					</c:if>
 			</div>
 		</div>
 

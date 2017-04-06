@@ -32,7 +32,11 @@
                             
                         </div>
 
-                        
+                        <div class="form-group col-md-12">
+                            <form:label path="stock">Stock : <span class="reqstar">&#42;</span><font color='red'><form:errors path="stock" /></font></form:label>
+                            <form:input path="stock" type="text" class="form-control" placeholder="Prcie" value="${product.stock}"/>
+                            
+                        </div>
 						
 						<div class="form-group col-md-12">
                             <form:label path="category.id">Brand <span class="reqstar">&#42;</span></form:label>
@@ -88,7 +92,8 @@
                 
                 <th class="col-md-2 col-xs-2">Picture</th>
                 <th class="col-md-4 col-xs-4">Product name</th>
-                <th class="col-md-4 col-xs-4">Price</th>
+                <th class="col-md-2 col-xs-2">Price</th>
+                <th class="col-md-2 col-xs-2">Stock</th>
                 <th class="col-md-2 col-xs-2">Edit</th>
               </tr>
               <tr class="warning no-result">
@@ -101,6 +106,7 @@
                 <th scope="row"><img src="${product.pimage}" width="100px"></th>
                 <td><a href="">${product.category.name} ${product.pname} ( ${product.pcolor} ) </a></td>
                 <td>&#8377;${product.price}</td>
+                <td>${product.stock}</td>
                 <td><a class="btn btn-primary btn-md" href="${contextRoot}/admin/productUpdate/${product.pid}"><span class="glyphicon glyphicon-edit"></span></a>
                 <a class="btn btn-danger btn-md" href="${contextRoot}/admin/productDeletion/${product.pid}"><span class="glyphicon glyphicon-trash"></span></a>
                 </td>

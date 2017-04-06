@@ -264,9 +264,16 @@ body {
 		 	background-color: #D75500;
 		 }
 		 /***************** order details page ********************/
-		.panel .table > tbody > tr > td > .odname {
-			color: #D75500;
+		.panel .table > tbody > tr > td > .odname > a {
+			font-size: 15px;
+			font-weight: normal;
+			 color: #0066C2; 
+		 }
 		 
+		 .panel .table > tbody > tr > td > .odname > a:hover {
+			 color: #D75500; 
+			 font-size: 15px;
+			 font-weight: normal;
 		 }
 		 
 		 .panel .table > tbody > tr > td > .odprice {
@@ -281,4 +288,13 @@ body {
 			font-size: 13px;
 		  
 		  }
+		  /***********   My account page   ************/
+		  .myachead {
+		  	font-weight: bold;
+		  	font-size: 14px;
+		  }
+		  .myactext {
+		  	font-weight: normal;
+		  	font-size: 14px;
 		  
+		  }

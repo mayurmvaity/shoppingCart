@@ -1,0 +1,20 @@
+@CHARSET "ISO-8859-1";
+
+.rsymbol {
+	font-family: 'Oswald', sans-serif;
+	font-weight: normal;
+	font-size: 11px;
+	
+}
+
+.orderdetailhead {
+	color: #6C6C6C;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+.orderdetailheadtext {
+	color: #6C6C6C;
+	font-weight: normal;
+	font-size: 14px;
+}

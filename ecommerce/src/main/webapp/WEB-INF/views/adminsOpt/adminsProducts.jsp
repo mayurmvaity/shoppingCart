@@ -80,8 +80,9 @@
 						        <a href="${contextRoot}/admin/adminsProDetails/${product.pid}" >${product.category.name} ${product.pname} ( ${product.pcolor} )</a></p>
 						         <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice">&#8377;${product.price}</p>
+						        <p>Stock: <span class="">${product.stock}</span></p>
 						        <p><a href="${contextRoot}/admin/productUpdate/${product.pid}" class="btn btn-primary" role="button">Edit <span class="glyphicon glyphicon-shopping-cart"></span></a>
-						        <a href="${contextRoot}/admin/productDeletion/${product.pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-info-sign"></span></a></p>
+						        <a href="${contextRoot}/admin/productDeletion/${product.pid}" class="btn btn-danger" role="button">Delete <span class="glyphicon glyphicon-trash"></span></a></p>
 						      </div>
 						    </div>
 						  </div>

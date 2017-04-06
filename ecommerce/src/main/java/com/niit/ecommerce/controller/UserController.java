@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderDAO;
 import com.niit.shoppingbackend.dao.OrderiDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
@@ -48,6 +48,9 @@ public class UserController {
 	
 	@Autowired
 	private OrderiDAO orderiDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 	
 	@Autowired
 	private SupplierDAO supplierDAO;
@@ -88,6 +91,8 @@ public class UserController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 		mv.addObject("isUserClickChangePW", true);
@@ -148,6 +153,8 @@ public class UserController {
 			session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
 			// passing order details to orderdetails page
 			session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			
+			session.setAttribute("orders", orderDAO.getByUser(user1));
 				/***************/
 			
 			mv.addObject("isUserClickMyAccount", true);
@@ -189,6 +196,8 @@ public class UserController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 		
 		mv.addObject("isUserClickBillingAddress", true);
@@ -241,6 +250,8 @@ public class UserController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user1));
 			/***************/
 		
 		mv.addObject("isUserClickMyAccount", true);
@@ -281,6 +292,8 @@ public class UserController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 		mv.addObject("isUserClickMyAccount", true);
@@ -322,6 +335,8 @@ public class UserController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user1));
 					/***************/
 				
 				
@@ -379,6 +394,8 @@ public class UserController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user1));
 			/***************/
 		
 		mv.addObject("isUserClickMyAccount", true);
@@ -414,6 +431,8 @@ public class UserController {
 				session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
 				// passing order details to orderdetails page
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+				
+				session.setAttribute("orders", orderDAO.getByUser(user));
 					/***************/
 				
 
@@ -463,6 +482,8 @@ public class UserController {
 		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
 		// passing order details to orderdetails page
 		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user1));
 			/***************/
 		
 		mv.addObject("isUserClickMyAccount", true);

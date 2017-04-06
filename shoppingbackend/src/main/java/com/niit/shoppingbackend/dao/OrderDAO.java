@@ -3,6 +3,7 @@ package com.niit.shoppingbackend.dao;
 import java.util.List;
 
 import com.niit.shoppingbackend.dto.Ordertable;
+import com.niit.shoppingbackend.dto.UserTable;
 
 public interface OrderDAO {
 
@@ -12,5 +13,5 @@ public interface OrderDAO {
 	boolean update(Ordertable order);
 	boolean delete(Ordertable order);
 	
-	
+	List<Ordertable> getByUser(UserTable user);
 }

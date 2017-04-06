@@ -62,6 +62,8 @@
         			
 						  <c:if test="${variable.id == product.category.id}">
 						 	
+						 	
+						 	
 						 	<c:if test="${count<4}">
 						  <div class="col-sm-6 col-md-3">
 						    <div class="thumbnail">
@@ -72,13 +74,18 @@
 						        <p class="coname">by ${product.category.name}</p>
 						        <p class="productprice"><span class="rupeesymbol">&#8377;</span>${product.price}</p>
 						       <%--  <h4>&#8377;${count}</h4> --%>
-						        <p><a href="${contextRoot}/user/addToCart/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a>
+						        <p><c:if test="${product.stock >0 }"><a href="${contextRoot}/user/addToCart/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a></c:if>
+						       		<c:if test="${product.stock <=0 }">Out of stock</c:if>
+						       
 						       </p>
 						      </div>
 						    </div>
 						  </div>
 						 			<c:set var="count" value="${count+1}" scope="page"/>
 							</c:if>
+							
+							
+							
 							</c:if>
 				
 						

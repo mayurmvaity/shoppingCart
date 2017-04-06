@@ -15,8 +15,9 @@ public class Orderi {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int oitemid;
 	
-	@Column
-	private int orderid;
+	@OneToOne
+	@JoinColumn(name="orderid")
+	private Ordertable order;
 	
 	@Column
 	private int uid;
@@ -34,6 +35,18 @@ public class Orderi {
 	@Column
 	private long itotal;
 	
+	@OneToOne
+	@JoinColumn(name="addid")
+	private Address address;
+	
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Column(name="is_ordered")
 	private boolean ordered = false;
 	
@@ -47,13 +60,7 @@ public class Orderi {
 		this.oitemid = oitemid;
 	}
 
-	public int getOrderid() {
-		return orderid;
-	}
-
-	public void setOrderid(int orderid) {
-		this.orderid = orderid;
-	}
+	
 
 	public int getUid() {
 		return uid;
@@ -119,14 +126,25 @@ public class Orderi {
 	@Column(name="is_active")
 	private boolean active = true;
 
-
-
 	@Override
 	public String toString() {
-		return "Orderi [oitemid=" + oitemid + ", orderid=" + orderid + ", uid=" + uid + ", product=" + product
-				+ ", quantity=" + quantity + ", itotal=" + itotal + ", ordered=" + ordered + ", delivered=" + delivered
-				+ ", active=" + active + "]";
+		return "Orderi [oitemid=" + oitemid + ", order=" + order + ", uid=" + uid + ", product=" + product
+				+ ", quantity=" + quantity + ", itotal=" + itotal + ", address=" + address + ", ordered=" + ordered
+				+ ", delivered=" + delivered + ", active=" + active + "]";
 	}
+
+	public Ordertable getOrder() {
+		return order;
+	}
+
+	public void setOrder(Ordertable order) {
+		this.order = order;
+	}
+
+	
+
+
+
 	
 	
 	

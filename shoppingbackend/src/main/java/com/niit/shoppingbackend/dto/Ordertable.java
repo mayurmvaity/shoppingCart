@@ -30,6 +30,17 @@ public class Ordertable {
 	@Column(name="is_ordered")
 	private boolean ordered=false;
 	
+	@Column(name="is_dispatched")
+	private boolean dispatched=false;
+	
+	public boolean isDispatched() {
+		return dispatched;
+	}
+
+	public void setDispatched(boolean dispatched) {
+		this.dispatched = dispatched;
+	}
+
 	@Column
 	private String payment;
 	
@@ -108,8 +119,8 @@ public class Ordertable {
 	@Override
 	public String toString() {
 		return "Ordertable [orderid=" + orderid + ", user=" + user + ", address=" + address + ", amount=" + amount
-				+ ", ordered=" + ordered + ", payment=" + payment + ", delivered=" + delivered + ", active=" + active
-				+ "]";
+				+ ", ordered=" + ordered + ", dispatched=" + dispatched + ", payment=" + payment + ", delivered="
+				+ delivered + ", active=" + active + "]";
 	}
 
 	
