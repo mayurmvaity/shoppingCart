@@ -79,12 +79,13 @@ public class OrderiDAOImpl implements OrderiDAO {
 
 	@Override
 	public List<Orderi> getUndelivered(int uid) {
-		String selectActiveSupplier = "FROM Orderi WHERE active = :active and delivered = :delivered and ordered =:ordered and uid = :uid";
+		String selectActiveSupplier = "FROM Orderi WHERE active = :active and ordered =:ordered and uid = :uid";
+		//String selectActiveSupplier = "FROM Orderi WHERE active = :active and delivered = :delivered and ordered =:ordered and uid = :uid";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveSupplier);
 		
 		query.setParameter("active", true);
-		query.setParameter("delivered", false);
+		//query.setParameter("delivered", false);
 		query.setParameter("ordered", true);
 		query.setParameter("uid", uid);
 		

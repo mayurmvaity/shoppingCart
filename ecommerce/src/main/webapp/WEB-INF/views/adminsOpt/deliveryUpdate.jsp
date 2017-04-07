@@ -12,11 +12,11 @@
             <thead>
               <tr>
                 
-                <th class="col-md-2 col-xs-4 tablehead">Userid</th>
-                <th class="col-md-2 col-xs-6 tablehead">Orderid</th>
+                <th class="col-md-1 col-xs-4 tablehead">Userid</th>
+                <th class="col-md-1 col-xs-6 tablehead">Orderid</th>
                 <th class="col-md-1 tablehead">Pending</th>
-                <th class="col-md-1 tablehead">Dispatched</th>
-                <th class="col-md-1 tablehead">Delivered</th>
+                <th class="col-md-3 tablehead">Dispatched</th>
+                <th class="col-md-3 tablehead">Delivered</th>
                 
                 </tr>
               <tr class="warning no-result">
@@ -24,14 +24,15 @@
               </tr>
             </thead>
             <tbody>
-            <c:forEach items="${orders}" var="">
+            <c:forEach items="${allorders}" var="order">
             
               <tr>
-                <th scope="row" class="tablecontent">${supplier.sname}</th>
-                <td class="tablecontent">${supplier.sdesc}</td>
-                <td><a href="${contextRoot}/admin/supplierUpdate/${supplier.sid}" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
-                <a href="${contextRoot}/admin/supplierDeletion/${supplier.sid}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>
-                </td>
+                <th scope="row" class="tablecontent">${order.user.uid}</th>
+                <td class="tablecontent">${order.orderid}</td>
+                <td>${order.ordered}</td>
+                <td>${order.dispatched} <a class="btn btn-primary" href="${contextRoot}/admin/makeDispatch/${order.orderid}">Dispatched</a>&nbsp;<a class="btn btn-danger" href="${contextRoot}/admin/cancelDispatch/${order.orderid}">Cancel</a></td>
+                <td>${order.delivered} <a class="btn btn-primary" href="${contextRoot}/admin/makeDelivered/${order.orderid}">Delivered</a>&nbsp;<a class="btn btn-danger" href="${contextRoot}/admin/cancelDelivered/${order.orderid}">Cancel</a></td>
+                
               </tr>
               
              </c:forEach> 

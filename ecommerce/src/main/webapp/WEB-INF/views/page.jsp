@@ -162,6 +162,9 @@
 		<%@include file="./adminsOpt/sidebarB.jsp" %>
 	</c:if>
 	
+	<c:if test="${adminClickedDeliveryUpdate == true}">
+		<%@include file="./adminsOpt/deliveryUpdate.jsp" %>
+	</c:if>
 	
 	
 	<%-- <c:if test="${isUserClickAdminsProducts==true}">

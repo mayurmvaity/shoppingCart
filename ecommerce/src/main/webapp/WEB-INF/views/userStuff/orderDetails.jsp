@@ -22,7 +22,9 @@
 				ORDER STATUS
 				<br/>
 				<p class="orderdetailheadtext">
-				Pending...
+				<c:if test="${order.ordered == true && order.dispatched==false && order.delivered==false}">Pending...</c:if>
+				<c:if test="${order.ordered == true && order.dispatched==true && order.delivered==false}">Dispatched...</c:if>
+				<c:if test="${order.ordered == true && order.dispatched==true && order.delivered==true}">Delivered...</c:if>
 			</p>
 			
 		</div>

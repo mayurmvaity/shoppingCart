@@ -81,6 +81,7 @@
 								
 							</ul></li>
 							
+							<li><a href="${contextRoot}/admin/deliveryUpdate">Delivery status</a></li>
 							
 							</security:authorize>
 							

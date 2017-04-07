@@ -14,4 +14,5 @@ public interface OrderDAO {
 	boolean delete(Ordertable order);
 	
 	List<Ordertable> getByUser(UserTable user);
+	List<Ordertable> getByOrdered();
 }

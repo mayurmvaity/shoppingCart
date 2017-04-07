@@ -11,10 +11,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CategoryDAO;
+import com.niit.shoppingbackend.dao.OrderDAO;
 import com.niit.shoppingbackend.dao.ProductDAO;
 import com.niit.shoppingbackend.dao.SupplierDAO;
 import com.niit.shoppingbackend.dao.UserDAO;
 import com.niit.shoppingbackend.dto.Category;
+import com.niit.shoppingbackend.dto.Ordertable;
 import com.niit.shoppingbackend.dto.Product;
 
 @Controller
@@ -31,6 +33,9 @@ public class AdminController {
 	
 	@Autowired
 	private AddressDAO addressDAO;
+	
+	@Autowired
+	private OrderDAO orderDAO;
 	
 	@Autowired
 	private ProductDAO productDAO;
@@ -188,4 +193,131 @@ public class AdminController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/deliveryUpdate")
+	public ModelAndView deliveryUpdate()
+	{
+		log.debug("Starting of deliveryUpdate page");
+		ModelAndView mv = new ModelAndView("page");
+		
+		//passing the list of categories
+				mv.addObject("categories",categoryDAO.list());
+				
+				// passing the list of orders
+				mv.addObject("allorders", orderDAO.getByOrdered());
+				
+				mv.addObject("adminClickedDeliveryUpdate",true);
+		
+				mv.addObject("title","Delivery status");
+				
+		log.debug("End of deliveryUpdate page");
+		return mv;
+	}
+	
+	@RequestMapping(value="/makeDispatch/{orderid}")
+	public ModelAndView makeDispatch(@PathVariable("orderid") int orderid)
+	{
+		log.debug("Starting of make dispatch method");
+		ModelAndView mv = new ModelAndView("page");
+		Ordertable order=orderDAO.get(orderid);
+		
+		order.setDispatched(true);
+		boolean b=orderDAO.update(order);
+		if(b) System.out.println("Order dispatched made true");
+		else System.out.println("Order not dispatched");
+		
+		/******************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		// passing the list of orders
+		mv.addObject("allorders", orderDAO.getByOrdered());
+		/*********************/
+		
+		mv.addObject("title","Delivery status");
+		
+		mv.addObject("adminClickedDeliveryUpdate",true);
+		log.debug("Starting of make dispatch method");
+		return mv;
+	}
+	
+	@RequestMapping(value="/cancelDispatch/{orderid}")
+	public ModelAndView cancelDispatch(@PathVariable("orderid") int orderid)
+	{
+		log.debug("Starting of make dispatch method");
+		ModelAndView mv = new ModelAndView("page");
+		Ordertable order=orderDAO.get(orderid);
+		
+		order.setDispatched(false);
+		boolean b=orderDAO.update(order);
+		if(b) System.out.println("Order dispatched cancelled true");
+		else System.out.println("Order dispatched not cancelled");
+		
+		/******************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		// passing the list of orders
+		mv.addObject("allorders", orderDAO.getByOrdered());
+		/*********************/
+		
+		mv.addObject("title","Delivery status");
+		
+		mv.addObject("adminClickedDeliveryUpdate",true);
+		log.debug("Starting of make dispatch method");
+		return mv;
+	}
+	
+	@RequestMapping(value="/makeDelivered/{orderid}")
+	public ModelAndView makeDelivered(@PathVariable("orderid") int orderid)
+	{
+		log.debug("Starting of make delivered method");
+		ModelAndView mv = new ModelAndView("page");
+		Ordertable order=orderDAO.get(orderid);
+		
+		order.setDelivered(true);
+		boolean b=orderDAO.update(order);
+		if(b) System.out.println("Order delivered made true");
+		else System.out.println("Order not delivered");
+		
+		/******************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		// passing the list of orders
+		mv.addObject("allorders", orderDAO.getByOrdered());
+		/*********************/
+		
+		mv.addObject("title","Delivery status");
+		
+		mv.addObject("adminClickedDeliveryUpdate",true);
+		log.debug("End of make delivered method");
+		return mv;
+	}
+	
+	@RequestMapping(value="/cancelDelivered/{orderid}")
+	public ModelAndView cancelDelivered(@PathVariable("orderid") int orderid)
+	{
+		log.debug("Starting of cancel delivered method");
+		ModelAndView mv = new ModelAndView("page");
+		Ordertable order=orderDAO.get(orderid);
+		
+		order.setDelivered(false);
+		boolean b=orderDAO.update(order);
+		if(b) System.out.println("Order delivered cancelled true");
+		else System.out.println("Order delivered not cancelled");
+		
+		/******************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
+		
+		// passing the list of orders
+		mv.addObject("allorders", orderDAO.getByOrdered());
+		/*********************/
+		
+		mv.addObject("title","Delivery status");
+		
+		mv.addObject("adminClickedDeliveryUpdate",true);
+		log.debug("End of cancel delivered method");
+		return mv;
+	}
 }

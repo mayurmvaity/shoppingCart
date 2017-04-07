@@ -77,14 +77,27 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public List<Ordertable> getByUser(UserTable user) {
-		String selectActiveSupplier = "FROM Ordertable WHERE active = :active and delivered = :delivered and ordered =:ordered and user = :user";
+		String selectActiveSupplier = "FROM Ordertable WHERE active = :active and ordered =:ordered and user = :user";
+		//String selectActiveSupplier = "FROM Ordertable WHERE active = :active and delivered = :delivered and ordered =:ordered and user = :user";
 		
 		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveSupplier);
 		
 		query.setParameter("active", true);
-		query.setParameter("delivered", false);
+		//query.setParameter("delivered", false);
 		query.setParameter("ordered", true);
 		query.setParameter("user", user);
+		
+		return query.getResultList();
+	}
+
+	@Override
+	public List<Ordertable> getByOrdered() {
+		String selectActiveOrder = "FROM Ordertable WHERE active = :active and ordered = :ordered";
+		
+		Query query = sessionFactory.getCurrentSession().createQuery(selectActiveOrder);
+		
+		query.setParameter("active", true);
+		query.setParameter("ordered", true);
 		
 		return query.getResultList();
 	}
