@@ -154,6 +154,14 @@ public class SupplierController {
 		
 		if(result.hasErrors())
 		{
+			
+			/********************/
+			//passing the list of categories
+			mv.addObject("categories",categoryDAO.list());
+			// getting table of suppliers
+			mv.addObject("suppliers",supplierDAO.list());
+				/*********************/
+			
 			mv.addObject("isUserClickAddSupplier",true);
 			return mv;
 		}

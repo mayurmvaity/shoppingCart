@@ -27,7 +27,7 @@
                         </div>
 
                         <div class="form-group col-md-12">
-                            <form:label path="price">Price : <span class="reqstar">&#42;</span> (in &#8377;) <font color='red'><form:errors path="price" /></font></form:label>
+                            <form:label path="price">Price : <span class="reqstar">&#42;</span> (in <span class="rupeesymbol">&#8377;</span>) <font color='red'><form:errors path="price" /></font></form:label>
                             <form:input path="price" type="text" class="form-control" placeholder="Prcie" value="${product.price}"/>
                             
                         </div>
@@ -104,8 +104,8 @@
             <c:forEach items="${listProducts}" var="product">
               <tr>
                 <th scope="row"><img src="${product.pimage}" width="100px"></th>
-                <td><a href="">${product.category.name} ${product.pname} ( ${product.pcolor} ) </a></td>
-                <td>&#8377;${product.price}</td>
+                <td><a href="${contextRoot}/admin/adminsProDetails/${product.pid}">${product.category.name} ${product.pname} ( ${product.pcolor} ) </a></td>
+                <td><span class="rupeesymbol">&#8377;</span>${product.price}</td>
                 <td>${product.stock}</td>
                 <td><a class="btn btn-primary btn-md" href="${contextRoot}/admin/productUpdate/${product.pid}"><span class="glyphicon glyphicon-edit"></span></a>
                 <a class="btn btn-danger btn-md" href="${contextRoot}/admin/productDeletion/${product.pid}"><span class="glyphicon glyphicon-trash"></span></a>

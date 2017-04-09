@@ -62,7 +62,7 @@
 					  
 					  <c:forEach items="${categories}" var="category">
 					    <tr>
-					      <th scope="row"><a href="">${category.name}</a></th>
+					      <th scope="row">${category.name}</th>
 					      <td>${category.description}</td>
 					      <td><a href="${contextRoot}/admin/categoryUpdate/${category.id}" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-edit"></span></a>
 					      <a href="${contextRoot}/admin/categoryDeletion/${category.id}" class="btn btn-danger btn-md"><span class="glyphicon glyphicon-trash"></span></a>

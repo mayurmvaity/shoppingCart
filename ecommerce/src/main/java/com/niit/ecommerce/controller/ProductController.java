@@ -89,6 +89,25 @@ public class ProductController {
 		
 		if(result.hasErrors())
 		{
+			
+			/****************/
+			//passing the list of categories
+			mv.addObject("categories",categoryDAO.list());
+			
+			//passing the list of products for the table below
+			mv.addObject("listProducts", productDAO.list());
+			/*********************/
+			
+			/*******************/
+			// passing the list of categories
+			/*session.setAttribute("categories", categoryDAO.list());
+					//mv.addObject("categories", categoryDAO.list());
+
+					//passing the list of products
+			session.setAttribute("products", productDAO.list());*/
+					//mv.addObject("products", productDAO.list());
+			/***********************/
+			
 			mv.addObject("isUserClickAddProduct",true);
 			return mv;
 			
@@ -133,15 +152,13 @@ public class ProductController {
 		mv.addObject("product",product1);
 				
 		
+		/****************/
+		//passing the list of categories
+		mv.addObject("categories",categoryDAO.list());
 		
-		/*******************/
-		// passing the list of categories
-				mv.addObject("categories", categoryDAO.list());
-
-				//passing the list of products
-				mv.addObject("products", productDAO.list());
-		/***********************/
-		
+		//passing the list of products for the table below
+		mv.addObject("listProducts", productDAO.list());
+		/*********************/
 		mv.addObject("isUserClickAdminsProducts", true);
 		
 		log.debug("End of product addition  method");

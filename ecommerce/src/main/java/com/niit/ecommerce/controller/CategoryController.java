@@ -144,6 +144,12 @@ public class CategoryController {
 		
 		if(result.hasErrors())
 		{
+			
+			/*************/
+			//passing the list of categories
+			mv.addObject("categories",categoryDAO.list());
+			/***************/
+			
 			mv.addObject("isUserClickAddCategory",true);
 			return mv;
 		}

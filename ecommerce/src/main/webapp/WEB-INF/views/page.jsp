@@ -54,7 +54,7 @@
 	<!-- =================  NAVBAR  ================== -->
 	<%@include file="./shared/navbar.jsp" %>
 		
-		<div class="alert alert-info fade in">
+		<%-- <div class="alert alert-info fade in">
 			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
   			<strong>Info!</strong> ${contextRoot} says - ${greeting}
 		${CRUDmsgP}
@@ -71,7 +71,7 @@
 	${loginMessage} ${adminMessage}
 		
 		
-		</div>
+		</div> --%>
 				
 		
 	<div class="content">
