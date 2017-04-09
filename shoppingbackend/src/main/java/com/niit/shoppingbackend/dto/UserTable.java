@@ -25,6 +25,12 @@ import org.springframework.stereotype.Component;
 @Entity
 public class UserTable implements Serializable {
  
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8425983882762090946L;
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int uid;

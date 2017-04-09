@@ -1,11 +1,17 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
 
 @Component
-public class OrderData {
+public class OrderData implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2693632508062594375L;
 
 	/**
 	 * Private fields
@@ -20,16 +26,34 @@ public class OrderData {
 	
 	private UserTable user;
 	
+	public UserTable getUser() {
+		return user;
+	}
+
+	public void setUser(UserTable user) {
+		this.user = user;
+	}
+
 	private List<Address> addresses;
 	
 	private Address shippingAddress;
 	
 	private String paymentMode;
+	
+	private int addressid;
 
 	/*
 	 * methods
 	 * */
 	
+	public int getAddressid() {
+		return addressid;
+	}
+
+	public void setAddressid(int addressid) {
+		this.addressid = addressid;
+	}
+
 	public Cart getCart() {
 		return cart;
 	}
@@ -62,13 +86,7 @@ public class OrderData {
 		this.orderitems = orderitems;
 	}
 
-	public UserTable getUser() {
-		return user;
-	}
-
-	public void setUser(UserTable user) {
-		this.user = user;
-	}
+	
 
 	public List<Address> getAddresses() {
 		return addresses;
@@ -96,16 +114,20 @@ public class OrderData {
 		this.paymentMode = paymentMode;
 	}
 
-	/*
-	 * toString() method
-	 * */
-	
 	@Override
 	public String toString() {
 		return "OrderData [cart=" + cart + ", cartitems=" + cartitems + ", order=" + order + ", orderitems="
 				+ orderitems + ", user=" + user + ", addresses=" + addresses + ", shippingAddress=" + shippingAddress
-				+ ", paymentMode=" + paymentMode + "]";
+				+ ", paymentMode=" + paymentMode + ", addressid=" + addressid + "]";
 	}
+
+	
+
+	
+	/*
+	 * toString() method
+	 * */
+	
 	
 	
 	

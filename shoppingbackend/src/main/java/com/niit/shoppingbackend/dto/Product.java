@@ -3,6 +3,7 @@ package com.niit.shoppingbackend.dto;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,16 +18,24 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
-
+@Component
 @Entity
-public class Product {
+public class Product implements Serializable {
 	
+	
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2406468226211187882L;
+
 	/*
 	 * private variables
 	 * */
-	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

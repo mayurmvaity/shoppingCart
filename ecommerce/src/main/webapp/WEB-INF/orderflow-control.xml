@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/webflow http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+	<var name="order" class="com.niit.shoppingbackend.dto.Ordertable" />
+	<var name="orderi" class="com.niit.shoppingbackend.dto.Orderi" />
+	<var name="product" class="com.niit.shoppingbackend.dto.Product" />
+	<var name="address" class="com.niit.shoppingbackend.dto.Address" />
+	<var name="cart" class="com.niit.shoppingbackend.dto.Cart" />
+	<var name="cartitem" class="com.niit.shoppingbackend.dto.Cartitem" />
+                          
+	<on-start>
+		
+		<evaluate expression="flowController.initFlow()" result="flowScope.orderData">
+		</evaluate>
+	</on-start>
+
+	<view-state id="start" view="orders/selectAddress" model="flowScope.orderData">
+		<transition on="selectAddress" to="toSelectAddress" />
+	</view-state>
+
+	<action-state id="toSelectAddress">
+		<evaluate
+			expression="flowController.selectShippingAddress(flowScope.orderData)"></evaluate>
+		<transition on="success" to="toConfirmPurchase" />
+	</action-state>
+	
+	
+
+	<view-state id="toConfirmPurchase" view="orders/confirmPurchase" model="flowScope.orderData">
+		<transition on="changeAddress" to="start" />
+		<transition on="payment" to="toPaymentMode" />
+	</view-state>
+	<view-state id="toPaymentMode" view="orders/paymentMode" model="flowScope.orderData">
+		<transition on="paymentMode" to="choosePaymentMode" />
+	</view-state>
+	
+	<action-state id="choosePaymentMode">
+		<evaluate expression="flowController.choosePaymentMode(flowScope.orderData)"></evaluate>
+		<transition on="success" to="toOrderDetails" />
+	</action-state>
+
+	<end-state id="toOrderDetails"
+		view="externalRedirect:contextRelative:/user/orderDetails" />
+	<end-state id="toException" view="externalRedirect:contextRelative:/user/myCart" />
+
+
+
+
+
+
+
+
+</flow>

@@ -52,7 +52,7 @@
 					<a href="${contextRoot}/home" class="btn btn-default btn-lg pull-right">Continue shopping</a>
 					</div>
 					<div class="col-md-2">
-						<a href="${contextRoot}/user/selectAddress" class="btn btn-warning btn-lg pull-right">Place order</a>
+						<a href="${contextRoot}/selectAddress" class="btn btn-warning btn-lg pull-right">Place order</a>
 					</div>
 					</div>
 			</div>

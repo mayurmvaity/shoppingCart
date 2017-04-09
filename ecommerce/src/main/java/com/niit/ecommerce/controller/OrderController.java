@@ -200,8 +200,8 @@ public class OrderController {
 		log.debug("End of show my cart page method");
 		return mv;
 	}
-
-	@RequestMapping(value = { "/selectAddress" })
+/****************** Commented area because of webflow ********************/
+	/*@RequestMapping(value = { "/selectAddress" })
 	public ModelAndView showSelectAddressPage(Principal principal, @ModelAttribute("address") Address address ,BindingResult result) {
 		log.debug("Starting of show select address page method");
 		
@@ -220,7 +220,7 @@ public class OrderController {
 				//passing the list of addresses
 				mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
 		
-				/**************/
+				*//**************//*
 				// passing the list of categories
 				mv.addObject("categories", categoryDAO.list());
 				//passing the list of products
@@ -235,16 +235,16 @@ public class OrderController {
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
 				
 				session.setAttribute("orders", orderDAO.getByUser(user));
-					/***************/
+					*//***************//*
 				
 		mv.addObject("isUserClickSelectAddress", true);
 		
 		log.debug("End of show select address page method");
 		
 		return mv;
-	}
+	}*/
 
-	@RequestMapping(value = { "/confirmPurchase/{aid}" })
+	/*@RequestMapping(value = { "/confirmPurchase/{aid}" })
 	public ModelAndView showConfirmPurchasePage(Principal principal,@PathVariable("aid") int aid) {
 		
 		log.debug("Starting of show confirm purchase page method");
@@ -320,7 +320,7 @@ public class OrderController {
 					mv.addObject("OrderMsg","Cartitems NOT updated");
 				}
 				
-				/**************/
+				*//**************//*
 				// passing the list of categories
 				mv.addObject("categories", categoryDAO.list());
 				//passing the list of products
@@ -335,7 +335,7 @@ public class OrderController {
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
 				
 				session.setAttribute("orders", orderDAO.getByUser(user));
-					/***************/
+					*//***************//*
 				
 				
 		mv.addObject("isUserClickConfirmPurchase", true);
@@ -343,9 +343,9 @@ public class OrderController {
 		log.debug("End of show confirm purchase page method");
 		
 		return mv;
-	}
+	}*/
 
-	@RequestMapping(value = { "/paymentMode/{orderid}" })
+	/*@RequestMapping(value = { "/paymentMode/{orderid}" })
 	public ModelAndView showPaymentModePage(Principal principal, @PathVariable("orderid") int orderid) {
 		
 		log.debug("Starting of show payment mode page method");
@@ -361,7 +361,7 @@ public class OrderController {
 				// passing the ordertable
 				mv.addObject("orderitem",orderDAO.get(orderid));
 				
-				/**************/
+				*//**************//*
 				// passing the list of categories
 				mv.addObject("categories", categoryDAO.list());
 				//passing the list of products
@@ -376,16 +376,16 @@ public class OrderController {
 				session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
 				
 				session.setAttribute("orders", orderDAO.getByUser(user));
-					/***************/
+					*//***************//*
 				
 				
 		mv.addObject("isUserClickPaymentMode", true);
 		log.debug("End of show payment mode page method");
 		
 		return mv;
-	}
+	}*/
 
-	@RequestMapping(value= { "/addPaymentMode/{oid}" })
+	/*@RequestMapping(value= { "/addPaymentMode/{oid}" })
 	public ModelAndView addPaymentMode(Principal principal, @ModelAttribute("orderitem") Ordertable order, @PathVariable("oid") int oid, BindingResult result) {
 		
 		log.debug("beginning of add payment mode");
@@ -462,7 +462,7 @@ public class OrderController {
 		
 		UserTable user1=userDAO.getUserByEmail(principal.getName());
 		
-		/**************/
+		*//**************//*
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
 		//passing the list of products
@@ -477,19 +477,19 @@ public class OrderController {
 		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
 		
 		session.setAttribute("orders", orderDAO.getByUser(user1));
-			/***************/
+			*//***************//*
 		
 		
-		/*// passing order details to orderdetails page
+		// passing order details to orderdetails page
 		//mv.addObject("carto",cartitemDAO.getOrderedItems(userid, oid));
-		mv.addObject("carto",orderiDAO.getUndelivered(user.getUid()));*/
+		mv.addObject("carto",orderiDAO.getUndelivered(user.getUid()));
 		
 		
 		mv.addObject("isUserClickOrderDetails",true);
 		log.debug("beginning of add payment mode");
 		return mv;
-	}
-	
+	}*/
+	/******************** End of webflow comments *********************/
 	
 	@RequestMapping(value = { "/orderDetailsButton" })
 	public ModelAndView showOrderDetailsButtonPage() {

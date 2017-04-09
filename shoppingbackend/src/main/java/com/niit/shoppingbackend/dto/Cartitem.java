@@ -1,5 +1,7 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,9 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.springframework.stereotype.Component;
+@Component
 @Entity
-public class Cartitem {
+public class Cartitem implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5464426419678705058L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int itemid;

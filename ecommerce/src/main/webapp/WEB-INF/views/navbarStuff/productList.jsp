@@ -97,7 +97,7 @@
 						        <a href="${contextRoot}/productDetails/${cproduct.pid}">${cproduct.category.name} ${cproduct.pname} ( ${cproduct.pcolor} )</a></p>
 						        <p class="coname">by ${cproduct.category.name}</p>
 						        <p class="productprice">&#8377;${cproduct.price}</p>
-						        <p><c:if test="${cproduct.stock >0 }"><a href="${contextRoot}/user/addToCart/${product.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a></c:if>
+						        <p><c:if test="${cproduct.stock >0 }"><a href="${contextRoot}/user/addToCart/${cproduct.pid}" class="btn btn-primary btn-sm "><span class="glyphicon glyphicon-shopping-cart"></span></a></c:if>
 						       		<c:if test="${cproduct.stock <=0 }">Out of stock</c:if></p>
 						      </div>
 						    </div>

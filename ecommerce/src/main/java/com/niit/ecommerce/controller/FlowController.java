@@ -32,32 +32,32 @@ public class FlowController {
 	@Autowired
 	private UserDAO userDAO;
 	
-	/*@Autowired
-	private Product product;*/
+	@Autowired
+	private Product product;
 	
 	@Autowired
 	private ProductDAO productDAO;
 	
-	/*@Autowired
-	private Cart cart;*/
+	@Autowired
+	private Cart cart;
 	
 	@Autowired
 	private CartDAO cartDAO;
 	
-	/*@Autowired
-	private Cartitem cartitem;*/
+	@Autowired
+	private Cartitem cartitem;
 	
 	@Autowired
 	private CartitemDAO cartitemDAO;
 	
-	/*@Autowired
+	@Autowired
 	private Ordertable order;
-	*/
+	
 	@Autowired
 	private OrderDAO orderDAO;
 	
-	/*@Autowired
-	private Orderi orderi;*/
+	@Autowired
+	private Orderi orderi;
 	
 	@Autowired
 	private OrderiDAO orderiDAO;
@@ -71,34 +71,48 @@ public class FlowController {
 	@Autowired
 	private AddressDAO addressDAO;
 	
-	public OrderData initflow()
+	public OrderData initFlow()
 	{
 		user = userDAO.getUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
 		orderData.setCart(user.getCart());
 		orderData.setCartitems(cartitemDAO.getByUserid(user.getUid()));
 		orderData.setAddresses(addressDAO.getByAid(user.getUid()));
+		orderData.setUser(user);
 		return orderData;
 	}
 	
-	public String selectShippingAddress(OrderData orderData,int addid) {
+	public String selectShippingAddress(OrderData orderData) {
 		
-		address=addressDAO.get(addid);
+		int addressid=orderData.getAddressid();
+		address=addressDAO.get(addressid);
+		
 		orderData.setShippingAddress(address);
 		
 		return "success";
 	}
 	
+	/*public String selectShippingAddress(OrderData orderData,int addressid) {
+		
+		//orderData.getAddressid();
+		address=addressDAO.get(addressid);
+		
+		orderData.setShippingAddress(address);
+		
+		return "success";
+	}*/
+	
 	public String choosePaymentMode(OrderData orderData) {
 		
 		user=userDAO.getUserByEmail(SecurityContextHolder.getContext().getAuthentication().getName());
-		Cart cart=user.getCart();
+		cart=user.getCart();
 		
 		// order set here
-		Ordertable order=new Ordertable();
+		order=new Ordertable();
 		order.setAddress(orderData.getShippingAddress());
 		order.setAmount(cart.getTotalcost());
 		order.setOrdered(true);
 		order.setUser(user);
+		order.setPayment(orderData.getPaymentMode());
 		boolean b=orderDAO.add(order);			// order added to the table
 		if(b) System.out.println("order added");
 		else System.out.println("Order not added");
@@ -109,7 +123,7 @@ public class FlowController {
 		// adding those cart items to order list
 		for(Cartitem ci: cartilist)
 		{
-			Orderi orderi = new Orderi();
+			orderi = new Orderi();
 			orderi.setProduct(ci.getProduct());
 			orderi.setOrder(order);
 			orderi.setQuantity(ci.getIquantity());
@@ -127,7 +141,7 @@ public class FlowController {
 			else System.out.println("cartitem not deleted");
 			
 			// manipulating stock amount
-			Product product = productDAO.get(ci.getProduct().getPid());
+			product = productDAO.get(ci.getProduct().getPid());
 			int stock=product.getStock();
 			stock=stock-ci.getIquantity();
 			product.setStock(stock);

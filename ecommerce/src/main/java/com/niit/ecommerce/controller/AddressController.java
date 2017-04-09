@@ -118,6 +118,30 @@ public class AddressController {
 		
 		if(result.hasErrors()) {
 			
+			UserTable user1=userDAO.getUserByEmail(principal.getName());
+
+			//passing the list of addresses
+			mv.addObject("addresses",addressDAO.getByAid(user1.getUid()));
+			
+			
+			
+				/**************/
+			// passing the list of categories
+			mv.addObject("categories", categoryDAO.list());
+			//passing the list of products
+			mv.addObject("products", productDAO.list());
+			//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+			session.setAttribute("username", user1.getFname());
+			session.setAttribute("Role",user1.getRole());
+			session.setAttribute("userid",user1.getUid());
+			session.setAttribute("cartid",user1.getCart());
+			session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
+			// passing order details to orderdetails page
+			session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
+			
+			session.setAttribute("orders", orderDAO.getByUser(user1));
+				/***************/
+			
 			mv.addObject("isUserClickManageAddress",true);
 			return mv;
 			
@@ -126,6 +150,8 @@ public class AddressController {
 		
 		try{
 			if(address.getAddid()==0) {
+				
+			address.setAid(user.getUid());	
 			boolean b=addressDAO.add(address);
 			if(b)
 			{
@@ -296,25 +322,19 @@ public class AddressController {
 		return mv;
 	}
 	
-	@RequestMapping(value={ "/addAddressNew/{id}" }, method= RequestMethod.POST)
-	public ModelAndView addAddressNew(Principal principal,@PathVariable("id") int id, @ModelAttribute("address") @Valid Address address, BindingResult result) {
+	@RequestMapping(value={ "/addAddressNew" }, method= RequestMethod.POST)
+	public String addAddressNew(Principal principal, @ModelAttribute("address") @Valid Address address, BindingResult result) {
 		// actually you have to take the data from db
 		// temporarily
 		
 		log.debug("Starting of add new address method");
-		
-		ModelAndView mv = new ModelAndView("page");
-		
-		
-		/*//passing the list of categories
-		mv.addObject("categories",categoryDAO.list());*/
-		
+		String url=null;
 		
 		
 		if(result.hasErrors()) {
 			
-			mv.addObject("isUserClickManageAddress",true);
-			return mv;
+			url = "redirect:/user/myCart";
+			return url;
 			
 		}
 		
@@ -324,27 +344,14 @@ public class AddressController {
 			boolean b=addressDAO.add(address);
 			if(b)
 			{
-				mv.addObject("Usermsg","Address added");
+				url = "redirect:/selectAddress"; 
 			}
 			else
 			{
-				mv.addObject("Usermsg","Address not added");
+				url = "redirect:/user/myCart";
 			}
 			}
-			else {
-				boolean b=addressDAO.update(address);
-				if(b)
-				{
-					mv.addObject("Usermsg","Address Updated");
-				}
-				else
-				{
-					mv.addObject("Usermsg","Address not updated");
-				}
-				
-				
-				
-			}
+			
 		}
 		catch(Exception e)
 		{
@@ -352,38 +359,9 @@ public class AddressController {
 		}
 		
 		
-		UserTable user=null;
-		user=userDAO.getUserByEmail(principal.getName());
-		
-		//passing the list of addresses
-		mv.addObject("addresses",addressDAO.getByAid(user.getUid()));
-		
-		
-		UserTable user1=userDAO.getUserByEmail(principal.getName());
-
-			/**************/
-		// passing the list of categories
-		mv.addObject("categories", categoryDAO.list());
-		//passing the list of products
-		mv.addObject("products", productDAO.list());
-		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
-		session.setAttribute("username", user1.getFname());
-		session.setAttribute("Role",user1.getRole());
-		session.setAttribute("userid",user1.getUid());
-		session.setAttribute("cartid",user1.getCart());
-		session.setAttribute("cartitems",cartitemDAO.getByUserid(user1.getUid()));
-		// passing order details to orderdetails page
-		session.setAttribute("carto",orderiDAO.getUndelivered(user1.getUid()));
-		
-		session.setAttribute("orders", orderDAO.getByUser(user1));
-			/***************/
-		
-		
-		
-		mv.addObject("isUserClickSelectAddress", true);
 		log.debug("End of add new address method");
 		
-		return mv;
+		return url;
 	}
 	
 	

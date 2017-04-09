@@ -1,5 +1,7 @@
 package com.niit.shoppingbackend.dto;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,13 +10,20 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.stereotype.Component;
+@Component
 @Entity
-public class Supplier {
+public class Supplier implements Serializable {
 	
 	/*
 	 *  private variables
 	 * */
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2788224039838810682L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int sid;
