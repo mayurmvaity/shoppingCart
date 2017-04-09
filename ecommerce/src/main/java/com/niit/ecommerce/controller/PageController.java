@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.ecommerce.exception.ProductNotFoundException;
 import com.niit.shoppingbackend.dao.AddressDAO;
 import com.niit.shoppingbackend.dao.CartDAO;
 import com.niit.shoppingbackend.dao.CartitemDAO;
@@ -393,7 +394,7 @@ public class PageController {
 	}
 	
 	@RequestMapping(value = { "/productDetails/{id}" })
-	public ModelAndView showProductDetailsPage(@PathVariable("id") int id) {
+	public ModelAndView showProductDetailsPage(@PathVariable("id") int id) throws ProductNotFoundException {
 		
 		log.debug("Starting of show product details page method");
 		
@@ -402,6 +403,8 @@ public class PageController {
 		
 		Product product=null;
 		product=productDAO.get(id);
+		
+		if(product == null) throw new ProductNotFoundException();
 		
 		mv.addObject("title", product.getCategory().getName() +" "+product.getPname()+" "+product.getPcolor());
 		

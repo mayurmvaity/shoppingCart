@@ -17,7 +17,7 @@
     
     ">
     
-    	<context:component-scan base-package="com.niit.ecommerce.controller" />
+    	<context:component-scan base-package="com.niit.ecommerce" />
     	<context:component-scan base-package="com.niit.shoppingbackend" />
     	
     	<!-- <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
