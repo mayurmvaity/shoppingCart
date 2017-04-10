@@ -33,7 +33,10 @@
                 <td>${cartit.iquantity}</td>
                 <td>Free</td>
                 <td><p class="productprice"><span class="rupeesymbol">&#8377;</span>${cartit.itotal}</p></td>
-                <td><a href="${contextRoot}/user/removeCartitem/${cartit.itemid}" class="btn btn-primary">Remove</a></td>
+                <td><a href="${contextRoot}/user/removeCartitem/${cartit.itemid}" class="btn btn-primary">Remove</a>
+                <a href="${contextRoot}/user/increaseQuantity/${cartit.itemid}" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="${contextRoot}/user/decreaseQuantity/${cartit.itemid}" class="btn btn-primary"><span class="glyphicon glyphicon-minus"></span></a>
+                </td>
               </tr>
               </c:forEach>
             </tbody>

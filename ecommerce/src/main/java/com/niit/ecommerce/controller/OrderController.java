@@ -686,5 +686,180 @@ public class OrderController {
 		
 	}
 	
+	@RequestMapping(value="/increaseQuantity/{id}")
+	public ModelAndView increaseQuantity(@PathVariable("id") int id)
+	{
+		log.debug("Beginning of increaseQuantity cart");
+		ModelAndView mv = new ModelAndView("page");
+		
+		Cartitem cartitem = null;
+		cartitem=cartitemDAO.get(id);
+		
+		int userid=cartitem.getUserid();
+		UserTable user=userDAO.get(userid);
+		Cart cart=user.getCart();
+		
+		long cost=cartitem.getItotal();
+		int q=cartitem.getIquantity();
+		q=q+1;
+		cartitem.setIquantity(q);
+		long icost=cartitem.getItotal();
+		icost=icost+cartitem.getIprice();
+		cartitem.setItotal(icost);
+		
+		boolean b=cartitemDAO.update(cartitem);
+		
+		if(b) {
+			
+			
+			int items=cart.getItems();
+			items=items+1;
+			cart.setItems(items);
+			
+			long cartCost=cart.getTotalcost();
+			cartCost=cartCost+cartitem.getIprice();
+			cart.setTotalcost(cartCost);
+			
+			boolean c=cartDAO.update(cart);
+			if(c) mv.addObject("CartUpdated","Cart updated");
+			else mv.addObject("CartUpdated","Cart did not update");
+			
+			mv.addObject("CartMsg","Cart item increase quantity");
+		}
+		else
+		{
+			mv.addObject("CartMsg","Cart item not increase quantity");
+		}
+		
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user));
+			/***************/
+		
+		
+		
+		mv.addObject("isUserClickMyCart",true);
+		
+		log.debug("End of increaseQuantity");
+		return mv;
+		
+		
+	}
+	
+	@RequestMapping(value="/decreaseQuantity/{id}")
+	public ModelAndView decreaseQuantity(@PathVariable("id") int id)
+	{
+		log.debug("Beginning of increaseQuantity cart");
+		ModelAndView mv = new ModelAndView("page");
+		
+		Cartitem cartitem = null;
+		cartitem=cartitemDAO.get(id);
+		
+		int userid=cartitem.getUserid();
+		UserTable user=userDAO.get(userid);
+		Cart cart=user.getCart();
+		
+		long cost=cartitem.getItotal();
+		int q=cartitem.getIquantity();
+		q=q-1;
+		cartitem.setIquantity(q);
+		long icost=cartitem.getItotal();
+		icost=icost-cartitem.getIprice();
+		cartitem.setItotal(icost);
+		
+		if(cartitem.getIquantity()>0)
+		{
+		boolean b=cartitemDAO.update(cartitem);
+		
+		if(b) {
+			
+			
+			int items=cart.getItems();
+			items=items-1;
+			cart.setItems(items);
+			
+			long cartCost=cart.getTotalcost();
+			cartCost=cartCost-cartitem.getIprice();
+			cart.setTotalcost(cartCost);
+			
+			boolean c=cartDAO.update(cart);
+			if(c) mv.addObject("CartUpdated","Cart updated");
+			else mv.addObject("CartUpdated","Cart did not update");
+			
+			mv.addObject("CartMsg","Cart item decreased quantity");
+		}
+		else
+		{
+			mv.addObject("CartMsg","Cart item not decreased quantity");
+		}
+		}
+		else {
+			
+			boolean b=cartitemDAO.delete(cartitem);
+			
+			if(b) {
+				
+				
+				int items=cart.getItems();
+				items=items-1;
+				
+				cart.setItems(items);
+				long cartCost=cart.getTotalcost();
+				cartCost=cartCost-cartitem.getIprice();
+				cart.setTotalcost(cartCost);
+				
+				boolean c=cartDAO.update(cart);
+				if(c) mv.addObject("CartUpdated","Cart updated");
+				else mv.addObject("CartUpdated","Cart did not update");
+				
+				mv.addObject("CartMsg","Cart item deleted");
+			}
+			else
+			{
+				mv.addObject("CartMsg","Cart item not deleted");
+			}
+			
+			
+		}
+				
+		/**************/
+		// passing the list of categories
+		mv.addObject("categories", categoryDAO.list());
+		//passing the list of products
+		mv.addObject("products", productDAO.list());
+		//session.setAttribute("loginMessage", "Welcome :" + user.getFname()+" "+user.getLname());
+		session.setAttribute("username", user.getFname());
+		session.setAttribute("Role",user.getRole());
+		session.setAttribute("userid",user.getUid());
+		session.setAttribute("cartid",user.getCart());
+		session.setAttribute("cartitems",cartitemDAO.getByUserid(user.getUid()));
+		// passing order details to orderdetails page
+		session.setAttribute("carto",orderiDAO.getUndelivered(user.getUid()));
+		
+		session.setAttribute("orders", orderDAO.getByUser(user));
+			/***************/
+		
+		
+		
+		mv.addObject("isUserClickMyCart",true);
+		
+		log.debug("End of increaseQuantity");
+		return mv;
+		
+		
+	}
+	
 	
 }
